@@ -1,0 +1,105 @@
+
+// .router {
+//   display: flex;
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .container {
+//   width: 100%;
+//   height: 100%;
+//   padding: 2vw 2vw;
+// }
+
+// .page_nav {
+//   background-color:  black;
+//   width: 48px;
+//   height: 48px;
+//   position: absolute;
+//   border-radius: 1000px;
+//   overflow: hidden;
+
+//   &.left {
+//     left: 0;
+//     top: 50%;
+//     transform: translate(-50%, -50%);
+//   }
+
+//   &.right {
+//     right: 0;
+//     top: 50%;
+//     transform: translate(50%, -50%);
+//   }
+  
+//   &.top {
+//     top: 0;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//   }
+
+//   &.bottom {
+//     bottom: 0;
+//     left: 50%;
+//     transform: translate(-50%, 50%);
+//   }
+// }
+
+// .tile {
+//   border-radius: 28px;
+//   background-color: black;
+//   width: 100%;
+//   height: 100%;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   flex-direction: column;
+
+//   overflow-x: auto;
+//   $border-size: 24px;
+//   --inset-size: 0px;
+//   $start-inset: 30vw;
+//   $end-inset: calc(100% - 30vw);
+//   $inset-offset: 80px;
+
+//   clip-path: polygon(
+
+//     $border-size 0%,
+    
+//     calc($start-inset - $inset-offset) 0%,
+//     $start-inset var(--inset-size),
+//     $end-inset var(--inset-size),
+//     calc($end-inset + $inset-offset) 0%,
+    
+//     calc(100% - $border-size) 0%,
+//     100% $border-size, 
+
+//     100% calc($start-inset - $inset-offset),
+//     calc(100% - var(--inset-size)) $start-inset,
+//     calc(100% - var(--inset-size)) $end-inset,
+//     100% calc($end-inset + $inset-offset),
+
+//     100% calc(100% - $border-size), 
+//     calc(100% - $border-size) 100%, 
+
+//     calc($end-inset + $inset-offset) 100%,
+//     $end-inset calc(100% - var(--inset-size)),
+//     $start-inset calc(100% - var(--inset-size)),
+//     calc($start-inset - $inset-offset) 100%,
+
+//     $border-size 100%, 
+//     0% calc(100% - $border-size), 
+
+//     0% calc($end-inset + $inset-offset),
+//     var(--inset-size) $end-inset,
+//     var(--inset-size) $start-inset,
+//     0% calc($start-inset - $inset-offset),
+
+//     0 $border-size,
+//   );
+//   transition: clip-path ease-out 200ms;
+// }
+
+// .tile:hover {
+//   --inset-size: 80px;
+// }

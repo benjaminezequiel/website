@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  --gray-100: #e1e0e4;
+  --gray-200: #767585;
+  --gray-300: #535163;
+  --gray-400: #3d3b4b;
+  --gray-500: #2b2a37;
+  --gray-600: #1a1a21;
+  --gray-700: #030305;
+
+  --ease-out: cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+* {
+  font-family: 'Space Grotesk';
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: var(--gray-700);
+  color: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--gray-700);
+  background:
+    radial-gradient(
+      circle,
+      transparent 20%,
+      var(--gray-700) 20%,
+      var(--gray-700) 80%,
+      transparent 80%,
+      transparent
+    ),
+    radial-gradient(
+        circle,
+        transparent 20%,
+        var(--gray-700) 20%,
+        var(--gray-700) 80%,
+        transparent 80%,
+        transparent
+      )
+      25px 25px,
+    linear-gradient(var(--gray-600) 1px, transparent 1px) 0 -1px,
+    linear-gradient(90deg, var(--gray-600) 1px, var(--gray-700) 1px) -1px 0;
+  background-size: 50px 50px;
+}
+
+////////////// TEXT STYLES ///////////////
+
+.h1 {
+  font-size: 5.625rem;
+  font-weight: 400;
+}
+
+.h2 {
+  font-size: 4.1875rem;
+  font-weight: 400;
+}
+
+.h3 {
+  font-size: 3.1875rem;
+  font-weight: 400;
+}
+
+.h4 {
+  font-size: 2.375rem;
+  font-weight: 400;
+}
+
+.h5 {
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+.body-large {
+  font-size: 1.3125rem;
+  font-weight: 400;
+}
+
+.body {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.body-sm {
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.label {
+  font-size: 0.5625rem;
+  font-weight: 400;
+}

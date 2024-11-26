@@ -1,15 +1,14 @@
 <script>
-import AsciiComponent from './AsciiComponent.vue'
+import AsciiComponent from '../components/AsciiComponent.vue'
 import asciiBg from '@/components/asciiBg.vue'
 </script>
 <template>
-  <!-- <div class="circle"></div> -->
   <div class="page">
     <AsciiComponent ref="asciiB" class="ascii" :class="expanded ? 'expanded' : ''"></AsciiComponent>
-
-    <!-- <asciiBg style="width: 1920px; height: 1080px"></asciiBg> -->
+    <div class="system_info" :class="expanded ? 'jump' : 'hide'">
+      FPS: {{ fps }} | {{ width }} x {{ height }} | {{ formatTime(currentTime) }}
+    </div>
     <div class="welcome">
-      <!-- <RouterLink to="/ascii">ASCII VIEW</RouterLink> -->
       <div class="primary" ref="primary_title">WELCOME</div>
       <div
         class="secondary"
@@ -19,27 +18,34 @@ import asciiBg from '@/components/asciiBg.vue'
         @click="handleWelcomeClick"
       ></div>
     </div>
-    <!-- <div>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet tristique tortor,
-      vel condimentum nisl porta eu. Pellentesque dignissim elementum tortor, ut sodales augue
-      tempor ut. Aenean vel aliquam sem. Aliquam ullamcorper mauris et nisl tincidunt venenatis. Nam
-      eu pellentesque tellus. Donec pharetra suscipit porta. Donec nisl elit, bibendum quis erat
-      vel, hendrerit efficitur nisl. Nunc vitae sem dui.
+    <div class="window" :class="expanded ? 'jump' : 'hide'">
+      <header>HEY THERE!</header>
+      <section>
+        I'm really glad you made it here. Feel free to explore my projects, read some thoughts, or
+        just say hi. I hope you find something that inspires you!
+      </section>
     </div>
-    <img src="../assets/logo/full_logo.svg" alt="" /> -->
+    <div class="window projects" :class="expanded ? 'jump' : 'hide'">
+      <header>AREAS</header>
+      <section>
+        <RouterLink class="router_button" to="/projects">[ PROJECTS ]</RouterLink>
+        <RouterLink class="router_button" to="/field_notes">[ FIELD NOTES ]</RouterLink>
+        <RouterLink class="router_button" to="/experiments">[ EXPERIMENTS ]</RouterLink>
+        <RouterLink class="router_button" to="/about">[ ABOUT ME ]</RouterLink>
+      </section>
+    </div>
+    <div class="window additional_info" :class="expanded ? 'jump' : 'hide'">
+      <header>WARNING!</header>
+      <section>
+        I like to play with different visual (and unfortunately resource intensive) stuff, so if the
+        website isn't performing great for you, check the simpler version which will certainly be
+        easier to navigate, although you might miss the cool visuals.
+      </section>
+    </div>
     <!-- <section class="recent-content">
       <h2>RECENTLY ADDED</h2>
       <div class="content-grid">
-        <article v-for="item in recentItems" :key="item.slug" class="content-card">
-          <RouterLink :to="{ name: item.type, params: { slug: item.slug }}">
-            <span class="content-type">{{ item.type }}</span>
-            <h3>{{ item.title }}</h3>
-            <time>{{ formatDate(item.date) }}</time>
-            <div class="tags">
-              <span v-for="tag in item.tags" :key="tag" class="tag">{{ tag }}</span>
-            </div>
-          </RouterLink>
-        </article>
+
       </div>
     </section>
     <section class="highlights">
@@ -61,19 +67,78 @@ import asciiBg from '@/components/asciiBg.vue'
         </article>
       </div>
     </section> -->
+    <!-- <div class="window-controls">
+      <button @click="openSimpleWindow">Open Simple Window</button>
+      <button @click="openProjectWindow">Open Project Window</button>
+    </div> -->
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { getContent } from '@/utils/content'
+
+const fps = ref(0)
+const frames = ref(0)
+const lastTime = ref(performance.now())
+const rafId = ref(null)
+
+const updateFPS = () => {
+  frames.value++
+  const currentTime = performance.now()
+
+  if (currentTime >= lastTime.value + 1000) {
+    // Fixed: removed 'this' and added .value
+    fps.value = Math.round((frames.value * 1000) / (currentTime - lastTime.value)) // Fixed: added .value
+    frames.value = 0
+    lastTime.value = currentTime
+  }
+
+  rafId.value = requestAnimationFrame(updateFPS)
+}
 
 const primary_title = ref(null)
 const secondary_title = ref(null)
 let randomMoveId
 
+const width = ref(window.innerWidth)
+const height = ref(window.innerHeight)
+
+const updateResolution = () => {
+  width.value = window.innerWidth
+  height.value = window.innerHeight
+}
+
+const currentTime = ref(new Date())
+let timerInterval
+
+const updateTime = () => {
+  currentTime.value = new Date()
+}
+
+const formatTime = (date) => {
+  return date.toLocaleTimeString('en-US', {
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  })
+}
+
 onMounted(() => {
   updateBgLetters()
+  window.addEventListener('resize', updateResolution)
+  updateTime()
+  timerInterval = setInterval(updateTime, 1000)
+  updateFPS()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateResolution)
+  if (timerInterval) clearInterval(timerInterval)
+  if (rafId.value) {
+    cancelAnimationFrame(rafId.value)
+  }
 })
 
 function updateBgLetters() {
@@ -123,14 +188,6 @@ function resetMove() {
 
 const recentItems = ref([])
 
-const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
-
 onMounted(async () => {
   const [projects, posts, experiments] = await Promise.all([
     getContent('projects'),
@@ -138,41 +195,24 @@ onMounted(async () => {
     getContent('experiments'),
   ])
 
-  // Combine and add type property
   const allItems = [
     ...projects.map((p) => ({ ...p, type: 'project' })),
     ...posts.map((p) => ({ ...p, type: 'note' })),
     ...experiments.map((e) => ({ ...e, type: 'experiment' })),
   ]
 
-  // Sort by date and take latest 6
   recentItems.value = allItems.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 6)
 })
 
 const highlights = ref([])
 
-const formatContentType = (type) => {
-  switch (type) {
-    case 'note':
-      return 'FIELD NOTE'
-    case 'project':
-      return 'PROJECT'
-    case 'experiment':
-      return 'EXPERIMENT'
-    default:
-      return type.toUpperCase()
-  }
-}
-
 onMounted(async () => {
-  // Fetch all content types
   const [projects, notes, experiments] = await Promise.all([
     getContent('projects'),
     getContent('field-notes'),
     getContent('experiments'),
   ])
 
-  // Process highlighted items
   const allHighlights = [
     ...projects.map((p) => ({ ...p, type: 'project' })),
     ...notes.map((n) => ({ ...n, type: 'note' })),
@@ -183,17 +223,16 @@ onMounted(async () => {
 
   highlights.value = allHighlights
 
-  // Process recent items (excluding highlights if you want)
   const allItems = [
     ...projects.map((p) => ({ ...p, type: 'project' })),
     ...notes.map((n) => ({ ...n, type: 'note' })),
     ...experiments.map((e) => ({ ...e, type: 'experiment' })),
-  ].filter((item) => !item.highlight) // Optional: exclude highlighted items from recent
-
+  ].filter((item) => !item.highlight)
   recentItems.value = allItems.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 6)
 })
 
-const expanded = ref(false)
+const expanded = ref(true)
+
 const handleWelcomeClick = () => {
   if (expanded.value) {
     expanded.value = false
@@ -225,13 +264,21 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &:hover {
+    .primary {
+      scale: 1.01;
+      letter-spacing: 1px;
+    }
+  }
 }
 
 .primary {
   @include utils.prevent-select;
-  pointer-events: none;
   font-family: 'Anton';
   font-size: 120px;
+  transition:
+    scale var(--ease-out) 100ms,
+    letter-spacing var(--ease-out) 100ms;
 }
 
 .secondary {
@@ -375,21 +422,25 @@ body {
 
 .ascii {
   position: absolute;
-  scale: 1.5;
   z-index: 0;
   color: var(--gray-300);
+  // color: #ff0044;
+  color: blueviolet;
   clip-path: circle(100px);
-  transition: clip-path 400ms cubic-bezier(0.33, 1, 0.68, 1);
+  transition: clip-path 200ms cubic-bezier(0.33, 1, 0.68, 1);
   font-weight: 800;
+  transform: scale(1.2);
   > * {
-    transform: translateX(20px) translateY(32px);
+    transform: translateY(32px);
   }
 }
 
 .expanded {
   clip-path: circle(500px);
   transition: clip-path 1200ms cubic-bezier(0.33, 1, 0.68, 1);
+  animation: expand 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
 .circle {
   position: absolute;
   left: 50%;
@@ -400,5 +451,117 @@ body {
   height: 640px;
   border-radius: 100%;
   z-index: -1;
+}
+
+@keyframes expand {
+  50% {
+    scale: 1.1;
+  }
+}
+
+@keyframes expand_less {
+  from {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    scale: 0.5;
+  }
+}
+
+@keyframes expand_less_reverse {
+  to {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    scale: 0.5;
+  }
+}
+
+.system_info {
+  position: absolute;
+  left: calc(50% + calc(64px * 5));
+  top: calc(50% - calc(64px * 0.5));
+  z-index: 100;
+  opacity: 0;
+  transition:
+    opacity var(--ease-out) 400ms,
+    left var(--ease-out) 400ms,
+    top var(--ease-out) 400ms,
+    transform var(--ease-out) 400ms;
+}
+.system_info.hide {
+  animation: expand_less_reverse 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.system_info.jump {
+  opacity: 1;
+}
+
+@mixin window {
+  max-width: 64px * 4;
+  background-color: rgb(from var(--gray-400) r g b / 0.2);
+  position: absolute;
+  left: calc(50% - calc(64px * 8));
+  top: calc(50% - calc(64px * 4));
+  border-radius: 8px;
+  overflow: hidden;
+  outline: rgb(from blueviolet r g b / 0.5) 1px solid;
+  z-index: 100;
+  box-shadow:
+    0px 57px 16px 0px rgb(from var(--gray-500) r g b / 0.01),
+    0px 37px 15px 0px rgb(from var(--gray-500) r g b / 0.04),
+    0px 21px 12px 0px rgb(from var(--gray-500) r g b / 0.15),
+    0px 9px 9px 0px rgb(from var(--gray-500) r g b / 0.26),
+    0px 2px 5px 0px rgb(from var(--gray-500) r g b / 0.29);
+  backdrop-filter: blur(12px);
+  header {
+    border-bottom: 1px solid var(--gray-400);
+    padding: 8px;
+  }
+  section {
+    padding: 8px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+.window {
+  @include window;
+  opacity: 0;
+  transition:
+    opacity var(--ease-out) 400ms,
+    left var(--ease-out) 400ms,
+    top var(--ease-out) 400ms,
+    transform var(--ease-out) 400ms;
+}
+
+.window.hide {
+  animation: expand_less_reverse 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.window.projects {
+  left: calc(50% + calc(64px * 5));
+  top: calc(50% + calc(64px * 0));
+}
+
+.window.additional_info {
+  max-width: 64px * 8;
+  top: calc(50% + calc(64px * 2));
+}
+
+.router_button {
+  all: unset;
+  cursor: pointer;
+  padding: 6px 12px;
+  background-color: var(--gray-400);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jump {
+  animation: expand_less 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 1;
 }
 </style>

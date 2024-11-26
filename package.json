@@ -17,7 +17,8 @@
     "pinia": "^2.2.6",
     "three": "^0.170.0",
     "vue": "^3.5.12",
-    "vue-router": "^4.4.5"
+    "vue-router": "^4.4.5",
+    "winbox": "^0.2.82"
   },
   "devDependencies": {
     "@eslint/js": "^9.14.0",

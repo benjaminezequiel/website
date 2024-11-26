@@ -33,28 +33,9 @@ body {
   align-items: center;
   justify-content: center;
 
-  background-color: var(--gray-700);
-  background:
-    radial-gradient(
-      circle,
-      transparent 20%,
-      var(--gray-700) 20%,
-      var(--gray-700) 80%,
-      transparent 80%,
-      transparent
-    ),
-    radial-gradient(
-        circle,
-        transparent 20%,
-        var(--gray-700) 20%,
-        var(--gray-700) 80%,
-        transparent 80%,
-        transparent
-      )
-      25px 25px,
-    linear-gradient(var(--gray-600) 1px, transparent 1px) 0 -1px,
-    linear-gradient(90deg, var(--gray-600) 1px, var(--gray-700) 1px) -1px 0;
-  background-size: 50px 50px;
+  background-image: url('/src/assets/plus_sign.svg');
+  background-size: 64px;
+  background-position: center;
 }
 
 ////////////// TEXT STYLES ///////////////

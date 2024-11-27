@@ -3,3 +3,16 @@
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+
+@mixin add_states($background, $foreground) {
+  color: $foreground;
+  background-color: $background;
+
+  &:hover {
+    background-color: color-mix(in oklch, $background, $foreground 10%);
+  }
+
+  &:active {
+    background-color: color-mix(in oklch, $background, $foreground 20%);
+  }
+}

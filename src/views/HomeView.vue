@@ -1,12 +1,23 @@
 <script>
 import AsciiComponent from '../components/AsciiComponent.vue'
-import asciiBg from '@/components/asciiBg.vue'
+import NumberFlow from '@number-flow/vue'
 </script>
 <template>
   <div class="page">
     <AsciiComponent ref="asciiB" class="ascii" :class="expanded ? 'expanded' : ''"></AsciiComponent>
     <div class="system_info" :class="expanded ? 'jump' : 'hide'">
-      FPS: {{ fps }} | {{ width }} x {{ height }} | {{ formatTime(currentTime) }}
+      <span>FPS: </span>
+      <NumberFlow :value="fps"></NumberFlow>
+      <span> | </span>
+      <NumberFlow :value="width"></NumberFlow>
+      <span> x </span>
+      <NumberFlow :value="height"></NumberFlow>
+      <span> | </span>
+      <NumberFlow :value="hours" :format="{ minimumIntegerDigits: 2, useGrouping: false }" />
+      <span>:</span>
+      <NumberFlow :value="minutes" :format="{ minimumIntegerDigits: 2, useGrouping: false }" />
+      <span>:</span>
+      <NumberFlow :value="seconds" :format="{ minimumIntegerDigits: 2, useGrouping: false }" />
     </div>
     <div class="welcome">
       <div class="primary" ref="primary_title">WELCOME</div>
@@ -109,21 +120,19 @@ const updateResolution = () => {
   height.value = window.innerHeight
 }
 
-const currentTime = ref(new Date())
-let timerInterval
+const hours = ref(0)
+const minutes = ref(0)
+const seconds = ref(0)
+let timer = null
 
 const updateTime = () => {
-  currentTime.value = new Date()
+  const now = new Date()
+  hours.value = now.getHours()
+  minutes.value = now.getMinutes()
+  seconds.value = now.getSeconds()
 }
 
-const formatTime = (date) => {
-  return date.toLocaleTimeString('en-US', {
-    hour12: false,
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  })
-}
+let timerInterval
 
 onMounted(() => {
   updateBgLetters()
@@ -131,9 +140,11 @@ onMounted(() => {
   updateTime()
   timerInterval = setInterval(updateTime, 1000)
   updateFPS()
+  timer = setInterval(updateTime, 1000)
 })
 
 onUnmounted(() => {
+  clearInterval(timer)
   window.removeEventListener('resize', updateResolution)
   if (timerInterval) clearInterval(timerInterval)
   if (rafId.value) {
@@ -550,6 +561,7 @@ body {
 }
 
 .router_button {
+  @include utils.add_states(var(--gray-400), var(--gray-100));
   all: unset;
   cursor: pointer;
   padding: 6px 12px;

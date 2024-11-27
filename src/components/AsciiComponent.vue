@@ -132,7 +132,6 @@ const initControls = (element) => {
 const frameToAscii = () => {
   renderer.value.render(scene.value, camera.value)
   ctx.drawImage(renderer.value.domElement, 0, 0, WIDTH, HEIGHT)
-
   const pixels = ctx.getImageData(0, 0, WIDTH, HEIGHT).data
   let result = ''
 

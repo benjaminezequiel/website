@@ -1,4 +1,3 @@
-
 // .router {
 //   display: flex;
 //   width: 100%;
@@ -30,7 +29,7 @@
 //     top: 50%;
 //     transform: translate(50%, -50%);
 //   }
-  
+
 //   &.top {
 //     top: 0;
 //     left: 50%;
@@ -65,30 +64,30 @@
 //   clip-path: polygon(
 
 //     $border-size 0%,
-    
+
 //     calc($start-inset - $inset-offset) 0%,
 //     $start-inset var(--inset-size),
 //     $end-inset var(--inset-size),
 //     calc($end-inset + $inset-offset) 0%,
-    
+
 //     calc(100% - $border-size) 0%,
-//     100% $border-size, 
+//     100% $border-size,
 
 //     100% calc($start-inset - $inset-offset),
 //     calc(100% - var(--inset-size)) $start-inset,
 //     calc(100% - var(--inset-size)) $end-inset,
 //     100% calc($end-inset + $inset-offset),
 
-//     100% calc(100% - $border-size), 
-//     calc(100% - $border-size) 100%, 
+//     100% calc(100% - $border-size),
+//     calc(100% - $border-size) 100%,
 
 //     calc($end-inset + $inset-offset) 100%,
 //     $end-inset calc(100% - var(--inset-size)),
 //     $start-inset calc(100% - var(--inset-size)),
 //     calc($start-inset - $inset-offset) 100%,
 
-//     $border-size 100%, 
-//     0% calc(100% - $border-size), 
+//     $border-size 100%,
+//     0% calc(100% - $border-size),
 
 //     0% calc($end-inset + $inset-offset),
 //     var(--inset-size) $end-inset,

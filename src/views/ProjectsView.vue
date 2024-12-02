@@ -29,7 +29,7 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-@use '../assets/utils.scss' as utils;
+@use '../styles/utils.scss' as utils;
 
 .projects_grid {
   display: grid;

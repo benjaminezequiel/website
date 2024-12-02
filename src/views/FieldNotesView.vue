@@ -4,7 +4,7 @@
     <h1>Blog</h1>
     <div class="posts-grid">
       <article v-for="post in posts" :key="post.slug" class="post-card">
-        <RouterLink :to="{ name: 'post', params: { slug: post.slug }}">
+        <RouterLink :to="{ name: 'post', params: { slug: post.slug } }">
           <h2>{{ post.title }}</h2>
           <time>{{ formatDate(post.date) }}</time>
           <p v-if="post.excerpt">{{ post.excerpt }}</p>
@@ -27,7 +27,7 @@ const formatDate = (date) => {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   })
 }
 

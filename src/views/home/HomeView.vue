@@ -6,7 +6,7 @@ import NumberFlow from '@number-flow/vue'
 <template>
   <div class="page_container">
     <div class="page">
-      <img src="../../assets/logo/full_logo.svg" alt="" class="logo" />
+      <img src="/assets/logo/full_logo.svg" alt="" class="logo" />
       <AsciiComponent
         ref="asciiB"
         class="ascii"

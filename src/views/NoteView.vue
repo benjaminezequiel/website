@@ -1,4 +1,3 @@
-
 // views/PostView.vue
 <template>
   <article v-if="post" class="blog-post">
@@ -27,7 +26,7 @@ const formatDate = (date) => {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   })
 }
 

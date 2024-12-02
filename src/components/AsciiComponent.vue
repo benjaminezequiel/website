@@ -18,6 +18,9 @@
   </div>
 </template>
 
+<script>
+export const azimuth = ref(0)
+</script>
 <script setup>
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
@@ -40,6 +43,27 @@ const fps = ref(0)
 const lastFrameTime = ref(performance.now())
 const frameCount = ref(0)
 const showDebug = ref(false)
+
+const polar = ref(0)
+const distance = ref(0)
+
+const updateCameraPosition = () => {
+  if (camera.value && controls.value) {
+    // Get camera position relative to the target
+    const position = new THREE.Vector3()
+    position.copy(camera.value.position)
+    position.sub(controls.value.target)
+
+    // Calculate spherical coordinates
+    const spherical = new THREE.Spherical()
+    spherical.setFromVector3(position)
+
+    // Convert to degrees and round values
+    azimuth.value = Math.floor(THREE.MathUtils.radToDeg(spherical.theta))
+    polar.value = Math.round(THREE.MathUtils.radToDeg(spherical.phi) * 100) / 100
+    distance.value = Math.round(spherical.radius * 100) / 100
+  }
+}
 
 // Constants
 const WIDTH = 160 // Reduced from 200
@@ -171,7 +195,9 @@ let animationFrameId
 const animate = () => {
   animationFrameId = requestAnimationFrame(animate)
   controls.value?.update()
+  updateCameraPosition()
   asciiFrame.value = frameToAscii()
+
   updateFPS()
 }
 

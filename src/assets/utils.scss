@@ -16,3 +16,9 @@
     background-color: color-mix(in oklch, $background, $foreground 20%);
   }
 }
+
+@mixin center-flex() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -15,12 +15,29 @@
   --gray-600: #1a1a21;
   --gray-700: #030305;
 
+  --brand-color-3: blue;
   --ease-out: cubic-bezier(0, 0.55, 0.45, 1);
+
+  --space-1: max(1vw, 8px);
+  --space-2: max(2vw, 16px);
+  --space-3: max(3vw, 24px);
+  --space-4: max(4vw, 32px);
+  --space-5: max(5vw, 40px);
+  --space-6: min(6vw, 48px);
 }
 
 * {
   font-family: 'Space Grotesk';
   box-sizing: border-box;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
 }
 
 body {
@@ -32,12 +49,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
 
-  background-image: url('/src/assets/plus_sign.svg');
-  background-size: 64px;
-  background-position: center;
+  // background-image: url('/src/assets/plus_sign.svg');
+  // background-size: 64px;
+  // background-position: center;
 }
 
+html,
+body {
+  height: 100%;
+}
 ////////////// TEXT STYLES ///////////////
 
 .h1 {

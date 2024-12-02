@@ -1,4 +1,4 @@
-@use '../../assets/utils.scss' as utils;
+@use '../../styles/utils.scss' as utils;
 
 .page_container {
   @include utils.center-flex();

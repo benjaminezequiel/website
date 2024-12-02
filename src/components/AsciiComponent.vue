@@ -89,7 +89,7 @@ const loadModel = async () => {
   const loader = new OBJLoader()
   try {
     const object = await new Promise((resolve, reject) => {
-      loader.load('src/assets/object_to_ascii.obj', resolve, undefined, reject)
+      loader.load('/assets/object_to_ascii.obj', resolve, undefined, reject)
     })
 
     model.value = markRaw(object)

@@ -9,5 +9,5 @@ import WindowManager from '@/components/WindowManager.vue'
 </template>
 
 <style lang="scss">
-@use './assets/base.scss';
+@use './styles/base.scss';
 </style>

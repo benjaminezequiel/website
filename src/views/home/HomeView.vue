@@ -26,7 +26,7 @@ import NumberFlow from '@number-flow/vue'
       <div class="nav">
         <section>
           <RouterLink class="router_button" to="/projects">[ PROJECTS ]</RouterLink>
-          <RouterLink class="router_button" to="/field_notes">[ NOTES ]</RouterLink>
+          <RouterLink class="router_button" to="/field_notes">[ FIELD NOTES ]</RouterLink>
           <RouterLink class="router_button" to="/experiments">[ EXPERIMENTS ]</RouterLink>
           <RouterLink class="router_button" to="/about">[ ABOUT ME ]</RouterLink>
         </section>

@@ -64,7 +64,7 @@ import NumberFlow from '@number-flow/vue'
           <span class="material-symbols-outlined">close</span>
         </div>
       </div>
-      <div class="message">
+      <!-- <div class="message">
         <header>
           <span>ICON</span>
           HEY THERE!
@@ -73,7 +73,7 @@ import NumberFlow from '@number-flow/vue'
           I'm really glad you made it here. Feel free to explore my projects, read some thoughts, or
           just say hi. I hope you find something that inspires you!
         </section>
-      </div>
+      </div> -->
       <div class="system_info">
         <span>
           <span>FPS: </span>

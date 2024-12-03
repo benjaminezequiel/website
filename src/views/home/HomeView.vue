@@ -23,13 +23,46 @@ import NumberFlow from '@number-flow/vue'
           <div class="secondary" ref="secondary_title"></div>
         </div>
       </div>
-      <div class="nav">
-        <section>
-          <RouterLink class="router_button" to="/projects">[ PROJECTS ]</RouterLink>
-          <RouterLink class="router_button" to="/field_notes">[ FIELD NOTES ]</RouterLink>
-          <RouterLink class="router_button" to="/experiments">[ EXPERIMENTS ]</RouterLink>
-          <RouterLink class="router_button" to="/about">[ ABOUT ME ]</RouterLink>
-        </section>
+      <div class="nav" :class="navIsOpen ? '' : 'hidden'">
+        <div
+          class="nav__hidden-area"
+          @click="
+            () => {
+              navIsOpen = true
+            }
+          "
+          v-if="!navIsOpen"
+        ></div>
+        <RouterLink class="nav__item" to="/">
+          <span class="nav__item-icon material-symbols-outlined">home</span>
+          <span class="nav__item-label">HOME</span>
+        </RouterLink>
+        <RouterLink class="nav__item" to="/projects">
+          <span class="nav__item-icon material-symbols-outlined"> design_services</span>
+          <span class="nav__item-label">PROJECTS</span>
+        </RouterLink>
+        <RouterLink class="nav__item" to="/field_notes">
+          <span class="nav__item-icon material-symbols-outlined"> description </span>
+          <span class="nav__item-label">NOTES</span>
+        </RouterLink>
+        <RouterLink class="nav__item" to="/experiments">
+          <span class="nav__item-icon material-symbols-outlined"> thread_unread </span>
+          <span class="nav__item-label">EXPERIMENTS</span>
+        </RouterLink>
+        <RouterLink class="nav__item" to="/about">
+          <span class="nav__item-icon material-symbols-outlined"> sentiment_satisfied </span>
+          <span class="nav__item-label">ABOUT ME</span>
+        </RouterLink>
+        <div
+          class="nav__hide"
+          @click="
+            () => {
+              if (navIsOpen) navIsOpen = false
+            }
+          "
+        >
+          <span class="material-symbols-outlined">close</span>
+        </div>
       </div>
       <div class="message">
         <header>
@@ -66,7 +99,7 @@ import NumberFlow from '@number-flow/vue'
         <!-- <span>LAST SECOND BRAIN STATUS:</span>
       <span>7 days ago, 2304 notes, 300.000 words</span> -->
       </div>
-      <div class="highlights">
+      <!-- <div class="highlights">
         <header>HIGHLIGHTS</header>
         <section>
           <article v-for="item in highlights" :key="item.slug" class="">
@@ -92,7 +125,7 @@ import NumberFlow from '@number-flow/vue'
             <span>CTRL + K</span>
           </div>
         </section>
-      </div>
+      </div> -->
     </div>
 
     <!--
@@ -172,6 +205,7 @@ const updateResolution = () => {
   height.value = window.innerHeight
 }
 
+const navIsOpen = ref(true)
 const hours = ref(0)
 const minutes = ref(0)
 const seconds = ref(0)

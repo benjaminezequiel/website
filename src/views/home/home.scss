@@ -233,13 +233,132 @@
 }
 
 .nav {
-  @include window;
-  position: absolute;
+  position: fixed;
   inset: unset;
-  right: var(--space-6);
-  top: var(--space-6);
-  max-width: unset;
-  width: 280px;
+
+  .nav__hidden-area {
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    top: -100%;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    transition: opacity var(--ease-out) 300ms;
+    background: radial-gradient(
+      ellipse at bottom center,
+      var(--brand-color-3) 0%,
+      rgba(0, 0, 0, 0) 70%
+    );
+    opacity: 0;
+
+    &:hover {
+      opacity: 0.2;
+    }
+  }
+
+  display: flex;
+  flex-direction: row;
+  left: 50%;
+  bottom: 32px;
+  gap: 8px;
+  transform: translate(-50%);
+  padding: 8px;
+  background-color: var(--gray-600);
+  border-radius: 40px;
+
+  .nav__item-icon {
+    font-size: 26px;
+    color: var(--gray-200);
+    opacity: 0;
+    position: absolute;
+    bottom: 20px;
+    transition:
+      bottom var(--ease-out) 300ms,
+      opacity var(--ease-out) 300ms,
+      color var(--ease-out) 300ms,
+      scale var(--ease-out) 300ms;
+  }
+
+  .nav__item {
+    @include utils.add_states(var(--gray-400), var(--brand-color-3));
+    all: unset;
+    cursor: pointer;
+    padding: 8px 16px;
+    background-color: var(--gray-400);
+    border-radius: 32px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 0px;
+    outline: transparent solid 2px;
+    transition:
+      scale var(--ease-out) 200ms,
+      outline var(--ease-out) 200ms,
+      transform var(--ease-out) 200ms,
+      box-shadow var(--ease-out) 200ms;
+    &:hover {
+      .nav__item-icon {
+        opacity: 1;
+        bottom: 58px;
+        color: var(--brand-color-3);
+        scale: 1.2;
+      }
+      // scale: 1.05;
+      transform: translateY(-6px);
+      box-shadow:
+        0px 57px 16px 0px rgb(from var(--gray-600) r g b / 0.01),
+        0px 37px 15px 0px rgb(from var(--gray-600) r g b / 0.04),
+        0px 21px 12px 0px rgb(from var(--gray-600) r g b / 0.15),
+        0px 9px 9px 0px rgb(from var(--gray-600) r g b / 0.26),
+        0px 2px 5px 0px rgb(from var(--gray-600) r g b / 0.29);
+      outline: var(--gray-300) solid 2px;
+    }
+  }
+
+  &:hover {
+    .nav__hide {
+      opacity: 1;
+      right: -32px;
+    }
+  }
+  .nav__hide {
+    color: var(--gray-400);
+    cursor: pointer;
+    position: absolute;
+    right: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition:
+      scale var(--ease-out) 200ms,
+      right var(--ease-out) 200ms;
+  }
+
+  .nav__item-label {
+    text-wrap: nowrap;
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-family: 'Space Grotesk';
+    font-feature-settings: 'ss04' on !important;
+    font-variation-settings: 'wght' 500;
+    font-weight: 500;
+  }
+
+  transition:
+    bottom var(--ease-out) 200ms,
+    opacity var(--ease-out) 200ms;
+
+  &.hidden {
+    background: transparent;
+    bottom: -72px;
+    .nav__item {
+      opacity: 0;
+    }
+  }
 }
 
 .message {
@@ -252,19 +371,6 @@
   left: max(calc(50% - (64px * 6)), 32px);
   left: 50%;
   transform: translateX(-50%);
-}
-
-.router_button {
-  @include utils.add_states(var(--gray-400), var(--brand-color-3));
-  all: unset;
-  cursor: pointer;
-  padding: 6px 12px;
-  background-color: var(--gray-400);
-  border-radius: 6px;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .highlights {

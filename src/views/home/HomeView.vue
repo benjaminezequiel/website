@@ -53,47 +53,7 @@ import NumberFlow from '@number-flow/vue'
           </div>
         </div>
       </div>
-      <div class="nav" :class="navIsOpen ? '' : 'hidden'">
-        <div
-          class="nav__hidden-area"
-          @click="
-            () => {
-              navIsOpen = true
-            }
-          "
-          v-if="!navIsOpen"
-        ></div>
-        <RouterLink class="nav__item" to="/">
-          <span class="nav__item-icon material-symbols-outlined">home</span>
-          <span class="nav__item-label">HOME</span>
-        </RouterLink>
-        <RouterLink class="nav__item" to="/projects">
-          <span class="nav__item-icon material-symbols-outlined"> design_services</span>
-          <span class="nav__item-label">PROJECTS</span>
-        </RouterLink>
-        <RouterLink class="nav__item" to="/field_notes">
-          <span class="nav__item-icon material-symbols-outlined"> description </span>
-          <span class="nav__item-label">NOTES</span>
-        </RouterLink>
-        <RouterLink class="nav__item" to="/experiments">
-          <span class="nav__item-icon material-symbols-outlined"> thread_unread </span>
-          <span class="nav__item-label">EXPERIMENTS</span>
-        </RouterLink>
-        <RouterLink class="nav__item" to="/about">
-          <span class="nav__item-icon material-symbols-outlined"> sentiment_satisfied </span>
-          <span class="nav__item-label">ABOUT ME</span>
-        </RouterLink>
-        <div
-          class="nav__hide"
-          @click="
-            () => {
-              if (navIsOpen) navIsOpen = false
-            }
-          "
-        >
-          <span class="material-symbols-outlined">close</span>
-        </div>
-      </div>
+
       <!-- <span> | </span>
       <span>DEGREES: </span>
       <span>{{ azimuth }}</span> -->
@@ -139,6 +99,47 @@ import NumberFlow from '@number-flow/vue'
       </div> -->
     </div>
 
+    <div class="nav" :class="navIsOpen ? '' : 'hidden'">
+      <div
+        class="nav__hidden-area"
+        @click="
+          () => {
+            navIsOpen = true
+          }
+        "
+        v-if="!navIsOpen"
+      ></div>
+      <RouterLink class="nav__item" to="/">
+        <span class="nav__item-icon material-symbols-outlined">home</span>
+        <span class="nav__item-label">HOME</span>
+      </RouterLink>
+      <RouterLink class="nav__item" to="/projects">
+        <span class="nav__item-icon material-symbols-outlined"> design_services</span>
+        <span class="nav__item-label">PROJECTS</span>
+      </RouterLink>
+      <RouterLink class="nav__item" to="/field_notes">
+        <span class="nav__item-icon material-symbols-outlined"> description </span>
+        <span class="nav__item-label">NOTES</span>
+      </RouterLink>
+      <RouterLink class="nav__item" to="/experiments">
+        <span class="nav__item-icon material-symbols-outlined"> thread_unread </span>
+        <span class="nav__item-label">EXPERIMENTS</span>
+      </RouterLink>
+      <RouterLink class="nav__item" to="/about">
+        <span class="nav__item-icon material-symbols-outlined"> sentiment_satisfied </span>
+        <span class="nav__item-label">ABOUT ME</span>
+      </RouterLink>
+      <!-- <div
+        class="nav__hide"
+        @click="
+          () => {
+            if (navIsOpen) navIsOpen = false
+          }
+        "
+      >
+        <span class="material-symbols-outlined">close</span>
+      </div> -->
+    </div>
     <!-- <section class="recent-content">
       <h2>RECENTLY ADDED</h2>
       <div class="content-grid"></div>

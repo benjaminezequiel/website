@@ -1,6 +1,6 @@
 @use '../../styles/utils.scss' as utils;
 
-.page_container {
+.page--container {
   @include utils.center-flex();
   padding: var(--space-6);
   width: 100%;
@@ -9,56 +9,53 @@
 
 .page {
   @include utils.center-flex();
-  background-color: var(--gray-700);
+  background-color: var(--gray-100);
   width: 100%;
   height: 100%;
+  position: relative;
 
-  $border-size: 0px;
-  --inset-size: 8px;
-  $inset-setup: max(20vw, 240px);
+  $border-size: 4px;
+  --inset-size: clamp(4px, 1vw, 8px);
+  $inset-setup: clamp(160px, 32vw, 340px);
   $start-inset: $inset-setup;
   $end-inset: calc(100% - $inset-setup);
-  $inset-offset: 16px;
+  $inset-offset: clamp(8px, 1vw, 12px);
+  border-radius: 12px;
 
-  background-image: url('/src/assets/plus_sign.svg');
-  background-size: 64px;
-  background-position: center;
-  border-radius: 16px;
+  clip-path: polygon(
+    $border-size 0%,
 
-  // clip-path: polygon(
-  //   $border-size 0%,
+    calc($start-inset - $inset-offset) 0%,
+    $start-inset var(--inset-size),
+    $end-inset var(--inset-size),
+    calc($end-inset + $inset-offset) 0%,
 
-  //   calc($start-inset - $inset-offset) 0%,
-  //   $start-inset var(--inset-size),
-  //   $end-inset var(--inset-size),
-  //   calc($end-inset + $inset-offset) 0%,
+    calc(100% - $border-size) 0%,
+    100% $border-size,
 
-  //   calc(100% - $border-size) 0%,
-  //   100% $border-size,
+    100% calc($start-inset - $inset-offset),
+    calc(100% - var(--inset-size)) $start-inset,
+    calc(100% - var(--inset-size)) $end-inset,
+    100% calc($end-inset + $inset-offset),
+    100% calc(100% - $border-size),
+    calc(100% - $border-size) 100%,
 
-  //   100% calc($start-inset - $inset-offset),
-  //   calc(100% - var(--inset-size)) $start-inset,
-  //   calc(100% - var(--inset-size)) $end-inset,
-  //   100% calc($end-inset + $inset-offset),
-  //   100% calc(100% - $border-size),
-  //   calc(100% - $border-size) 100%,
+    calc($end-inset + $inset-offset) 100%,
+    $end-inset calc(100% - var(--inset-size)),
+    $start-inset calc(100% - var(--inset-size)),
+    calc($start-inset - $inset-offset) 100%,
 
-  //   calc($end-inset + $inset-offset) 100%,
-  //   $end-inset calc(100% - var(--inset-size)),
-  //   $start-inset calc(100% - var(--inset-size)),
-  //   calc($start-inset - $inset-offset) 100%,
-
-  //   $border-size 100%,
-  //   0% calc(100% - $border-size),
-  //   0% calc($end-inset + $inset-offset),
-  //   var(--inset-size) $end-inset,
-  //   var(--inset-size) $start-inset,
-  //   0% calc($start-inset - $inset-offset),
-  //   0 $border-size
-  // );
+    $border-size 100%,
+    0% calc(100% - $border-size),
+    0% calc($end-inset + $inset-offset),
+    var(--inset-size) $end-inset,
+    var(--inset-size) $start-inset,
+    0% calc($start-inset - $inset-offset),
+    0 $border-size
+  );
   // transition:
-  // width var(--ease-out) 400ms,
-  // height var(--ease-out) 300ms;
+  //   width var(--ease-out) 400ms,
+  //   height var(--ease-out) 300ms;
 }
 
 @mixin window {
@@ -93,63 +90,158 @@
 
 ///////////////////////////
 
-.logo {
+.header {
   position: absolute;
-  left: var(--space-6);
-  top: var(--space-6);
-  max-width: min(20%, 120px);
-}
-
-.welcome_section {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  z-index: 10;
-  gap: 2px;
-}
-
-.welcome_component {
+  // background-color: rgba(255, 0, 0, 0.361);
   width: 100%;
+  top: 0;
+  align-items: flex-start;
+  justify-content: space-between;
   display: flex;
-  height: 105px; // forces specific height
-  cursor: pointer;
+  padding: var(--fluid-space) var(--fluid-space) 0 var(--fluid-space);
 
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  &:hover {
-    .primary {
-      scale: 1.01;
-      letter-spacing: 1px;
+  .header--logo {
+    max-width: max(10vw, 120px);
+  }
+
+  .header--system_info {
+    @include utils.prevent-select;
+
+    text-wrap: nowrap;
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    gap: 12px;
+    width: fit-content;
+    color: var(--gray-900);
+
+    .divider {
+      color: var(--gray-500);
     }
   }
 }
 
-.primary {
-  @include utils.prevent-select;
-  font-family: 'Anton';
-  pointer-events: none;
+@media (max-width: 800px) {
+  .header {
+    justify-content: space-between;
 
-  font-size: 120px;
-  transition:
-    scale var(--ease-out) 100ms,
-    letter-spacing var(--ease-out) 100ms;
+    .header--system_info {
+      flex-direction: column;
+      gap: 0px;
+      align-items: flex-end;
+
+      .divider {
+        display: none;
+      }
+
+      span:not(:first-child) {
+        margin-top: -4px;
+      }
+    }
+  }
 }
 
-.secondary {
-  @include utils.prevent-select;
-  pointer-events: none;
-  display: flex;
-  position: absolute;
-  transition: gap 100ms var(--ease-out);
+//////////////////////////
 
-  > * {
-    @include utils.prevent-select;
-    font-family: 'Permanent Marker';
-    font-size: 96px;
-    color: #de005d;
-    mix-blend-mode: exclusion;
-    pointer-events: none;
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  @include utils.center-flex;
+
+  .ascii {
+    --ascii-scale: 1;
+
+    position: absolute;
+    color: var(--gray-300);
+    color: var(--brand-color-3);
+    clip-path: circle(100px);
+    transition: clip-path 450ms cubic-bezier(0.33, 1, 0.68, 1);
+    font-weight: 800;
+    scale: var(--ascii-scale);
+
+    > * {
+      transform: translateY(24px);
+    }
+    &.expanded {
+      clip-path: circle(500px);
+      transition: clip-path 1200ms cubic-bezier(0.33, 1, 0.68, 1);
+      animation: expand 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  }
+
+  .welcome_section {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    z-index: 10;
+    gap: 2px;
+
+    .welcome_component {
+      width: 100%;
+      display: flex;
+      height: 105px; // forces specific height
+      cursor: pointer;
+
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .primary {
+        @include utils.prevent-select;
+        font-family: 'Anton';
+        pointer-events: none;
+
+        font-size: var(--fluid-fontSize);
+        transition:
+          scale var(--ease-out) 100ms,
+          letter-spacing var(--ease-out) 100ms;
+      }
+
+      .secondary {
+        @include utils.prevent-select;
+        pointer-events: none;
+        display: flex;
+        position: absolute;
+        transition: gap 100ms var(--ease-out);
+
+        > * {
+          @include utils.prevent-select;
+          font-family: 'Permanent Marker';
+          font-size: calc(var(--fluid-fontSize) * 0.8);
+          color: #de005d;
+          mix-blend-mode: exclusion;
+          pointer-events: none;
+        }
+      }
+
+      &:hover {
+        .primary {
+          scale: 1.01;
+          letter-spacing: 1px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .content .ascii {
+    --ascii-scale: 0.8;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+  .content .ascii {
+    --ascii-scale: 1.1;
+  }
+}
+
+@media (min-width: 1400px) {
+  .content .ascii {
+    --ascii-scale: 1.4;
   }
 }
 
@@ -157,25 +249,6 @@
 
 .threejs-container {
   cursor: grab !important;
-}
-.ascii {
-  position: absolute;
-  color: var(--gray-300);
-  // color: #ff0044;
-  color: var(--brand-color-3);
-  clip-path: circle(100px);
-  transition: clip-path 450ms cubic-bezier(0.33, 1, 0.68, 1);
-  font-weight: 800;
-  transform: scale(1.2);
-  > * {
-    transform: translateY(32px);
-  }
-}
-
-.expanded {
-  clip-path: circle(500px);
-  transition: clip-path 1200ms cubic-bezier(0.33, 1, 0.68, 1);
-  animation: expand 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .circle {
@@ -212,17 +285,6 @@
     transform: translate(-50%, -50%);
     scale: 0.5;
   }
-}
-
-.system_info {
-  position: absolute;
-  font-variant-numeric: tabular-nums;
-  left: 50%;
-  transform: translateX(-50%);
-  top: var(--space-6);
-  z-index: 100;
-  display: flex;
-  gap: 10px;
 }
 
 .system_info.hide {

@@ -11,7 +11,6 @@ const currentLineWidth = ref(2)
 const drawingHistory = ref([])
 const canvasWidth = ref(window?.innerWidth || 1920)
 const canvasHeight = ref(window?.innerHeight || 1080)
-const currentPath = ref([]) // Store points for current stroke
 let ctx
 
 const props = defineProps({
@@ -19,12 +18,9 @@ const props = defineProps({
     type: String,
     default: 'website-drawings',
   },
-  smoothingFactor: {
-    type: Number,
-    default: 0.3,
-  },
 })
 
+// Generate storage key based on current route
 const getStorageKey = () => {
   return `${props.baseStorageKey}-${route.path}`
 }
@@ -33,60 +29,19 @@ onMounted(() => {
   setupCanvas()
   loadDrawings()
   window.addEventListener('resize', handleResize)
-  window.addEventListener('keydown', handleKeydown)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
-  window.removeEventListener('keydown', handleKeydown)
 })
 
+// Watch for route changes to load different drawings
 watch(
   () => route.path,
   () => {
     loadDrawings()
   },
 )
-
-// Handle CTRL+Z
-function handleKeydown(event) {
-  if ((event.ctrlKey || event.metaKey) && event.key === 'z') {
-    event.preventDefault()
-    undo()
-  }
-}
-
-function undo() {
-  if (drawingHistory.value.length > 0) {
-    drawingHistory.value.pop()
-    redrawHistory()
-    saveDrawings()
-  }
-}
-
-// Bezier curve smoothing
-function getSmoothLine(points, tension = 0.3) {
-  if (points.length < 2) return points
-
-  const result = []
-  result.push(points[0])
-
-  for (let i = 0; i < points.length - 1; i++) {
-    const p0 = points[i - 1] || points[i]
-    const p1 = points[i]
-    const p2 = points[i + 1]
-    const p3 = points[i + 2] || p2
-
-    const cp1x = p1[0] + (p2[0] - p0[0]) * tension
-    const cp1y = p1[1] + (p2[1] - p0[1]) * tension
-    const cp2x = p2[0] - (p3[0] - p1[0]) * tension
-    const cp2y = p2[1] - (p3[1] - p1[1]) * tension
-
-    result.push([cp1x, cp1y, cp2x, cp2y, p2[0], p2[1]])
-  }
-
-  return result
-}
 
 function setupCanvas() {
   const canvasElement = canvas.value
@@ -118,62 +73,35 @@ function startDrawing(event) {
   if (!isDrawingEnabled.value) return
   isDrawing.value = true
   const { x, y } = getCoordinates(event)
-  currentPath.value = [[x, y]]
-
   ctx.beginPath()
   ctx.moveTo(x, y)
+
+  drawingHistory.value.push({
+    color: currentColor.value,
+    lineWidth: currentLineWidth.value,
+    points: [[x, y]],
+  })
 }
 
 function draw(event) {
   if (!isDrawing.value || !isDrawingEnabled.value) return
 
   const { x, y } = getCoordinates(event)
-  currentPath.value.push([x, y])
 
-  // Clear and redraw current stroke
-  redrawHistory()
-  drawSmoothLine(currentPath.value, currentColor.value, currentLineWidth.value)
-}
-
-function drawSmoothLine(points, color, lineWidth) {
-  if (points.length < 2) return
-
-  const smoothPoints = getSmoothLine(points, props.smoothingFactor)
-
-  ctx.beginPath()
-  ctx.strokeStyle = color
-  ctx.lineWidth = lineWidth
+  ctx.lineTo(x, y)
+  ctx.strokeStyle = currentColor.value
+  ctx.lineWidth = currentLineWidth.value
   ctx.lineCap = 'round'
-  ctx.lineJoin = 'round'
-
-  ctx.moveTo(smoothPoints[0][0], smoothPoints[0][1])
-
-  for (let i = 1; i < smoothPoints.length; i++) {
-    const point = smoothPoints[i]
-    if (point.length === 2) {
-      ctx.lineTo(point[0], point[1])
-    } else {
-      ctx.bezierCurveTo(point[0], point[1], point[2], point[3], point[4], point[5])
-    }
-  }
-
   ctx.stroke()
+
+  const currentPath = drawingHistory.value[drawingHistory.value.length - 1]
+  currentPath.points.push([x, y])
 }
 
 function stopDrawing() {
-  if (!isDrawingEnabled.value || !isDrawing.value) return
-
-  if (currentPath.value.length > 1) {
-    drawingHistory.value.push({
-      color: currentColor.value,
-      lineWidth: currentLineWidth.value,
-      points: [...currentPath.value],
-    })
-    saveDrawings()
-  }
-
+  if (!isDrawingEnabled.value) return
   isDrawing.value = false
-  currentPath.value = []
+  saveDrawings()
 }
 
 function getCoordinates(event) {
@@ -201,10 +129,12 @@ function saveDrawings() {
 }
 
 function loadDrawings() {
+  // Clear canvas first
   if (ctx) {
     ctx.clearRect(0, 0, canvasWidth.value, canvasHeight.value)
   }
 
+  // Load drawings for current route
   const savedDrawings = localStorage.getItem(getStorageKey())
   if (savedDrawings) {
     drawingHistory.value = JSON.parse(savedDrawings)
@@ -220,7 +150,21 @@ function redrawHistory() {
   ctx.clearRect(0, 0, canvasWidth.value, canvasHeight.value)
 
   drawingHistory.value.forEach((path) => {
-    drawSmoothLine(path.points, path.color, path.lineWidth)
+    ctx.beginPath()
+    ctx.strokeStyle = path.color
+    ctx.lineWidth = path.lineWidth
+    ctx.lineCap = 'round'
+
+    const [firstPoint, ...remainingPoints] = path.points
+    if (firstPoint) {
+      ctx.moveTo(firstPoint[0], firstPoint[1])
+
+      remainingPoints.forEach((point) => {
+        ctx.lineTo(point[0], point[1])
+      })
+
+      ctx.stroke()
+    }
   })
 }
 
@@ -255,7 +199,6 @@ function toggleDrawing() {
       <input type="color" v-model="currentColor" title="Change color" />
       <input type="range" v-model="currentLineWidth" min="1" max="10" title="Change line width" />
       <button @click="clearDrawings" title="Clear all drawings" class="clear-btn">Clear</button>
-      <button @click="undo" title="Undo last stroke (Ctrl+Z)" class="undo-btn">↩️ Undo</button>
     </div>
   </div>
 </template>
@@ -316,29 +259,17 @@ canvas {
   z-index: 1001;
 }
 
-.clear-btn,
-.undo-btn {
+.clear-btn {
   padding: 4px 12px;
   border: none;
   background: #de005d;
   color: white;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.clear-btn:hover,
-.undo-btn:hover {
+.clear-btn:hover {
   background: #c0004d;
-  transform: translateY(-1px);
-}
-
-.undo-btn {
-  background: #666;
-}
-
-.undo-btn:hover {
-  background: #555;
 }
 
 input[type='range'] {

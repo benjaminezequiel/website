@@ -4,23 +4,53 @@ import { azimuth } from '../../components/AsciiComponent.vue'
 import NumberFlow from '@number-flow/vue'
 </script>
 <template>
-  <div class="page_container">
+  <div class="page--container">
     <div class="page">
-      <img src="/assets/logo/full_logo.svg" alt="" class="logo" />
-      <AsciiComponent
-        ref="asciiB"
-        class="ascii"
-        :class="expanded ? 'expanded' : ''"
-      ></AsciiComponent>
-      <div
-        class="welcome_section"
-        @mouseover="startMove"
-        @mouseleave="resetMove"
-        @click="handleWelcomeClick"
-      >
-        <div class="welcome_component">
-          <div class="primary" ref="primary_title">WELCOME</div>
-          <div class="secondary" ref="secondary_title"></div>
+      <header class="header">
+        <img src="/assets/logo/full_logo.svg" alt="" class="header--logo" />
+        <div class="header--system_info">
+          <span>
+            <span>FPS: </span>
+            <NumberFlow :value="fps"></NumberFlow>
+          </span>
+          <span class="divider"> | </span>
+          <span>
+            <NumberFlow :value="width"></NumberFlow>
+            <span> x </span>
+            <NumberFlow :value="height"></NumberFlow>
+          </span>
+          <span class="divider"> | </span>
+          <span>
+            <NumberFlow :value="hours" :format="{ minimumIntegerDigits: 2, useGrouping: false }" />
+            <span>:</span>
+            <NumberFlow
+              :value="minutes"
+              :format="{ minimumIntegerDigits: 2, useGrouping: false }"
+            />
+            <span>:</span>
+            <NumberFlow
+              :value="seconds"
+              :format="{ minimumIntegerDigits: 2, useGrouping: false }"
+            />
+          </span>
+        </div>
+      </header>
+      <div class="content">
+        <AsciiComponent
+          ref="asciiB"
+          class="ascii"
+          :class="expanded ? 'expanded' : ''"
+        ></AsciiComponent>
+        <div
+          class="welcome_section"
+          @mouseover="startMove"
+          @mouseleave="resetMove"
+          @click="handleWelcomeClick"
+        >
+          <div class="welcome_component">
+            <div class="primary" ref="primary_title">WELCOME</div>
+            <div class="secondary" ref="secondary_title"></div>
+          </div>
         </div>
       </div>
       <div class="nav" :class="navIsOpen ? '' : 'hidden'">
@@ -64,6 +94,11 @@ import NumberFlow from '@number-flow/vue'
           <span class="material-symbols-outlined">close</span>
         </div>
       </div>
+      <!-- <span> | </span>
+      <span>DEGREES: </span>
+      <span>{{ azimuth }}</span> -->
+      <!-- <span>LAST SECOND BRAIN STATUS:</span>
+      <span>7 days ago, 2304 notes, 300.000 words</span> -->
       <!-- <div class="message">
         <header>
           <span>ICON</span>
@@ -74,31 +109,7 @@ import NumberFlow from '@number-flow/vue'
           just say hi. I hope you find something that inspires you!
         </section>
       </div> -->
-      <div class="system_info">
-        <span>
-          <span>FPS: </span>
-          <NumberFlow :value="fps"></NumberFlow>
-        </span>
-        <span> | </span>
-        <span>
-          <NumberFlow :value="width"></NumberFlow>
-          <span> x </span>
-          <NumberFlow :value="height"></NumberFlow>
-        </span>
-        <span> | </span>
-        <span>
-          <NumberFlow :value="hours" :format="{ minimumIntegerDigits: 2, useGrouping: false }" />
-          <span>:</span>
-          <NumberFlow :value="minutes" :format="{ minimumIntegerDigits: 2, useGrouping: false }" />
-          <span>:</span>
-          <NumberFlow :value="seconds" :format="{ minimumIntegerDigits: 2, useGrouping: false }" />
-        </span>
-        <!-- <span> | </span>
-      <span>DEGREES: </span>
-      <span>{{ azimuth }}</span> -->
-        <!-- <span>LAST SECOND BRAIN STATUS:</span>
-      <span>7 days ago, 2304 notes, 300.000 words</span> -->
-      </div>
+
       <!-- <div class="highlights">
         <header>HIGHLIGHTS</header>
         <section>
@@ -128,31 +139,15 @@ import NumberFlow from '@number-flow/vue'
       </div> -->
     </div>
 
-    <!--
-
-    <div class="window additional_info" :class="expanded ? 'jump' : 'hide'">
-      <header>WARNING!</header>
-      <section>
-        I like to play with different visual (and unfortunately resource intensive) stuff, so if the
-        website isn't performing great for you, check the simpler version which will certainly be
-        easier to navigate, although you might miss the cool visuals.
-      </section>
-    </div>  -->
     <!-- <section class="recent-content">
       <h2>RECENTLY ADDED</h2>
-      <div class="content-grid">
-
-      </div>
+      <div class="content-grid"></div>
     </section>
     <section class="highlights">
       <h2>HIGHLIGHTS</h2>
       <div class="highlights-grid">
-        <article
-          v-for="item in highlights"
-          :key="item.slug"
-          class="highlight-card"
-        >
-          <RouterLink :to="{ name: item.type, params: { slug: item.slug }}">
+        <article v-for="item in highlights" :key="item.slug" class="highlight-card">
+          <RouterLink :to="{ name: item.type, params: { slug: item.slug } }">
             <span class="content-type">{{ formatContentType(item.type) }}</span>
             <h3>{{ item.title }}</h3>
             <p v-if="item.description" class="description">{{ item.description }}</p>
@@ -163,10 +158,6 @@ import NumberFlow from '@number-flow/vue'
         </article>
       </div>
     </section> -->
-    <!-- <div class="window-controls">
-      <button @click="openSimpleWindow">Open Simple Window</button>
-      <button @click="openProjectWindow">Open Project Window</button>
-    </div> -->
   </div>
 </template>
 

@@ -6,7 +6,7 @@ import DrawingOverlay from '@/components/DrawingOveraly.vue'
 </script>
 
 <template>
-  <DrawingOverlay />
+  <!-- <DrawingOverlay /> -->
 
   <SpeedInsights />
   <RouterView />

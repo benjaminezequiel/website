@@ -3,11 +3,12 @@ import { RouterLink, RouterView } from 'vue-router'
 import WindowManager from '@/components/WindowManager.vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
 import DrawingOverlay from '@/components/DrawingOveraly.vue'
+import { Analytics } from '@vercel/analytics/react'
 </script>
 
 <template>
   <!-- <DrawingOverlay /> -->
-
+  <Analytics />
   <SpeedInsights />
   <RouterView />
   <WindowManager />

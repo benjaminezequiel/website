@@ -17,8 +17,8 @@
   height: 100%;
   max-width: 100dvw;
   max-height: 100svh;
-  overflow: hidden;
   position: relative;
+  z-index: 1;
 
   $border-size: 4px;
   --inset-size: clamp(4px, 1vw, 8px);
@@ -296,6 +296,7 @@
 .nav {
   position: fixed;
   inset: unset;
+  z-index: 10;
 
   .nav__hidden-area {
     position: absolute;
@@ -362,15 +363,19 @@
       outline var(--ease-out) 200ms,
       transform var(--ease-out) 200ms,
       box-shadow var(--ease-out) 200ms,
-      background-color var(--ease-out) 200ms;
+      background-color var(--ease-out) 200ms,
+      padding var(--ease-out) 200ms,
+      margin var(--ease-out) 200ms;
+
+    &.current_page {
+      background-color: var(--brand-color-3);
+      cursor: default;
+    }
     &:hover {
-      // scale: 1.05;
-      transform: translateY(-2px);
       outline: var(--gray-300) solid 1px;
       background-color: var(--brand-color-3);
     }
   }
-
   // &:hover {
   //   .nav__hide {
   //     opacity: 1;
@@ -403,7 +408,8 @@
 
   transition:
     bottom var(--ease-out) 200ms,
-    opacity var(--ease-out) 200ms;
+    opacity var(--ease-out) 200ms,
+    width var(--ease-out) 800ms;
 
   &.hidden {
     background: transparent;
@@ -413,6 +419,19 @@
     }
   }
 }
+
+.nav .nav__item:hover:not(.current_page) {
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+// .nav .nav__item:hover:last-child {
+//   margin: 0 0 0 8px;
+// }
+
+// .nav .nav__item:hover:first-child {
+//   margin: 0 8px 0 0;
+// }
 
 @media (max-width: 1200px) {
   .nav .nav__item {

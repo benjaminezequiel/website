@@ -109,7 +109,7 @@ import NumberFlow from '@number-flow/vue'
         "
         v-if="!navIsOpen"
       ></div>
-      <RouterLink class="nav__item" to="/">
+      <RouterLink class="nav__item current_page" to="/">
         <span class="nav__item-icon material-symbols-outlined">home</span>
         <span class="nav__item-label">HOME</span>
       </RouterLink>

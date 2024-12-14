@@ -1,40 +1,10 @@
 <script>
 import AsciiComponent from '../../components/AsciiComponent.vue'
-import { azimuth } from '../../components/AsciiComponent.vue'
-import NumberFlow from '@number-flow/vue'
 </script>
 <template>
   <div class="page--container">
     <div class="page">
-      <header class="header">
-        <img src="/assets/logo/full_logo.svg" alt="" class="header--logo" />
-        <div class="header--system_info">
-          <span>
-            <span>FPS: </span>
-            <NumberFlow :value="fps"></NumberFlow>
-          </span>
-          <span class="divider"> | </span>
-          <span>
-            <NumberFlow :value="width"></NumberFlow>
-            <span> x </span>
-            <NumberFlow :value="height"></NumberFlow>
-          </span>
-          <span class="divider"> | </span>
-          <span>
-            <NumberFlow :value="hours" :format="{ minimumIntegerDigits: 2, useGrouping: false }" />
-            <span>:</span>
-            <NumberFlow
-              :value="minutes"
-              :format="{ minimumIntegerDigits: 2, useGrouping: false }"
-            />
-            <span>:</span>
-            <NumberFlow
-              :value="seconds"
-              :format="{ minimumIntegerDigits: 2, useGrouping: false }"
-            />
-          </span>
-        </div>
-      </header>
+      <Header></Header>
       <div class="content">
         <AsciiComponent
           ref="asciiB"
@@ -59,17 +29,17 @@ import NumberFlow from '@number-flow/vue'
       <span>{{ azimuth }}</span> -->
       <!-- <span>LAST SECOND BRAIN STATUS:</span>
       <span>7 days ago, 2304 notes, 300.000 words</span> -->
-      <!-- <div class="message">
+      <div class="message" v-if="showMessage">
         <header>
-          <span>ICON</span>
-          HEY THERE!
+          <span class="material-symbols-outlined">INFO</span>
+          <span>HEY THERE!</span>
+          <span class="material-symbols-outlined close" @click="showMessage = false">close</span>
         </header>
         <section>
           I'm really glad you made it here. Feel free to explore my projects, read some thoughts, or
           just say hi. I hope you find something that inspires you!
         </section>
-      </div> -->
-
+      </div>
       <!-- <div class="highlights">
         <header>HIGHLIGHTS</header>
         <section>
@@ -83,8 +53,8 @@ import NumberFlow from '@number-flow/vue'
             </RouterLink>
           </article>
         </section>
-      </div>
-      <div class="shortcuts">
+      </div> -->
+      <!-- <div class="shortcuts">
         <header>SHORCUTS</header>
         <section>
           <div>
@@ -99,47 +69,6 @@ import NumberFlow from '@number-flow/vue'
       </div> -->
     </div>
 
-    <div class="nav" :class="navIsOpen ? '' : 'hidden'">
-      <div
-        class="nav__hidden-area"
-        @click="
-          () => {
-            navIsOpen = true
-          }
-        "
-        v-if="!navIsOpen"
-      ></div>
-      <RouterLink class="nav__item current_page" to="/">
-        <span class="nav__item-icon material-symbols-outlined">home</span>
-        <span class="nav__item-label">HOME</span>
-      </RouterLink>
-      <RouterLink class="nav__item" to="/projects">
-        <span class="nav__item-icon material-symbols-outlined"> design_services</span>
-        <span class="nav__item-label">PROJECTS</span>
-      </RouterLink>
-      <RouterLink class="nav__item" to="/field_notes">
-        <span class="nav__item-icon material-symbols-outlined"> description </span>
-        <span class="nav__item-label">NOTES</span>
-      </RouterLink>
-      <RouterLink class="nav__item" to="/experiments">
-        <span class="nav__item-icon material-symbols-outlined"> thread_unread </span>
-        <span class="nav__item-label">EXPERIMENTS</span>
-      </RouterLink>
-      <RouterLink class="nav__item" to="/about">
-        <span class="nav__item-icon material-symbols-outlined"> sentiment_satisfied </span>
-        <span class="nav__item-label">ABOUT ME</span>
-      </RouterLink>
-      <!-- <div
-        class="nav__hide"
-        @click="
-          () => {
-            if (navIsOpen) navIsOpen = false
-          }
-        "
-      >
-        <span class="material-symbols-outlined">close</span>
-      </div> -->
-    </div>
     <!-- <section class="recent-content">
       <h2>RECENTLY ADDED</h2>
       <div class="content-grid"></div>
@@ -163,71 +92,19 @@ import NumberFlow from '@number-flow/vue'
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { getContent } from '@/utils/content'
-
-const fps = ref(0)
-const frames = ref(0)
-const lastTime = ref(performance.now())
-const rafId = ref(null)
-
-const updateFPS = () => {
-  frames.value++
-  const currentTime = performance.now()
-
-  if (currentTime >= lastTime.value + 1000) {
-    // Fixed: removed 'this' and added .value
-    fps.value = Math.round((frames.value * 1000) / (currentTime - lastTime.value)) // Fixed: added .value
-    frames.value = 0
-    lastTime.value = currentTime
-  }
-
-  rafId.value = requestAnimationFrame(updateFPS)
-}
+import Header from '@/components/Header.vue'
+import Nav from '@/components/Nav.vue'
 
 const primary_title = ref(null)
 const secondary_title = ref(null)
 let randomMoveId
 
-const width = ref(window.innerWidth)
-const height = ref(window.innerHeight)
-
-const updateResolution = () => {
-  width.value = window.innerWidth
-  height.value = window.innerHeight
-}
-
 const navIsOpen = ref(true)
-const hours = ref(0)
-const minutes = ref(0)
-const seconds = ref(0)
-let timer = null
-
-const updateTime = () => {
-  const now = new Date()
-  hours.value = now.getHours()
-  minutes.value = now.getMinutes()
-  seconds.value = now.getSeconds()
-}
-
-let timerInterval
 
 onMounted(() => {
   updateBgLetters()
-  window.addEventListener('resize', updateResolution)
-  updateTime()
-  timerInterval = setInterval(updateTime, 1000)
-  updateFPS()
-  timer = setInterval(updateTime, 1000)
-})
-
-onUnmounted(() => {
-  clearInterval(timer)
-  window.removeEventListener('resize', updateResolution)
-  if (timerInterval) clearInterval(timerInterval)
-  if (rafId.value) {
-    cancelAnimationFrame(rafId.value)
-  }
 })
 
 function updateBgLetters() {
@@ -268,6 +145,8 @@ function startMove() {
     }, 300)
   }
 }
+
+const showMessage = ref(true)
 
 function resetMove() {
   for (let i = 0; i < primary_title.value.innerHTML.length; i++) {
@@ -335,8 +214,30 @@ const handleWelcomeClick = () => {
 }
 </script>
 
+<style lang="scss">
+body {
+  --home: unset;
+}
+</style>
 <style scoped lang="scss">
 @use './home.scss';
+.page--container {
+  background-position: center;
+  background-image: url('/public/assets/plus_sign.svg');
+  background-size: 32px;
+
+  height: 100dvh;
+  background-color: var(--gray-1100);
+  color: var(--gray-1200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+
+  // background-image: url('/src/assets/plus_sign.svg');
+  // background-size: 64px;
+  // background-position: center;
+}
 
 .page.compact {
   width: 30%;

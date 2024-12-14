@@ -29,6 +29,8 @@
 }
 
 :root {
+  --home: '';
+  --projects: '';
   --gray-100: #080808;
   --gray-200: #1e1e1e;
   --gray-300: #2f2f2f;
@@ -64,37 +66,41 @@
   box-sizing: border-box;
 }
 
-#app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100dvw;
-  height: 100dvh;
-  flex-grow: 1;
-}
+// #app {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100dvw;
+//   height: 100dvh;
+//   flex-grow: 1;
+// }
 
 body {
-  background-position: center;
-  background-image: url('/public/assets/plus_sign.svg');
-  background-size: 32px;
-
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
-  background-color: var(--gray-1000);
-
-  color: var(--gray-1200);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100svh;
-  width: 100dvw;
-  height: 100dvh;
-
-  // background-image: url('/src/assets/plus_sign.svg');
-  // background-size: 64px;
-  // background-position: center;
 }
+// body {
+//   background-position: center;
+//   background-image: url('/public/assets/plus_sign.svg');
+//   background-size: 32px;
+
+//   overflow-x: hidden;
+//   margin: 0;
+//   padding: 0;
+//   background-color: var(--gray-1000);
+
+//   color: var(--gray-1200);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   min-height: 100svh;
+//   width: 100dvw;
+//   height: 100dvh;
+
+//   // background-image: url('/src/assets/plus_sign.svg');
+//   // background-size: 64px;
+//   // background-position: center;
+// }
 
 html,
 body {

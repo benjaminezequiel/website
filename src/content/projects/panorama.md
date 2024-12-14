@@ -4,6 +4,7 @@ date: 2023-01-15
 tags: ['tag1', 'tag2']
 thumbnail: /images/thumbnails/01.jpg
 highlight: true
+description: Lorem ipsum dolor sit amet, consectetur **adipiscing** elit. Cras _condimentum_ elementum ipsum sed auctor. Suspendisse potenti. Curabitur molestie fringilla tempor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi sit amet nisi eros. Suspendisse id malesuada nisl. Phasellus dapibus mauris suscipit lacus dignissim, sit amet laoreet lectus porttitor. Curabitur elit est, consequat eget lobortis sit amet, mollis ac odio. Nunc eget felis sed justo semper venenatis ac eu odio. Suspendisse maximus cursus mattis. Donec in lectus leo. Integer euismod scelerisque ipsum dignissim tempor. Cras eu rutrum felis, sollicitudin facilisis magna.
 ---
 
 # Conteúdo sobre o projeto;

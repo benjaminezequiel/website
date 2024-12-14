@@ -271,4 +271,11 @@ onUnmounted(() => {
   color: #fff;
   font-family: monospace;
 }
+
+.threejs-container {
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
+}
 </style>

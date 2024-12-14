@@ -1,5 +1,28 @@
 @use '../../styles/utils.scss' as utils;
 
+body {
+  background-position: center;
+  background-image: url('/public/assets/plus_sign.svg');
+  background-size: 32px;
+
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: var(--gray-1000);
+
+  color: var(--gray-1200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  width: 100dvw;
+  height: 100dvh;
+
+  // background-image: url('/src/assets/plus_sign.svg');
+  // background-size: 64px;
+  // background-position: center;
+}
+
 .page--container {
   @include utils.center-flex();
   padding: var(--space-6);
@@ -66,24 +89,32 @@
 
 @mixin window {
   max-width: 64px * 4;
-  background-color: rgb(from var(--gray-400) r g b / 0.2);
+  background-color: rgb(from var(--gray-200) r g b / 1);
   position: absolute;
   left: calc(50% - calc(64px * 8));
   top: calc(50% - calc(64px * 4));
   border-radius: 8px;
   overflow: hidden;
-  outline: rgb(from var(--brand-color-3) r g b / 0.5) 1px solid;
+  outline: var(--gray-300) 1px solid;
   z-index: 100;
-  box-shadow:
-    0px 57px 16px 0px rgb(from var(--gray-500) r g b / 0.01),
-    0px 37px 15px 0px rgb(from var(--gray-500) r g b / 0.04),
-    0px 21px 12px 0px rgb(from var(--gray-500) r g b / 0.15),
-    0px 9px 9px 0px rgb(from var(--gray-500) r g b / 0.26),
-    0px 2px 5px 0px rgb(from var(--gray-500) r g b / 0.29);
-  backdrop-filter: blur(12px);
+  // backdrop-filter: blur(12px);
+
   header {
-    border-bottom: 1px solid var(--gray-400);
+    border-bottom: 1px solid var(--gray-300);
     padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    .material-symbols-outlined {
+      color: var(--gray-700);
+      font-size: 20px;
+    }
+    .close {
+      position: absolute;
+      right: 8px;
+      cursor: pointer;
+    }
   }
   section {
     padding: 8px;
@@ -95,56 +126,6 @@
 }
 
 ///////////////////////////
-
-.header {
-  position: absolute;
-  // background-color: rgba(255, 0, 0, 0.361);
-  width: 100%;
-  top: 0;
-  align-items: flex-start;
-  justify-content: space-between;
-  display: flex;
-  padding: var(--fluid-space) var(--fluid-space) 0 var(--fluid-space);
-
-  .header--logo {
-    max-width: max(10vw, 120px);
-  }
-
-  .header--system_info {
-    @include utils.prevent-select;
-
-    text-wrap: nowrap;
-    font-variant-numeric: tabular-nums;
-    display: flex;
-    gap: 12px;
-    width: fit-content;
-    color: var(--gray-900);
-
-    .divider {
-      color: var(--gray-500);
-    }
-  }
-}
-
-@media (max-width: 800px) {
-  .header {
-    justify-content: space-between;
-
-    .header--system_info {
-      flex-direction: column;
-      gap: 0px;
-      align-items: flex-end;
-
-      .divider {
-        display: none;
-      }
-
-      span:not(:first-child) {
-        margin-top: -4px;
-      }
-    }
-  }
-}
 
 //////////////////////////
 
@@ -253,10 +234,6 @@
 
 ///////////////SECTION: OTHER STUFF
 
-.threejs-container {
-  cursor: grab !important;
-}
-
 .circle {
   position: absolute;
   left: 50%;
@@ -293,170 +270,18 @@
   }
 }
 
-.nav {
-  position: fixed;
-  inset: unset;
-  z-index: 10;
-
-  .nav__hidden-area {
-    position: absolute;
-    width: 100%;
-    height: 75%;
-    top: -100%;
-    left: 0;
-    right: 0;
-    cursor: pointer;
-    transition: opacity var(--ease-out) 300ms;
-    background: radial-gradient(
-      ellipse at bottom center,
-      var(--brand-color-3) 0%,
-      rgba(0, 0, 0, 0) 70%
-    );
-    opacity: 0;
-
-    &:hover {
-      opacity: 0.2;
-    }
-  }
-
-  display: flex;
-  flex-direction: row;
-  left: 50%;
-  bottom: 36px;
-  gap: 8px;
-  transform: translate(-50%);
-  padding: 8px;
-  background-color: var(--gray-200);
-  max-width: 100%;
-  outline: 1px solid var(--gray-400);
-  border-radius: 40px;
-
-  // .nav__item-icon {
-  //   font-size: 26px;
-  //   color: var(--gray-200);
-  //   opacity: 0;
-  //   position: absolute;
-  //   bottom: 20px;
-  //   transition:
-  //     bottom var(--ease-out) 300ms,
-  //     opacity var(--ease-out) 300ms,
-  //     color var(--ease-out) 300ms,
-  //     scale var(--ease-out) 300ms;
-  // }
-
-  .nav__item {
-    @include utils.add_states(var(--gray-400), var(--brand-color-3));
-    all: unset;
-    cursor: pointer;
-    padding: 8px 20px 8px 16px;
-    background-color: var(--gray-400);
-    border-radius: 32px;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 0px;
-    outline: transparent solid 2px;
-    transition:
-      scale var(--ease-out) 200ms,
-      outline var(--ease-out) 200ms,
-      transform var(--ease-out) 200ms,
-      box-shadow var(--ease-out) 200ms,
-      background-color var(--ease-out) 200ms,
-      padding var(--ease-out) 200ms,
-      margin var(--ease-out) 200ms;
-
-    &.current_page {
-      background-color: var(--brand-color-3);
-      cursor: default;
-    }
-    &:hover {
-      outline: var(--gray-300) solid 1px;
-      background-color: var(--brand-color-3);
-    }
-  }
-  // &:hover {
-  //   .nav__hide {
-  //     opacity: 1;
-  //     right: -32px;
-  //   }
-  // }
-  // .nav__hide {
-  //   color: var(--gray-400);
-  //   cursor: pointer;
-  //   position: absolute;
-  //   right: -24px;
-  //   top: 50%;
-  //   transform: translateY(-50%);
-  //   opacity: 0;
-  //   transition:
-  //     scale var(--ease-out) 200ms,
-  //     right var(--ease-out) 200ms;
-  // }
-
-  .nav__item-label {
-    text-wrap: nowrap;
-    font-size: 22px;
-    letter-spacing: 1px;
-    font-weight: 500;
-    font-family: 'Space Grotesk';
-    font-feature-settings: 'ss04' on !important;
-    font-variation-settings: 'wght' 500;
-    font-weight: 500;
-  }
-
-  transition:
-    bottom var(--ease-out) 200ms,
-    opacity var(--ease-out) 200ms,
-    width var(--ease-out) 800ms;
-
-  &.hidden {
-    background: transparent;
-    bottom: -72px;
-    .nav__item {
-      opacity: 0;
-    }
-  }
-}
-
-.nav .nav__item:hover:not(.current_page) {
-  padding-left: 32px;
-  padding-right: 32px;
-}
-
-// .nav .nav__item:hover:last-child {
-//   margin: 0 0 0 8px;
-// }
-
-// .nav .nav__item:hover:first-child {
-//   margin: 0 8px 0 0;
-// }
-
-@media (max-width: 1200px) {
-  .nav .nav__item {
-    padding: 8px 8px;
-  }
-  .nav .nav__item-label {
-    display: none;
-  }
-  .nav .nav__item-icon {
-    font-size: 28px;
-  }
-  .nav {
-    gap: 4px;
-  }
-}
 .message {
   @include window;
   width: 320px;
   position: absolute;
   inset: unset;
   max-width: unset;
-  top: calc(50% + (64px * 4));
-  left: max(calc(50% - (64px * 6)), 32px);
+  top: calc(50% + (64px * 3));
   left: 50%;
   transform: translateX(-50%);
+  // bottom: var(--space-6);
+  // left: var(--space-6);
+  max-width: 100%;
 }
 
 .highlights {

@@ -195,40 +195,43 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .scrolling-gradient {
   width: 100%;
-  height: 100%;
+  height: 48px;
   position: fixed;
-  // background: linear-gradient(to top, var(--gray-100) 0%, transparent 15%);
-  // background: url('/assets/dotted-bg.svg');
-  // -webkit-mask-image: linear-gradient(to top, black 0%, transparent 3%);
-  // mask-image: linear-gradient(to top, black 0%, transparent 3%);
-  // background-size: 32px;
-  background-image: radial-gradient(transparent 1px, var(--gray-100, #ffffff) 1px);
-
-  height: 64px;
-  background-size: 4px 4px;
-  backdrop-filter: blur(16px);
-  mask: linear-gradient(to bottom, rgb(0, 0, 0, 0) 0%, rgba(0, 0, 0) 99%);
   bottom: -2px;
   z-index: 10;
   pointer-events: none;
+
+  /* Base dotted pattern */
+  background-image: radial-gradient(transparent 1px, var(--gray-100, #ffffff) 1px);
+  background-size: 4px 4px;
+
+  /* Blur effect with fallback */
+  backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px); /* Safari support */
+
+  /* Mask gradient - using both standard and webkit prefix */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 10%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 10%, black 100%);
 }
 
 .scrolling-gradient-top {
   width: 100%;
-  height: 100%;
+  height: 48px;
   position: fixed;
-  // background: linear-gradient(to top, var(--gray-100) 0%, transparent 15%);
-  // background: url('/assets/dotted-bg.svg');
-  // -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 5%);
-  // mask-image: linear-gradient(to bottom, black 0%, transparent 5%);
-  // background-size: 64px;
-  background-image: radial-gradient(transparent 1px, var(--gray-100, #ffffff) 1px);
-  height: 64px;
-  background-size: 4px 4px;
-  backdrop-filter: blur(16px);
-  mask: linear-gradient(to top, rgb(0, 0, 0, 0) 0%, rgba(0, 0, 0) 99%);
-  top: 0;
+  top: -2px;
   z-index: 10;
   pointer-events: none;
+
+  /* Base dotted pattern */
+  background-image: radial-gradient(transparent 1px, var(--gray-100, #ffffff) 1px);
+  background-size: 4px 4px;
+
+  /* Blur effect with fallback */
+  backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px); /* Safari support */
+
+  /* Mask gradient - using both standard and webkit prefix */
+  -webkit-mask-image: linear-gradient(to top, transparent 10%, black 100%);
+  mask-image: linear-gradient(to top, transparent 10%, black 100%);
 }
 </style>

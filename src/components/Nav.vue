@@ -1,5 +1,5 @@
 <template>
-  <div class="nav">
+  <div class="nav" :class="{ hidden: isHidden }">
     <div class="message" v-if="showMessage && hideMessage">
       <header>
         <span class="material-symbols-outlined">INFO</span>
@@ -44,6 +44,9 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+import { useScrollHide } from '@/composables/useScrollHide'
+
+const { isHidden } = useScrollHide()
 
 const hideMessage = ref(localStorage.getItem('hideWelcomeMessage') !== 'false')
 
@@ -110,28 +113,6 @@ const props = defineProps({
   inset: unset;
   z-index: 10;
   box-shadow: 0px 4px 32px -2px var(--gray-100);
-
-  .nav__hidden-area {
-    position: absolute;
-    width: 100%;
-    height: 75%;
-    top: -100%;
-    left: 0;
-    right: 0;
-    cursor: pointer;
-    transition: opacity var(--ease-out) 300ms;
-    background: radial-gradient(
-      ellipse at bottom center,
-      var(--brand-color-3) 0%,
-      rgba(0, 0, 0, 0) 70%
-    );
-    opacity: 0;
-
-    &:hover {
-      opacity: 0.2;
-    }
-  }
-
   display: flex;
   flex-direction: row;
   left: 50%;
@@ -143,19 +124,6 @@ const props = defineProps({
   max-width: 100%;
   outline: 1px solid var(--gray-400);
   border-radius: 40px;
-
-  // .nav__item-icon {
-  //   font-size: 26px;
-  //   color: var(--gray-200);
-  //   opacity: 0;
-  //   position: absolute;
-  //   bottom: 20px;
-  //   transition:
-  //     bottom var(--ease-out) 300ms,
-  //     opacity var(--ease-out) 300ms,
-  //     color var(--ease-out) 300ms,
-  //     scale var(--ease-out) 300ms;
-  // }
 
   .nav__item {
     @include utils.add_states(var(--gray-400), var(--brand-color-3));
@@ -175,7 +143,6 @@ const props = defineProps({
     transition:
       scale var(--ease-out) 200ms,
       outline var(--ease-out) 200ms,
-      transform var(--ease-out) 200ms,
       box-shadow var(--ease-out) 200ms,
       background-color var(--ease-out) 200ms,
       padding var(--ease-out) 200ms,
@@ -190,24 +157,6 @@ const props = defineProps({
       background-color: var(--brand-color-3);
     }
   }
-  // &:hover {
-  //   .nav__hide {
-  //     opacity: 1;
-  //     right: -32px;
-  //   }
-  // }
-  // .nav__hide {
-  //   color: var(--gray-400);
-  //   cursor: pointer;
-  //   position: absolute;
-  //   right: -24px;
-  //   top: 50%;
-  //   transform: translateY(-50%);
-  //   opacity: 0;
-  //   transition:
-  //     scale var(--ease-out) 200ms,
-  //     right var(--ease-out) 200ms;
-  // }
 
   .nav__item-label {
     text-wrap: nowrap;
@@ -221,17 +170,15 @@ const props = defineProps({
   }
 
   transition:
-    bottom var(--ease-out) 200ms,
-    left var(--ease-out) 200ms,
-    opacity var(--ease-out) 200ms,
-    width var(--ease-out) 800ms;
+    bottom var(--ease-out) 500ms,
+    left var(--ease-out) 500ms,
+    opacity var(--ease-out) 500ms,
+    width var(--ease-out) 500ms,
+    transform var(--ease-out) 500ms;
 
   &.hidden {
-    background: transparent;
-    bottom: -72px;
-    .nav__item {
-      opacity: 0;
-    }
+    transform: translate(-50%, 100%);
+    opacity: 0;
   }
 }
 

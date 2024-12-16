@@ -1,5 +1,5 @@
 <template>
-  <header class="header" :class="type ? 'inside_project_page' : ''">
+  <header class="header" :class="classes">
     <a href="/" class="header--logo-container">
       <!-- Logo selection based on variant prop -->
       <img
@@ -35,6 +35,13 @@
 <script setup>
 import { onMounted, onUnmounted, ref, computed } from 'vue'
 import NumberFlow from '@number-flow/vue'
+import { useScrollHide } from '@/composables/useScrollHide'
+const { isHidden } = useScrollHide()
+
+const classes = computed(() => ({
+  inside_project_page: props.type,
+  hidden: isHidden.value,
+}))
 
 const props = defineProps({
   // Logo variant to display: 'full', 'minimal', 'icon', or 'responsive'
@@ -220,7 +227,14 @@ onUnmounted(() => {
     align-items: center;
     box-shadow: 0px 4px 12px -2px rgba(0, 0, 0, 0.5);
     z-index: 1000;
+    transition:
+      bottom var(--ease-out) 500ms,
+      left var(--ease-out) 500ms,
+      opacity var(--ease-out) 500ms,
+      width var(--ease-out) 500ms,
+      transform var(--ease-out) 500ms;
   }
+
   &.header {
     a {
       display: flex;
@@ -238,5 +252,11 @@ onUnmounted(() => {
       font-size: 14px;
     }
   }
+}
+</style>
+
+<style>
+.inside_project_page.header.hidden {
+  transform: translate(-50%, -150%);
 }
 </style>

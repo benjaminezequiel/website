@@ -8,7 +8,7 @@ highlight: true
 description: 'As my graduation project at UFRGS, I explored how to make design principles more accessible and practical for designers early in their careers. The challenge was clear: transform complex theoretical concepts into an intuitive tool that could help inform design decisions.'
 ---
 
-Growing up fascinated by design fundamentals and physical tools that guide creative processes (especially those from companies like The Ugly Lab), I always wondered how we could make theoretical concepts more tangible and practical. This interest, combined with my experience as a project manager at Faísca Design Junior - where I witnessed firsthand how students struggled with visual concepts - led me to develop Panorama for my graduation project at UFRGS.
+Growing up fascinated by design fundamentals and physical tools that guide creative processes (especially those from companies like [The Ugly Lab](https://theuglylab.com.br/)), I always wondered how we could make theoretical concepts more tangible and practical. This interest, combined with my experience as a project manager at Faísca Design Junior - where I witnessed firsthand how students struggled with visual concepts - led me to develop Panorama for my graduation project at UFRGS.
 
 ![Panorama Mockup](/images/01-panorama/02.jpg)
 

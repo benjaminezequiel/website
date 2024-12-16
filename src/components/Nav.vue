@@ -222,6 +222,7 @@ const props = defineProps({
 
   transition:
     bottom var(--ease-out) 200ms,
+    left var(--ease-out) 200ms,
     opacity var(--ease-out) 200ms,
     width var(--ease-out) 800ms;
 

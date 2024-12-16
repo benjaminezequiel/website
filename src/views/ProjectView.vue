@@ -141,11 +141,17 @@ h4 {
   height: 100%;
   position: fixed;
   // background: linear-gradient(to top, var(--gray-100) 0%, transparent 15%);
-  background: url('/assets/dotted-bg.svg');
-  -webkit-mask-image: linear-gradient(to top, black 0%, transparent 3%);
-  mask-image: linear-gradient(to top, black 0%, transparent 3%);
-  background-size: 32px;
-  bottom: 0;
+  // background: url('/assets/dotted-bg.svg');
+  // -webkit-mask-image: linear-gradient(to top, black 0%, transparent 3%);
+  // mask-image: linear-gradient(to top, black 0%, transparent 3%);
+  // background-size: 32px;
+  background-image: radial-gradient(transparent 1px, var(--gray-100, #ffffff) 1px);
+
+  height: 64px;
+  background-size: 4px 4px;
+  backdrop-filter: blur(3px);
+  mask: linear-gradient(to bottom, rgb(0, 0, 0, 0) 0%, rgba(0, 0, 0) 99%);
+  bottom: -2px;
   z-index: 10;
   pointer-events: none;
 }
@@ -155,11 +161,16 @@ h4 {
   height: 100%;
   position: fixed;
   // background: linear-gradient(to top, var(--gray-100) 0%, transparent 15%);
-  background: url('/assets/dotted-bg.svg');
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 5%);
-  mask-image: linear-gradient(to bottom, black 0%, transparent 5%);
-  background-size: 32px;
-  bottom: 0;
+  // background: url('/assets/dotted-bg.svg');
+  // -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 5%);
+  // mask-image: linear-gradient(to bottom, black 0%, transparent 5%);
+  // background-size: 64px;
+  background-image: radial-gradient(transparent 1px, var(--gray-100, #ffffff) 1px);
+  height: 64px;
+  background-size: 4px 4px;
+  backdrop-filter: blur(5px);
+  mask: linear-gradient(to top, rgb(0, 0, 0, 0) 0%, rgba(0, 0, 0) 99%);
+  top: 0;
   z-index: 10;
   pointer-events: none;
 }

@@ -8,13 +8,23 @@ highlight: true
 description: 'As my graduation project at UFRGS, I explored how to make design principles more accessible and practical for designers early in their careers. The challenge was clear: transform complex theoretical concepts into an intuitive tool that could help inform design decisions.'
 ---
 
-Growing up fascinated by design fundamentals and physical tools that guide creative processes (especially those from companies like [The Ugly Lab](https://theuglylab.com.br/)), I always wondered how we could make theoretical concepts more tangible and practical. This interest, combined with my experience as a project manager at Faísca Design Junior - where I witnessed firsthand how students struggled with visual concepts - led me to develop Panorama for my graduation project at UFRGS.
+### Introduction
 
-![Panorama Mockup](/images/01-panorama/02.jpg)
+I've always been deeply interested in the principles of visual communication, and in the years leading up to my thesis, I developed a passion for physical tools (like those from [The Ugly Lab](https://theuglylab.com.br/)) that facilitate creative processes. These interests converged in the creation of a project that helps designers explore their ideas: a tool to expand their visual horizons.
 
-### The Seeds of the Project
+I spent almost a year developing this project, from in-depth theoretical research to extensive exploration and testing, always striving to create the best possible tool. This case study documents my process, hoping to help others interested in developing projects that facilitate creative thinking.
 
-The initial spark came from observing fellow design students grappling with creative decisions. As a manager at Faísca Design, I noticed a pattern: many talented designers struggled to break free from their first ideas or articulate why their solutions worked. I realized there was a gap between the theoretical knowledge taught in classes and its practical application in real projects.
+### The Problem
+
+Through studying literature about the creative process, I discovered an interesting problem that emerges from two key premises from Jorge and Jardim (2018):
+
+> "Projects are created through a sequence of decisions, where the designer acts as an active agent in solving a problem"
+
+> "The repertoire and previous experiences of design professionals are determining factors in the decision-making process"
+
+<span class="inline-illustration">![Problem Illustration](/images/01-panorama/panorama_i01.svg)</span>
+
+This raises an important question: <span class='highlight'>**how can we help designers at the beginning of their careers**</span>, who haven't yet built a robust repertoire, to understand and make design decisions while learning their craft? This became the central focus of my project.
 
 ### Understanding the Challenge
 

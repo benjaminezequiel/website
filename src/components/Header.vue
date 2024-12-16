@@ -1,7 +1,13 @@
 <template>
-  <header class="header">
-    <a href="/">
-      <img src="/assets/logo/full_logo.svg" alt="" class="header--logo" />
+  <header class="header" :class="type ? 'inside_project_page' : ''">
+    <a href="/" class="header--logo-container">
+      <!-- Logo selection based on variant prop -->
+      <img
+        :src="`/assets/logo/${currentLogoVariant}`"
+        :alt="alt"
+        class="header--logo"
+        :class="{ 'header--logo-mobile': isMobileLayout }"
+      />
     </a>
     <div class="header--system_info">
       <span>
@@ -27,32 +33,78 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref, computed } from 'vue'
 import NumberFlow from '@number-flow/vue'
 
+const props = defineProps({
+  // Logo variant to display: 'full', 'minimal', 'icon', or 'responsive'
+  variant: {
+    type: String,
+    default: 'default',
+  },
+  type: {
+    type: Boolean,
+    default: false,
+  },
+  // Alt text for the logo
+  alt: {
+    type: String,
+    default: 'Logo',
+  },
+  // Breakpoint for mobile layout (in pixels)
+  mobileBreakpoint: {
+    type: Number,
+    default: 800,
+  },
+})
+
+// FPS tracking
 const fps = ref(0)
 const frames = ref(0)
 const lastTime = ref(performance.now())
 const rafId = ref(null)
+
+// Time tracking
+const hours = ref(0)
+const minutes = ref(0)
+const seconds = ref(0)
+let timer = null
+
+// Window dimensions
+const width = ref(window.innerWidth)
+const height = ref(window.innerHeight)
+
+// Computed property to determine if mobile layout should be used
+const isMobileLayout = computed(() => width.value <= props.mobileBreakpoint)
+
+// Computed property to determine which logo variant to show
+const currentLogoVariant = computed(() => {
+  if (props.variant === 'responsive') {
+    return isMobileLayout.value ? 'icon_logo.svg' : 'full_logo.svg'
+  }
+
+  const variants = {
+    full: 'full.svg',
+    minimal: 'minimal.svg',
+    icon: 'linear.svg',
+    default: 'default.svg', // Add default variant
+  }
+
+  return variants[props.variant] || 'default.svg' // Fallback to full.svg if variant is not found
+})
 
 const updateFPS = () => {
   frames.value++
   const currentTime = performance.now()
 
   if (currentTime >= lastTime.value + 1000) {
-    // Fixed: removed 'this' and added .value
-    fps.value = Math.round((frames.value * 1000) / (currentTime - lastTime.value)) // Fixed: added .value
+    fps.value = Math.round((frames.value * 1000) / (currentTime - lastTime.value))
     frames.value = 0
     lastTime.value = currentTime
   }
 
   rafId.value = requestAnimationFrame(updateFPS)
 }
-
-const hours = ref(0)
-const minutes = ref(0)
-const seconds = ref(0)
-let timer = null
 
 const updateTime = () => {
   const now = new Date()
@@ -65,9 +117,6 @@ const updateResolution = () => {
   width.value = window.innerWidth
   height.value = window.innerHeight
 }
-
-const width = ref(window.innerWidth)
-const height = ref(window.innerHeight)
 
 let timerInterval
 
@@ -89,12 +138,11 @@ onUnmounted(() => {
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use '../styles/utils.scss' as utils;
 
 .header {
   position: absolute;
-  // background-color: rgba(255, 0, 0, 0.361);
   width: 100%;
   top: 0;
   align-items: flex-start;
@@ -102,11 +150,21 @@ onUnmounted(() => {
   display: flex;
   padding: var(--fluid-space) var(--fluid-space) 0 var(--fluid-space);
 
+  .header--logo-container {
+    display: flex;
+    align-items: center;
+  }
+
   .header--logo {
     max-width: max(10vw, 120px);
     transition: var(--ease-out) scale 200ms;
+
     &:hover {
       scale: 1.02;
+    }
+
+    &.header--logo-mobile {
+      max-width: max(8vw, 48px);
     }
   }
 
@@ -142,6 +200,42 @@ onUnmounted(() => {
       span:not(:first-child) {
         margin-top: -4px;
       }
+    }
+  }
+}
+
+.inside_project_page {
+  &.header {
+    position: fixed;
+    max-width: min(93%, 51rem);
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(30, 30, 30, 0.9);
+    backdrop-filter: blur(8px);
+    padding: 16px;
+    border-radius: 8px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 12px -2px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  &.header {
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    img {
+      outline: none;
+      margin: 0;
+      border-radius: 0;
+      height: 32px;
+    }
+
+    .header--system_info {
+      font-size: 14px;
     }
   }
 }

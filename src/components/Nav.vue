@@ -277,6 +277,7 @@ const props = defineProps({
   }
   .nav .nav__item-icon {
     font-size: 28px;
+    color: white;
   }
   .nav {
     gap: 4px;

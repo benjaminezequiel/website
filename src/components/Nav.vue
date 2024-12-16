@@ -201,6 +201,7 @@ const props = defineProps({
 .message {
   @include window;
   width: 320px;
+  min-width: 320px;
   position: absolute;
   inset: unset;
   max-width: unset;
@@ -213,19 +214,19 @@ const props = defineProps({
   max-width: 100%;
 }
 
-@media (max-width: 1200px) {
-  .nav .nav__item {
-    padding: 8px 8px;
-  }
-  .nav .nav__item-label {
-    display: none;
-  }
-  .nav .nav__item-icon {
-    font-size: 28px;
-    color: white;
-  }
-  .nav {
-    gap: 4px;
-  }
-}
+// @media (max-width: 1200px) {
+//   .nav .nav__item {
+//     padding: 8px 8px;
+//   }
+//   .nav .nav__item-label {
+//     display: none;
+//   }
+//   .nav .nav__item-icon {
+//     font-size: 28px;
+//     color: white;
+//   }
+//   .nav {
+//     gap: 4px;
+//   }
+// }
 </style>

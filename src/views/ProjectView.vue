@@ -196,11 +196,12 @@ onMounted(async () => {
     //   color: var(--gray-500);
     // }
   }
-  // span.inline-illustration {
-  //   img {
-  //     // margin: 0;
-  //   }
-  // }
+  span.secondary-illustration {
+    img {
+      margin: 0;
+      outline: unset !important;
+    }
+  }
 }
 </style>
 
@@ -282,5 +283,12 @@ onMounted(async () => {
 .divider {
   border-top: var(--gray-400) 1px solid;
   width: 100%;
+}
+.image-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
 }
 </style>

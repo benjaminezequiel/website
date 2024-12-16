@@ -112,30 +112,6 @@ img:not(.thumbnail) {
   overflow: hidden;
 }
 
-.header {
-  position: fixed;
-  max-width: min(93%, 51rem);
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(30, 30, 30, 0.9);
-  backdrop-filter: blur(8px);
-  padding: 16px 20px 12px 16px;
-  border-radius: 8px;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  box-shadow: 0px 4px 12px -2px rgba(0, 0, 0, 0.5);
-
-  outline: var(--gray-400) 1px solid;
-  z-index: 1000;
-  img {
-    outline: none;
-    margin: 0;
-    border-radius: 0;
-  }
-}
-
 .project--content {
   display: flex;
   flex-direction: column;
@@ -198,5 +174,33 @@ a {
   color: var(--gray-900);
   font-size: 18px;
   text-transform: uppercase;
+}
+.header {
+  img {
+    outline: none;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+</style>
+
+<style lang="scss" scoped>
+.header {
+  position: fixed;
+  max-width: min(93%, 51rem);
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(30, 30, 30, 0.9);
+  backdrop-filter: blur(8px);
+  padding: 16px 20px 12px 16px;
+  border-radius: 8px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 4px 12px -2px rgba(0, 0, 0, 0.5);
+
+  outline: var(--gray-400) 1px solid;
+  z-index: 1000;
 }
 </style>

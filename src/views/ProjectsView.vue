@@ -80,10 +80,13 @@ h1 {
   overflow: hidden;
 
   height: 400px;
-  transition: scale var(--ease-out) 150ms;
+  transition:
+    scale var(--ease-out) 150ms,
+    box-shadow var(--ease-out) 800ms;
 
   &:hover {
     scale: 1.01;
+    box-shadow: #1e1e1eb1 0px 8px 64px -4px;
   }
 
   .content {

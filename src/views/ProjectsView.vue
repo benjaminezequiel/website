@@ -1,6 +1,5 @@
 <template>
   <div class="page--container">
-    <Nav active="projects"></Nav>
     <div class="page">
       <Header class="page--header"></Header>
       <header class="page-subheader">
@@ -30,6 +29,7 @@
         </router-link>
       </div>
     </div>
+    <Nav active="projects"></Nav>
   </div>
 </template>
 

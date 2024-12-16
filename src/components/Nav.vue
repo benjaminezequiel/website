@@ -86,7 +86,7 @@ const props = defineProps({
     gap: 6px;
 
     .material-symbols-outlined {
-      color: var(--gray-700);
+      // color: var(--gray-700);
       font-size: 20px;
     }
     .close {
@@ -102,9 +102,6 @@ const props = defineProps({
     flex-direction: column;
     gap: 6px;
   }
-}
-.material-symbols-outlined {
-  color: var(--gray-900);
 }
 
 .nav {

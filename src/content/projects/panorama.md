@@ -73,8 +73,6 @@ The color system and illustrations followed similar thinking. Each category got 
 Panorama ended up as a set of 50 cards - 45 principles plus introductory cards for each category. Each card works as both a reference and a practical tool, featuring an abstract illustration that demonstrates the principle, a clear description, and connections to related concepts. I also developed packaging that protects the cards while keeping them easily accessible, and a guidebook that dives deeper into each principle.
 
 ![Panorama Mockup](/images/01-panorama/05.jpg)
-![Panorama Mockup](/images/01-panorama/06.jpg)
-![Panorama Mockup](/images/01-panorama/07.jpg)
 
 Each card features:
 
@@ -84,13 +82,16 @@ Each card features:
 - Category identification through color
 - Examples of practical application
 
+![Panorama Mockup](/images/01-panorama/06.jpg)
+![Panorama Mockup](/images/01-panorama/07.jpg)
+
 ![Panorama Mockup](/images/01-panorama/08.jpg)
 ![Panorama Mockup](/images/01-panorama/09.jpg)
-![Panorama Mockup](/images/01-panorama/10.jpg)
 
 ### Testing & Refining
 
 Throughout development, I kept testing the tool with other designers. Their feedback was crucial - it helped me refine everything from the card layout to how principles were explained. Watching people interact with the cards showed me what worked and what needed adjustment, leading to several iterations before reaching the final version.
+![Panorama Mockup](/images/01-panorama/10.jpg)
 
 ### Impact & Learnings
 

@@ -1,10 +1,58 @@
 import MarkdownIt from 'markdown-it'
-import { defineAsyncComponent } from 'vue'
+import container from 'markdown-it-container'
 
 const md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
+})
+
+// Add callout types
+const callouts = {
+  NOTE: {
+    icon: 'ℹ️',
+    className: 'callout-note',
+  },
+  TIP: {
+    icon: '💡',
+    className: 'callout-tip',
+  },
+  WARNING: {
+    icon: '⚠️',
+    className: 'callout-warning',
+  },
+  DANGER: {
+    icon: '🚫',
+    className: 'callout-danger',
+  },
+  INFO: {
+    icon: '📝',
+    className: 'callout-info',
+  },
+}
+
+// Add container support for each callout type
+Object.keys(callouts).forEach((name) => {
+  md.use(container, name.toLowerCase(), {
+    render: (tokens, idx) => {
+      const token = tokens[idx]
+      const info = token.info.trim().toLowerCase()
+      const title = tokens[idx].info.trim().match(/\[(.*?)\]/)?.[1] || ''
+
+      if (token.nesting === 1) {
+        // Opening tag
+        return `<div class="callout ${callouts[name].className}">
+                  <div class="callout-header">
+                    <span class="callout-icon">${callouts[name].icon}</span>
+                    <span class="callout-title">${title || name}</span>
+                  </div>
+                  <div class="callout-content">\n`
+      } else {
+        // Closing tag
+        return '</div></div>\n'
+      }
+    },
+  })
 })
 
 function parseFrontMatter(content) {

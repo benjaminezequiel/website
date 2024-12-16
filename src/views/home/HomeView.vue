@@ -210,7 +210,7 @@ body {
 @use './home.scss';
 .page--container {
   background-position: center;
-  background-image: url('/public/assets/plus_sign.svg');
+  background-image: url('/assets/plus_sign.svg');
   background-size: 32px;
 
   height: 100dvh;

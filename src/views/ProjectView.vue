@@ -156,7 +156,11 @@ onMounted(async () => {
     color: var(--gray-900);
   }
   h4 {
-    margin-top: 28px;
+    margin-top: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-1000);
   }
 
   a {

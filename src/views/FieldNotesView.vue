@@ -1,5 +1,6 @@
 // views/BlogView.vue
 <template>
+  <Nav active="notes"></Nav>
   <div class="blog-posts">
     <h1>Blog</h1>
     <div class="posts-grid">
@@ -20,6 +21,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getContent } from '@/utils/content'
+import Nav from '@/components/Nav.vue'
 
 const posts = ref([])
 

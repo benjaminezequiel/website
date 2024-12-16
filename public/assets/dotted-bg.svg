@@ -1,0 +1,31 @@
+<svg width="65" height="52" viewBox="0 0 65 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_212_4)">
+<circle cx="5" cy="5" r="5" fill="#000000"/>
+<circle cx="18" cy="5" r="5" fill="#000000"/>
+<circle cx="31" cy="5" r="5" fill="#000000"/>
+<circle cx="44" cy="5" r="5" fill="#000000"/>
+<circle cx="57" cy="5" r="5" fill="#000000"/>
+<circle cy="18" r="5" fill="#000000"/>
+<circle cx="13" cy="18" r="5" fill="#000000"/>
+<circle cx="26" cy="18" r="5" fill="#000000"/>
+<circle cx="39" cy="18" r="5" fill="#000000"/>
+<circle cx="52" cy="18" r="5" fill="#000000"/>
+<circle cx="65" cy="18" r="5" fill="#000000"/>
+<circle cx="5" cy="31" r="5" fill="#000000"/>
+<circle cx="18" cy="31" r="5" fill="#000000"/>
+<circle cx="31" cy="31" r="5" fill="#000000"/>
+<circle cx="44" cy="31" r="5" fill="#000000"/>
+<circle cx="57" cy="31" r="5" fill="#000000"/>
+<circle cy="44" r="5" fill="#000000"/>
+<circle cx="13" cy="44" r="5" fill="#000000"/>
+<circle cx="26" cy="44" r="5" fill="#000000"/>
+<circle cx="39" cy="44" r="5" fill="#000000"/>
+<circle cx="52" cy="44" r="5" fill="#000000"/>
+<circle cx="65" cy="44" r="5" fill="#000000"/>
+</g>
+<defs>
+<clipPath id="clip0_212_4">
+<rect width="65" height="52" fill="white"/>
+</clipPath>
+</defs>
+</svg>

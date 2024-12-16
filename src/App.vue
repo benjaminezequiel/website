@@ -4,7 +4,7 @@ import WindowManager from '@/components/WindowManager.vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
 import DrawingOverlay from '@/components/DrawingOveraly.vue'
 import { inject } from '@vercel/analytics'
-import Nav from './components/Nav.vue'
+//import Nav from './components/Nav.vue'
 
 inject()
 </script>
@@ -14,7 +14,6 @@ inject()
   <SpeedInsights />
   <RouterView />
   <WindowManager />
-  <Nav></Nav>
 </template>
 
 <style lang="scss">

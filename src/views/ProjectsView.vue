@@ -1,5 +1,6 @@
 <template>
   <div class="page--container">
+    <Nav active="projects"></Nav>
     <div class="page">
       <Header class="page--header"></Header>
       <header class="page-subheader">
@@ -90,7 +91,7 @@ h1 {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    z-index: 10;
+    z-index: 1;
     height: fit-content;
     align-items: flex-start;
     justify-content: flex-end;

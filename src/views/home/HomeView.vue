@@ -2,6 +2,7 @@
 import AsciiComponent from '../../components/AsciiComponent.vue'
 </script>
 <template>
+  <Nav active="home" :show-message="true"></Nav>
   <div class="page--container">
     <div class="page">
       <Header></Header>
@@ -29,17 +30,7 @@ import AsciiComponent from '../../components/AsciiComponent.vue'
       <span>{{ azimuth }}</span> -->
       <!-- <span>LAST SECOND BRAIN STATUS:</span>
       <span>7 days ago, 2304 notes, 300.000 words</span> -->
-      <div class="message" v-if="showMessage">
-        <header>
-          <span class="material-symbols-outlined">INFO</span>
-          <span>HEY THERE!</span>
-          <span class="material-symbols-outlined close" @click="showMessage = false">close</span>
-        </header>
-        <section>
-          I'm really glad you made it here. Feel free to explore my projects, read some thoughts, or
-          just say hi. I hope you find something that inspires you!
-        </section>
-      </div>
+
       <!-- <div class="highlights">
         <header>HIGHLIGHTS</header>
         <section>
@@ -101,8 +92,6 @@ const primary_title = ref(null)
 const secondary_title = ref(null)
 let randomMoveId
 
-const navIsOpen = ref(true)
-
 onMounted(() => {
   updateBgLetters()
 })
@@ -145,8 +134,6 @@ function startMove() {
     }, 300)
   }
 }
-
-const showMessage = ref(true)
 
 function resetMove() {
   for (let i = 0; i < primary_title.value.innerHTML.length; i++) {

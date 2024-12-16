@@ -270,20 +270,6 @@ body {
   }
 }
 
-.message {
-  @include window;
-  width: 320px;
-  position: absolute;
-  inset: unset;
-  max-width: unset;
-  top: calc(50% + (64px * 3));
-  left: 50%;
-  transform: translateX(-50%);
-  // bottom: var(--space-6);
-  // left: var(--space-6);
-  max-width: 100%;
-}
-
 .highlights {
   @include window();
   inset: unset;

@@ -1,31 +1,108 @@
 <template>
   <div class="nav">
-    <RouterLink class="nav__item home" to="/">
+    <div class="message" v-if="showMessage && hideMessage">
+      <header>
+        <span class="material-symbols-outlined">INFO</span>
+        <span>HEY THERE!</span>
+        <span class="material-symbols-outlined close" @click="hideMessage = false">close</span>
+      </header>
+      <section>
+        I'm really glad you made it here. Feel free to explore my projects, read some thoughts, or
+        just say hi. I hope you find something that inspires you!
+      </section>
+    </div>
+    <RouterLink class="nav__item home" to="/" :class="{ active: active === 'home' }">
       <span class="nav__item-icon material-symbols-outlined">home</span>
       <span class="nav__item-label">HOME</span>
     </RouterLink>
-    <RouterLink class="nav__item projects" to="/projects">
+    <RouterLink
+      class="nav__item projects"
+      to="/projects"
+      :class="{ active: active === 'projects' }"
+    >
       <span class="nav__item-icon material-symbols-outlined">design_services</span>
       <span class="nav__item-label">PROJECTS</span>
     </RouterLink>
-    <RouterLink class="nav__item notes" to="/field_notes">
+    <!-- <RouterLink class="nav__item notes" to="/field_notes" :class="{ active: active === 'notes' }">
       <span class="nav__item-icon material-symbols-outlined">description </span>
       <span class="nav__item-label">NOTES</span>
-    </RouterLink>
-    <RouterLink class="nav__item experiments" to="/experiments">
+    </RouterLink> -->
+    <!-- <RouterLink
+      class="nav__item experiments"
+      to="/experiments"
+      :class="{ active: active === 'experiments' }"
+    >
       <span class="nav__item-icon material-symbols-outlined">thread_unread </span>
       <span class="nav__item-label">EXPERIMENTS</span>
-    </RouterLink>
-    <RouterLink class="nav__item" to="/about">
+    </RouterLink> -->
+    <!-- <RouterLink class="nav__item" to="/about" :class="{ active: active === 'about' }">
       <span class="nav__item-icon material-symbols-outlined">sentiment_satisfied </span>
       <span class="nav__item-label">ABOUT ME</span>
-    </RouterLink>
+    </RouterLink> -->
   </div>
 </template>
+
+<script setup>
+import { ref, watch } from 'vue'
+
+const hideMessage = ref(localStorage.getItem('hideWelcomeMessage') !== 'false')
+
+watch(hideMessage, (newValue) => {
+  localStorage.setItem('hideWelcomeMessage', newValue)
+})
+
+const props = defineProps({
+  active: {
+    type: String,
+    default: 'home',
+  },
+  showMessage: {
+    type: Boolean,
+    default: false,
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 @use '../styles/utils.scss' as utils;
 
+@mixin window {
+  max-width: 64px * 4;
+  background-color: var(--gray-200);
+  position: absolute;
+  left: calc(50% - calc(64px * 8));
+  top: calc(50% - calc(64px * 4));
+  border-radius: 8px;
+  overflow: hidden;
+  outline: var(--gray-300) 1px solid;
+  z-index: 100;
+  // backdrop-filter: blur(12px);
+
+  header {
+    border-bottom: 1px solid var(--gray-300);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    .material-symbols-outlined {
+      color: var(--gray-700);
+      font-size: 20px;
+    }
+    .close {
+      position: absolute;
+      right: 8px;
+      cursor: pointer;
+    }
+  }
+  section {
+    padding: 8px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
 .material-symbols-outlined {
   color: var(--gray-900);
 }
@@ -61,7 +138,7 @@
   display: flex;
   flex-direction: row;
   left: 50%;
-  bottom: 36px;
+  bottom: 16px;
   gap: 8px;
   transform: translate(-50%);
   padding: 8px;
@@ -107,7 +184,7 @@
       padding var(--ease-out) 200ms,
       margin var(--ease-out) 200ms;
 
-    &.current_page {
+    &.active {
       background-color: var(--brand-color-3);
       cursor: default;
     }
@@ -160,7 +237,7 @@
   }
 }
 
-.nav .nav__item:hover:not(.current_page) {
+.nav .nav__item:hover:not(.active) {
   padding-left: 32px;
   padding-right: 32px;
   .material-symbols-outlined {
@@ -175,6 +252,21 @@
 // .nav .nav__item:hover:first-child {
 //   margin: 0 8px 0 0;
 // }
+
+.message {
+  @include window;
+  width: 320px;
+  position: absolute;
+  inset: unset;
+  max-width: unset;
+
+  left: 50%;
+  bottom: 80px;
+  transform: translateX(-50%);
+  // bottom: var(--space-6);
+  // left: var(--space-6);
+  max-width: 100%;
+}
 
 @media (max-width: 1200px) {
   .nav .nav__item {

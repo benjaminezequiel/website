@@ -218,8 +218,9 @@ onUnmounted(() => {
     top: 24px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(30, 30, 30, 0.9);
-    backdrop-filter: blur(8px);
+    outline: var(--gray-300) 1px solid;
+    background-color: rgba(30, 30, 30, 1);
+
     padding: 16px;
     border-radius: 8px;
     height: fit-content;

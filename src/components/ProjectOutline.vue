@@ -49,7 +49,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted, shallowRef } from 'vue'
 
-const isExpanded = ref(true)
+const isExpanded = ref(false)
 const headers = shallowRef([]) // Using shallowRef for better performance
 const activeId = ref(null)
 let headerPositions = [] // Cache header positions

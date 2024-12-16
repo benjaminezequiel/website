@@ -202,7 +202,7 @@ onMounted(async () => {
   pointer-events: none;
 
   /* Base dotted pattern */
-  background-image: radial-gradient(transparent 1px, var(--gray-100, #ffffff) 1px);
+  background-image: radial-gradient(transparent 1px, var(--gray-100, #000) 1px);
   background-size: 4px 4px;
 
   /* Blur effect with fallback */

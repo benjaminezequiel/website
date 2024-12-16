@@ -63,8 +63,8 @@ onMounted(async () => {
   flex-direction: column;
   width: 100%;
   gap: 24px;
+  padding-top: clamp(24vw, 80%, 12rem);
   padding-bottom: min(20%, 18rem);
-  padding-top: min(25%, 24rem);
 
   p {
     font-family: 'Inter';

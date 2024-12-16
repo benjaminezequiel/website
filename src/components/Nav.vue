@@ -1,5 +1,5 @@
 <template>
-  <div class="nav" :class="{ hidden: isHidden }">
+  <div class="nav" :class="{ hidden: isHidden && hidable }">
     <div class="message" v-if="showMessage && hideMessage">
       <header>
         <span class="material-symbols-outlined">INFO</span>
@@ -45,6 +45,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useScrollHide } from '@/composables/useScrollHide'
+import { BooleanKeyframeTrack } from 'three'
 
 const { isHidden } = useScrollHide()
 
@@ -60,6 +61,10 @@ const props = defineProps({
     default: 'home',
   },
   showMessage: {
+    type: Boolean,
+    default: false,
+  },
+  hidable: {
     type: Boolean,
     default: false,
   },

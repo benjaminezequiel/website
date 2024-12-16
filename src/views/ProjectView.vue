@@ -3,12 +3,15 @@
   <Header variant="default" :type="true"></Header>
   <div class="page--container project_page">
     <article v-if="project" class="page">
-      <h1>{{ project.title }}</h1>
-      <div class="project-meta">
-        <span class="project-date"
-          >{{ project.author }} | {{ project.date }} | {{ project.org }}</span
-        >
-        <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+      <div class="project--header">
+        <h1>{{ project.title }}</h1>
+        <div class="project-meta">
+          <span class="project-date"
+            >{{ project.author }} | {{ project.date }} | {{ project.org }}</span
+          >
+          <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
+        </div>
+        <p class="project-description">{{ project.description }}</p>
       </div>
       <ProjectOutline />
       <div class="project--content" v-html="project.content"></div>
@@ -19,7 +22,7 @@
     <div class="scrolling-gradient-top"></div>
     <div class="scrolling-gradient"></div>
   </div>
-  <Nav :show-message="false" active="none"></Nav>
+  <Nav :show-message="false" active="none" :hidable="true"></Nav>
 </template>
 
 <script setup>
@@ -39,6 +42,8 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
+@use '../styles/utils';
+
 .page--container {
   background-color: var(--gray-100);
   height: fit-content;
@@ -78,6 +83,8 @@ onMounted(async () => {
   }
 
   .thumbnail-container {
+    @include utils.prevent-select;
+
     max-width: min(120%, 70rem);
     position: absolute;
     top: 0;
@@ -96,9 +103,10 @@ onMounted(async () => {
       height: 100%;
       // background: linear-gradient(transparent, var(--gray-100) 75%);
       background-color: var(--gray-100);
-      -webkit-mask-image: linear-gradient(to top, black 35%, transparent 80%);
-      mask-image: linear-gradient(to top, black 35%, transparent 80%);
-      filter: blur(16px);
+      // -webkit-mask-image: linear-gradient(to top, black 35%, transparent 80%);
+      // mask-image: linear-gradient(to top, black 35%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at top center, transparent 10%, black 70%);
+      mask-image: radial-gradient(ellipse at top center, transparent 10%, black 70%);
     }
   }
 
@@ -237,5 +245,20 @@ onMounted(async () => {
   /* Mask gradient - using both standard and webkit prefix */
   -webkit-mask-image: linear-gradient(to top, transparent 10%, black 100%);
   mask-image: linear-gradient(to top, transparent 10%, black 100%);
+}
+
+.project-description {
+  color: var(--gray-900);
+}
+
+.project--header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+.divider {
+  border-top: var(--gray-400) 1px solid;
+  width: 100%;
 }
 </style>

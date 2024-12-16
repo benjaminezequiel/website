@@ -1,6 +1,6 @@
 ---
 title: 'Panorama: A Tool for Understanding Design Principles'
-date: 2023-12-01
+date: 2023
 author: Benjamin Ezequiel
 org: UFRGS
 thumbnail: /images/01-panorama/thumbnail.jpg
@@ -53,7 +53,13 @@ The survey of 43 designers, mostly in their early careers, highlighted specific 
 
 After organizing all this research, I needed to understand exactly who I was designing for. I developed three personas representing different ways people might use the tool: design students looking to understand principles better, professors wanting to teach these concepts more effectively, and professionals seeking to expand their visual repertoire.
 
+<span class="inline-illustration">![Personas Photos](/images/01-panorama/panorama_i03.png)
+</span>
+
 These personas helped shape requirements for the project and led to an important realization: the tool needed to balance being educational with being practical - something you could learn from but also use actively in your design process.
+
+<span class="inline-illustration">![Personas Details](/images/01-panorama/panorama_i04.png)
+</span>
 
 ### The Concept: _Expanding Visual Horizons_
 

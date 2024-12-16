@@ -8,7 +8,12 @@
           <span class="material-symbols-outlined title-icon">design_services</span>
           <span>PROJECTS</span>
         </h1>
-        <p>This are some of my favorite projects!</p>
+        <p>
+          These are some of my favorite projects - ones where I really got to dig deep into design
+          problems I care about. Each represents different challenges I've tackled, from making
+          design theory more approachable to crafting brands that tell meaningful stories. Take a
+          look at my process and the thinking behind each solution.
+        </p>
       </header>
       <div class="projects_grid">
         <router-link

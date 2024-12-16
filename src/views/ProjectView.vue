@@ -9,7 +9,6 @@
           <span class="project-date"
             >{{ project.author }} | {{ project.date }} | {{ project.org }}</span
           >
-          <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
         </div>
         <p class="project-description">{{ project.description }}</p>
       </div>
@@ -17,10 +16,11 @@
       <div class="project--content" v-html="project.content"></div>
     </article>
     <div v-if="project" class="thumbnail-container">
+      <div class="gradient-thumbnail"></div>
       <img :src="project.thumbnail" :alt="project.title" class="thumbnail" />
     </div>
     <div class="scrolling-gradient-top"></div>
-    <div class="scrolling-gradient"></div>
+    <div class="scrolling-gradient-bottom"></div>
   </div>
   <Nav :show-message="false" active="none" :hidable="true"></Nav>
 </template>
@@ -205,7 +205,29 @@ onMounted(async () => {
 </style>
 
 <style lang="scss" scoped>
-.scrolling-gradient {
+.gradient-thumbnail {
+  width: 100%;
+  height: 80%;
+
+  position: absolute;
+  bottom: 0px;
+  z-index: 1;
+  pointer-events: none;
+
+  // /* Base dotted pattern */
+  background-image: radial-gradient(transparent 1px, var(--gray-100, #000) 1px);
+  background-size: 4px 4px;
+
+  // /* Blur effect with fallback */
+  backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px); /* Safari support */
+
+  // /* Mask gradient - using both standard and webkit prefix */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 10%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 10%, black 100%);
+}
+
+.scrolling-gradient-bottom {
   width: 100%;
   height: 48px;
   position: fixed;

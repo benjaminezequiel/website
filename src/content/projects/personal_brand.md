@@ -1,8 +1,8 @@
 ---
 title: 'My Journey Through Personal Branding'
-date: 2024
+date: 2023-2024
 author: Benjamin Ezequiel
-org: ''
+org: 'Personal Project'
 thumbnail: /images/02-personal-brand/thumbnail.jpg
 highlight: true
 description: ''

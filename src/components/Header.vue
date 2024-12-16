@@ -10,12 +10,12 @@
       />
     </a>
     <div class="header--system_info">
-      <span>
+      <span class="secondary_info">
         <span>FPS: </span>
         <NumberFlow :value="fps"></NumberFlow>
       </span>
-      <span class="divider"> | </span>
-      <span>
+      <span class="divider secondary_info"> | </span>
+      <span class="">
         <NumberFlow :value="width"></NumberFlow>
         <span> x </span>
         <NumberFlow :value="height"></NumberFlow>
@@ -164,6 +164,7 @@ onUnmounted(() => {
 
   .header--logo {
     max-width: max(10vw, 120px);
+    min-width: 80px;
     transition: var(--ease-out) scale 200ms;
 
     &:hover {
@@ -259,5 +260,10 @@ onUnmounted(() => {
 <style>
 .inside_project_page.header.hidden {
   transform: translate(-50%, -150%);
+}
+@media (max-width: 800px) {
+  .secondary_info {
+    display: none !important;
+  }
 }
 </style>

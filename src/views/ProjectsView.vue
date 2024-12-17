@@ -100,10 +100,31 @@ h1 {
     display: flex;
     flex-direction: column;
     z-index: 1;
+    position: relative;
     height: fit-content;
     align-items: flex-start;
     justify-content: flex-end;
-    background: linear-gradient(in oklch, transparent, rgb(from var(--gray-100) r g b / 0.8));
+    background: linear-gradient(in oklch, transparent, var(--gray-100) 80%);
+
+    // &::before {
+    //   content: '';
+    //   width: 100%;
+    //   height: 100%;
+    //   top: 0;
+    //   left: 0;
+    //   position: absolute;
+    //   background-image: radial-gradient(transparent 1px, var(--gray-100) 1px);
+    //   background-size: 4px 4px;
+
+    //   /* Blur effect with fallback */
+    //   backdrop-filter: blur(80px);
+    //   -webkit-backdrop-filter: blur(80px); /* Safari support */
+
+    //   /* Mask gradient - using both standard and webkit prefix */
+    //   -webkit-mask-image: linear-gradient(to bottom, transparent 10%, black 100%);
+    //   mask-image: linear-gradient(to bottom, transparent 10%, black 100%);
+    // }
+
     padding: 16px 20px;
 
     gap: 4px;
@@ -112,6 +133,8 @@ h1 {
       text-transform: uppercase;
       font-weight: 500;
       letter-spacing: 1px;
+      z-index: 2;
+      line-height: 100%;
     }
     p {
       color: var(--gray-900);
@@ -127,6 +150,8 @@ h1 {
     width: 100%;
     position: absolute;
     inset: 0;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 50%);
+    mask-image: linear-gradient(to top, transparent 0%, bla3k 50%);
     scale: 1.05;
     height: 100%;
   }

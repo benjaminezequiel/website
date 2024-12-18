@@ -1,6 +1,6 @@
 ---
 title: 'My Journey Through Personal Branding'
-date: 2023-2024
+date: 2023
 author: Benjamin Ezequiel
 org: 'Personal Project'
 thumbnail: /images/02-personal-brand/thumbnail.jpg
@@ -32,7 +32,9 @@ The first roadblock hit me during the classic designer moment where you test a c
 
 <br>
 
-<span class="secondary-illustration" style="width:100%">![Problem Illustration](/images/02-personal-brand/ezben_i06.svg)</span>
+<span class="secondary-illustration" style="margin-top: 8px; display:block">![Problem Illustration](/images/02-personal-brand/ezben_i06.svg)</span>
+
+<div class="image-label">A weird (but cool?) exploration I stumbled upon.</div>
 
 <br>
 This seemingly simple question of naming revealed a deeper challenge. Every time I settled on an approach (I was _this_ close to going all-in on Ezben), something felt off. Looking at other designers' personal brands, I noticed most had clear, focused objectives – they were either strictly professional or tied to a specific niche. But my situation was different. I wasn't looking to build just a professional identity, because I'm not just a designer. You can't represent a person as a single thing, we are all a combination of all sorts of weird stuff.
@@ -41,11 +43,9 @@ This seemingly simple question of naming revealed a deeper challenge. Every time
 
 While taking a break from my [final undergraduate project](https://www.benjaminezequiel.com/projects/project_panorama), I had an insight: what if instead of fighting this multiplicity, I just embraced it? There's probably no magic answer to converge all of my interests, so I might as well embrace them all. This goes against every piece of advice I've read about branding, which all state that you should _specialize_ and _find your niche_, but it resonated so much more with me. This idea of a "mutant brand" started to take shape – one that could shift and adapt while still feeling cohesive.
 
-### Anything but Beijamim
+### Anything but _Beijamim_
 
 Throughout my life, I've seen my name written in some really creative ways: Beijamin, Benjamim (yes, that's different, and the worst one), Benjomim – seems like everyone has their own take on it. At some point, I realized this wasn't just an amusing annoyance, but a small opportunity to break some norms when creating my logotype. I'm not the same Benjamin in every context, so my visual identity shouldn't be either. The challenge was creating something solid, visually interesting, and that could maintain its identity whether as Benjamin, Ben, Benji, or even Ezben.
-
-<br>
 
 <br>
 

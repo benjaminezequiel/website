@@ -172,6 +172,7 @@ onMounted(async () => {
   }
 
   a {
+    font-family: 'Inter';
     color: yellow;
     text-decoration: none;
   }
@@ -197,7 +198,9 @@ onMounted(async () => {
     // }
   }
   span.secondary-illustration {
+    width: 100%;
     img {
+      width: 100%;
       margin: 0;
       outline: unset !important;
     }

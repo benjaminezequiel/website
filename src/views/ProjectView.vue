@@ -63,7 +63,7 @@ onMounted(async () => {
   flex-direction: column;
   width: 100%;
   gap: 24px;
-  padding-top: clamp(20vw, 80%, 12rem);
+  padding-top: clamp(18rem, 64%, 24rem);
   padding-bottom: min(20%, 18rem);
 
   p {
@@ -91,6 +91,8 @@ onMounted(async () => {
 
     .thumbnail {
       max-width: 100%;
+      object-fit: cover;
+      min-height: 480px;
       clip-path: inset(2px);
     }
 

@@ -5,7 +5,7 @@ author: Benjamin Ezequiel
 org: UFRGS
 thumbnail: /images/01-panorama/thumbnail.jpg
 highlight: true
-description: 'As my graduation project at UFRGS, I explored how to make design principles more accessible and practical for designers early in their careers. The challenge was clear: transform complex theoretical concepts into an intuitive tool that could help inform design decisions.'
+description: 'A journey to transform abstract design principles into something you can hold – how research, interviews, and a deep dive into theory became a deck of cards that helps designers make better decisions.'
 ---
 
 ### Introduction

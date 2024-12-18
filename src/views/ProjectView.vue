@@ -203,6 +203,24 @@ onMounted(async () => {
     }
   }
 }
+
+.image-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-bottom: 12px;
+  margin-top: 4px;
+  color: var(--gray-900);
+  gap: 4px;
+}
+
+hr {
+  all: unset;
+  width: 100%;
+  border-bottom: 1px solid var(--gray-200);
+  margin-top: 16px;
+}
 </style>
 
 <style lang="scss" scoped>
@@ -277,13 +295,13 @@ onMounted(async () => {
 .project--header {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
   gap: 16px;
 }
 .divider {
   border-top: var(--gray-400) 1px solid;
   width: 100%;
 }
+
 .image-row {
   display: flex;
   flex-direction: column;

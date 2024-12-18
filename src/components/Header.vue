@@ -94,10 +94,10 @@ const currentLogoVariant = computed(() => {
     full: 'full.svg',
     minimal: 'minimal.svg',
     icon: 'linear.svg',
-    default: 'default.svg', // Add default variant
+    default: 'ezben.svg', // Add default variant
   }
 
-  return variants[props.variant] || 'default.svg' // Fallback to full.svg if variant is not found
+  return variants[props.variant] || 'ezben.svg' // Fallback to full.svg if variant is not found
 })
 
 const updateFPS = () => {

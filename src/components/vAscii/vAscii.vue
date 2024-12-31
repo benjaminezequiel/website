@@ -11,40 +11,84 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, markRaw, shallowRef } from 'vue'
+import { ref, onMounted, onUnmounted, markRaw, computed, watch } from 'vue'
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
-// Core three.JS variables
+const props = defineProps({
+  modelPath: {
+    type: String,
+    required: true,
+  },
+  asciiConfig: {
+    type: Object,
+    default: () => ({
+      width: 160,
+      height: 50,
+      chars: ' .:-=+*#%@',
+      renderWidth: 512,
+      renderHeight: 256,
+    }),
+  },
+  cameraConfig: {
+    type: Object,
+    default: () => ({
+      fov: 10,
+      near: 0.1,
+      far: 1000,
+      position: { x: 0, y: 0, z: 60 },
+    }),
+  },
+  controlsConfig: {
+    type: Object,
+    default: () => ({
+      enableZoom: false,
+      enablePan: false,
+      enableDamping: true,
+      dampingFactor: 0.02,
+      rotateSpeed: 0.25,
+      autoRotate: true,
+      autoRotateSpeed: 2,
+      minPolarAngle: Math.PI / 2,
+      maxPolarAngle: Math.PI / 2,
+    }),
+  },
+  debug: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+// Cofig constants
+const WIDTH = computed(() => props.asciiConfig.width)
+const HEIGHT = computed(() => props.asciiConfig.height)
+const RENDER_WIDTH = computed(() => props.asciiConfig.renderWidth)
+const RENDER_HEIGHT = computed(() => props.asciiConfig.renderHeight)
+const ASCII_CHARS = computed(() => props.asciiConfig.chars)
+
+const canvas = ref(null)
+const ctx = ref(null)
+
+// Update canvas on contants changed
+watch([WIDTH, HEIGHT], ([newWidth, newHeight]) => {
+  if (canvas.value) {
+    canvas.value.width = newWidth
+    canvas.value.height = newHeight
+  }
+})
+
 let scene = null
 let camera = null
 let renderer = null
-let model = null
 let controls = null
-
-// Cofig constants
-const WIDTH = 160
-const HEIGHT = 50
-const RENDER_WIDTH = 512
-const RENDER_HEIGHT = 256
-const ASCII_CHARS = ' .:-=+*#%@'
-
-// Setup canvas
-const canvas = document.createElement('canvas')
-canvas.width = WIDTH
-canvas.height = HEIGHT
-const ctx = canvas.getContext('2d', { willReadFrequently: true })
+let model = null
 
 // DOM refs
 const refRenderContainer = ref(null)
 const refDebugContainer = ref(null)
 
 // Performance stuff
-const asciiLookup = new Array(256)
-for (let i = 0; i < 256; i++) {
-  asciiLookup[i] = ASCII_CHARS[Math.floor((i / 255) * (ASCII_CHARS.length - 1))]
-}
 
 // Reactive stuff
 const isUserInteracting = ref(false)
@@ -57,7 +101,19 @@ const polar = ref(0)
 const distance = ref(0)
 const azimuth = ref(0)
 
+watch(ASCII_CHARS, () => {
+  const newLookup = initAsciiLookup()
+  for (let i = 0; i < 256; i++) {
+    asciiLookup[i] = newLookup[i]
+  }
+})
+
 onMounted(async () => {
+  canvas.value = document.createElement('canvas')
+  canvas.value.width = WIDTH.value
+  canvas.value.height = HEIGHT.value
+  ctx.value = canvas.value.getContext('2d', { willReadFrequently: true })
+
   initThreeJs()
   initControls(renderer.domElement)
   await loadModel()
@@ -75,33 +131,51 @@ onUnmounted(() => {
 
 const initThreeJs = () => {
   scene = new THREE.Scene()
-  camera = new THREE.PerspectiveCamera(10, RENDER_WIDTH / RENDER_HEIGHT, 0.1, 1000)
-  camera.position.z = 60
+  camera = new THREE.PerspectiveCamera(
+    props.cameraConfig.fov,
+    RENDER_WIDTH.value / RENDER_HEIGHT.value,
+    props.cameraConfig.near,
+    props.cameraConfig.far,
+  )
+  camera.position.set(
+    props.cameraConfig.position.x,
+    props.cameraConfig.position.y,
+    props.cameraConfig.position.z,
+  )
 
   // Main renderer
   renderer = new THREE.WebGLRenderer({
     antialias: false,
   })
-  renderer.setSize(RENDER_WIDTH, RENDER_HEIGHT)
+  // Use the .value for setting size
+  renderer.setSize(RENDER_WIDTH.value, RENDER_HEIGHT.value) // Changed this line
   refRenderContainer.value.appendChild(renderer.domElement)
 
   // Debug renderer
   if (showDebug.value && refDebugContainer.value) {
-    const debugRenderer = markRaw(
-      new THREE.WebGLRenderer({
-        antialias: false,
-      }),
-    )
+    const debugRenderer = new THREE.WebGLRenderer({
+      antialias: false,
+    })
     debugRenderer.setSize(320, 160)
     refDebugContainer.value.appendChild(debugRenderer.domElement)
     renderer.debugRenderer = debugRenderer
   }
 }
 
+watch(
+  () => props.controlsConfig,
+  (newConfig) => {
+    if (controls) {
+      Object.assign(controls, newConfig)
+      controls.update()
+    }
+  },
+  { deep: true },
+)
+
 const initControls = (element) => {
   controls = new OrbitControls(camera, element)
-
-  Object.assign(controls, {
+  const finalConfig = {
     enableZoom: false,
     enablePan: false,
     enableDamping: true,
@@ -111,9 +185,12 @@ const initControls = (element) => {
     autoRotateSpeed: 2,
     minPolarAngle: Math.PI / 2,
     maxPolarAngle: Math.PI / 2,
-  })
-
+    ...props.controlsConfig, // This will override only the provided values
+  }
+  Object.assign(controls, finalConfig)
   controls.target.set(0.2, 0, 0.5)
+  controls.update()
+
   controls.addEventListener('start', () => (isUserInteracting.value = true))
   controls.addEventListener('end', () => (isUserInteracting.value = false))
 }
@@ -124,7 +201,7 @@ const loadModel = async () => {
   const loader = new OBJLoader()
   try {
     const object = await new Promise((resolve, reject) => {
-      loader.load('/assets/object_to_ascii.obj', resolve, undefined, reject)
+      loader.load(props.modelPath, resolve, undefined, reject)
     })
 
     model = object
@@ -152,42 +229,58 @@ let animationFrameId
 
 const animate = () => {
   animationFrameId = requestAnimationFrame(animate)
-  controls.update()
+  if (controls) {
+    controls.update() // This is needed for autorotation to work
+  }
   updateCameraPosition()
   asciiFrame.value = frameToAscii()
 }
 
 const frameToAscii = () => {
-  const startTime = performance.now()
+  const resultRows = new Array(HEIGHT.value)
 
   renderer.render(scene, camera)
   if (showDebug.value && renderer.debugRenderer) {
     renderer.debugRenderer.render(scene, camera)
   }
 
-  // ASCII conversion
-  ctx.drawImage(renderer.domElement, 0, 0, WIDTH, HEIGHT)
-  const pixels = ctx.getImageData(0, 0, WIDTH, HEIGHT).data
-  let result = ''
+  if (!canvas.value || !ctx.value) return ''
 
-  for (let i = 0; i < HEIGHT; i++) {
-    for (let j = 0; j < WIDTH; j++) {
-      const idx = (i * WIDTH + j) * 4
+  // ASCII conversion
+  ctx.value.drawImage(renderer.domElement, 0, 0, WIDTH.value, HEIGHT.value) // Add .value
+  const pixels = ctx.value.getImageData(0, 0, WIDTH.value, HEIGHT.value).data // Add .value
+
+  for (let i = 0; i < HEIGHT.value; i++) {
+    const row = new Array(WIDTH.value)
+    const rowOffset = i * WIDTH.value * 4
+
+    for (let j = 0; j < WIDTH.value; j++) {
+      const idx = rowOffset + j * 4
       const alpha = pixels[idx + 3]
 
       if (alpha < 128) {
-        result += ' '
+        row[j] = ' '
         continue
       }
 
+      // Use pre-calculated grayscale lookup if possible
       const grayScale = (pixels[idx] * 299 + pixels[idx + 1] * 587 + pixels[idx + 2] * 114) >> 10
-      result += asciiLookup[grayScale]
+      row[j] = asciiLookup[grayScale]
     }
-    result += '\n'
+    resultRows[i] = row.join('')
   }
-
-  return result
+  return resultRows.join('\n')
 }
+
+const initAsciiLookup = () => {
+  const lookup = new Array(256)
+  for (let i = 0; i < 256; i++) {
+    lookup[i] = ASCII_CHARS.value[Math.floor((i / 255) * (ASCII_CHARS.value.length - 1))]
+  }
+  return lookup
+}
+
+const asciiLookup = initAsciiLookup()
 
 const updateCameraPosition = () => {
   if (camera && controls) {

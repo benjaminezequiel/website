@@ -7,7 +7,27 @@
       <div class="circle_2"></div>
       <div class="circle_1"></div>
     </div>
-    <vAscii class="floating-ascii" :class="expanded ? 'expanded' : ''" />
+    <vAscii
+      class="floating-ascii"
+      :class="expanded ? 'expanded' : ''"
+      modelPath="/assets/object_to_ascii.obj"
+      :asciiConfig="{
+        width: 200,
+        height: 60,
+        chars: ' .:+#@',
+        renderWidth: 600,
+        renderHeight: 300,
+      }"
+      :cameraConfig="{
+        fov: 15,
+        position: { x: 0, y: 0, z: 50 },
+      }"
+      :controlsConfig="{
+        autoRotateSpeed: 4,
+        enableZoom: true,
+      }"
+      :debug="true"
+    />
     <WelcomeTitle @click="handleWelcomeClick" class="welcome-title" />
     <!-- <Header></Header> -->
   </div>

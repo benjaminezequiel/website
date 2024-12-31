@@ -35,6 +35,7 @@
 
   .primary__top,
   .primary__bottom {
+    @include utils.prevent-select;
     padding-left: 4px;
     padding-right: 4px;
     display: flex;

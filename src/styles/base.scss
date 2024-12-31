@@ -231,3 +231,18 @@ body {
 // .callout-info .callout-header {
 //   color: #4338ca;
 // }
+
+.v-popper--theme-default-tooltip {
+  .v-popper__inner {
+    background: var(--gray-200);
+    color: var(--gray-600);
+
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
+
+  .v-popper__arrow-inner,
+  .v-popper__arrow-outer {
+    border-color: var(--gray-200);
+  }
+}

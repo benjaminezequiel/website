@@ -22,7 +22,19 @@
             class="experiment-content"
             :href="experiment.link"
           >
-            <h2>{{ experiment.title }}</h2>
+            <span class="experiment__left-container">
+              <p
+                v-if="experiment.WIP"
+                class="experiment__WIP"
+                v-tooltip="{
+                  theme: 'default-tooltip',
+                  content: experiment.title + ' is still under development!',
+                }"
+              >
+                [WIP]
+              </p>
+              <h2>{{ experiment.title }}</h2>
+            </span>
             <p v-if="experiment.description">{{ experiment.description }}</p>
             <span :href="experiment.link" class="experiment-link"
               >{{ experiment.link_name }} 🡥</span
@@ -265,5 +277,15 @@ h1 {
 .experiment-link {
   text-wrap: nowrap;
   color: var(--sea-green);
+}
+
+.experiment__left-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  .experiment__WIP {
+    color: var(--yellow-600);
+    letter-spacing: 2px;
+  }
 }
 </style>

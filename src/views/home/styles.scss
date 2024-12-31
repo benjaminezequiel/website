@@ -111,6 +111,7 @@
 // }
 .home__background {
   @include utils.center-flex();
+  @include utils.prevent-select;
   height: 100%;
   width: 100%;
   overflow: hidden;

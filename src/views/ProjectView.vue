@@ -56,6 +56,7 @@ body {
   align-items: center;
   justify-content: center;
   color: var(--gray-900);
+  width: 100%;
 }
 
 .page {

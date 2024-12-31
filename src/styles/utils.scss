@@ -30,3 +30,83 @@
     'GRAD' 0,
     'opsz' 24;
 }
+
+@mixin custom-clip-path {
+  $border-size: 4px;
+  --inset-size: clamp(4px, 1vw, 8px);
+  $inset-setup: clamp(160px, 32vw, 340px);
+  $start-inset: $inset-setup;
+  $end-inset: calc(100% - $inset-setup);
+  $inset-offset: clamp(8px, 1vw, 12px);
+  border-radius: 12px;
+
+  clip-path: polygon(
+    $border-size 0%,
+
+    calc($start-inset - $inset-offset) 0%,
+    $start-inset var(--inset-size),
+    $end-inset var(--inset-size),
+    calc($end-inset + $inset-offset) 0%,
+
+    calc(100% - $border-size) 0%,
+    100% $border-size,
+
+    100% calc($start-inset - $inset-offset),
+    calc(100% - var(--inset-size)) $start-inset,
+    calc(100% - var(--inset-size)) $end-inset,
+    100% calc($end-inset + $inset-offset),
+    100% calc(100% - $border-size),
+    calc(100% - $border-size) 100%,
+
+    calc($end-inset + $inset-offset) 100%,
+    $end-inset calc(100% - var(--inset-size)),
+    $start-inset calc(100% - var(--inset-size)),
+    calc($start-inset - $inset-offset) 100%,
+
+    $border-size 100%,
+    0% calc(100% - $border-size),
+    0% calc($end-inset + $inset-offset),
+    var(--inset-size) $end-inset,
+    var(--inset-size) $start-inset,
+    0% calc($start-inset - $inset-offset),
+    0 $border-size
+  );
+}
+
+@mixin basic-window {
+  max-width: 64px * 4;
+  background-color: rgb(from var(--gray-200) r g b / 1);
+  position: absolute;
+  left: calc(50% - calc(64px * 8));
+  top: calc(50% - calc(64px * 4));
+  border-radius: 8px;
+  overflow: hidden;
+  outline: var(--gray-300) 1px solid;
+  z-index: 100;
+  // backdrop-filter: blur(12px);
+
+  header {
+    border-bottom: 1px solid var(--gray-300);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    .material-symbols-outlined {
+      color: var(--gray-700);
+      font-size: 20px;
+    }
+    .close {
+      position: absolute;
+      right: 8px;
+      cursor: pointer;
+    }
+  }
+  section {
+    padding: 8px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}

@@ -1,0 +1,98 @@
+@use '../../styles/utils.scss' as utils;
+
+.welcome-title {
+  display: grid;
+  justify-items: center;
+  height: fit-content;
+
+  .material-symbols-outlined {
+    font-size: 18px;
+  }
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+    align-self: center;
+  }
+
+  // &:hover {
+  //   cursor: pointer;
+
+  //   .primary__container {
+  //     scale: 1.01;
+  //     .primary__title {
+  //       letter-spacing: 1px;
+  //     }
+  //   }
+  // }
+}
+
+.primary__container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--gray-600);
+
+  .primary__top,
+  .primary__bottom {
+    padding-left: 4px;
+    padding-right: 4px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  .primary__top-right {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+.primary__title {
+  @include utils.prevent-select;
+
+  font-family: 'Anton';
+  pointer-events: none;
+  line-height: 88%; // adjusts height to closer to capital height
+
+  color: var(--gray-900);
+  font-size: var(--fluid-fontSize);
+  transition:
+    scale var(--ease-out) 100ms,
+    letter-spacing var(--ease-out) 100ms;
+}
+
+.secondary {
+  @include utils.prevent-select;
+
+  pointer-events: none;
+  display: flex;
+  transition: gap 100ms var(--ease-out);
+
+  > * {
+    @include utils.prevent-select;
+    line-height: 80%; // adjusts height to closer to capital height
+    font-family: 'Permanent Marker';
+    font-size: calc(var(--fluid-fontSize) * 0.8);
+    color: var(--red-400);
+    mix-blend-mode: exclusion;
+    pointer-events: none;
+  }
+}
+
+.header--logo {
+  height: 24px;
+  max-width: 64px;
+
+  --fill: red;
+}
+
+.welcome__timer,
+.welcome__resolution,
+.welcome__FPS {
+  font-variant-numeric: tabular-nums;
+}
+
+.text-faint {
+  color: var(--gray-400);
+}

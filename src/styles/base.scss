@@ -1,3 +1,5 @@
+@use './utils.scss';
+
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
@@ -34,20 +36,20 @@
 :root {
   --home: '';
   --projects: '';
-  --gray-100: #080808;
-  --gray-200: #1e1e1e;
-  --gray-300: #2f2f2f;
-  --gray-400: #424242;
-  --gray-500: #575757;
-  --gray-600: #6c6c6c;
-  --gray-700: #828282;
-  --gray-800: #999999;
-  --gray-900: #b0b0b0;
-  --gray-1000: #c8c8c8;
-  --gray-1100: #e0e0e0;
-  --gray-1200: #f9f9f9;
+  // --gray-100: #080808;
+  // --gray-200: #1e1e1e;
+  // --gray-300: #2f2f2f;
+  // --gray-400: #424242;
+  // --gray-500: #575757;
+  // --gray-600: #6c6c6c;
+  // --gray-700: #828282;
+  // --gray-800: #999999;
+  // --gray-900: #b0b0b0;
+  // --gray-1000: #c8c8c8;
+  // --gray-1100: #e0e0e0;
+  // --gray-1200: #f9f9f9;
 
-  --brand-color-3: blueviolet;
+  // --brand-color-3: blueviolet;
   --ease-out: cubic-bezier(0, 0.55, 0.45, 1);
 
   --space-1: max(1vw, 8px);
@@ -62,6 +64,9 @@
   --fluid-space: clamp(24px, 6vw, 40px);
   --fluid-fontSize: clamp(80px, 12vw, 120px);
   --fluid-scale: clamp(0.8, 10vw, 1.5);
+
+  --page-alignment-x: center;
+  --page-alignment-y: center;
 }
 
 * {
@@ -69,19 +74,20 @@
   box-sizing: border-box;
 }
 
-// #app {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 100dvw;
-//   height: 100dvh;
-//   flex-grow: 1;
-// }
-
+html,
+#app,
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: var(--page-alignment-x);
+  align-items: var(--page-alignment-y);
 }
+
 // body {
 //   background-position: center;
 //   background-image: url('/assets/plus_sign.svg');
@@ -105,10 +111,6 @@ body {
 //   // background-position: center;
 // }
 
-html,
-body {
-  height: 100%;
-}
 ////////////// TEXT STYLES ///////////////
 
 .h1 {
@@ -156,71 +158,71 @@ body {
   font-weight: 400;
 }
 
-.callout {
-  margin: 1rem 0;
-  padding: 0;
-  border-radius: 6px;
-  border: 1px solid;
-  overflow: hidden;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+// .callout {
+//   margin: 1rem 0;
+//   padding: 0;
+//   border-radius: 6px;
+//   border: 1px solid;
+//   overflow: hidden;
+//   padding: 1rem;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
+// }
 
-.callout-header {
-  padding-bottom: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 16px;
-  letter-spacing: 1px;
-  font-weight: 600;
-  background-color: transparent;
-}
+// .callout-header {
+//   padding-bottom: 0;
+//   display: flex;
+//   align-items: center;
+//   gap: 0.5rem;
+//   font-size: 16px;
+//   letter-spacing: 1px;
+//   font-weight: 600;
+//   background-color: transparent;
+// }
 
-/* Note style */
-.callout-note {
-  border-color: #3b82f6;
-  background-color: #eff6ff05;
-}
+// /* Note style */
+// .callout-note {
+//   border-color: #3b82f6;
+//   background-color: #eff6ff05;
+// }
 
-.callout-note .callout-header {
-  color: #1d4ed8;
-}
+// .callout-note .callout-header {
+//   color: #1d4ed8;
+// }
 
-/* Warning style */
-.callout-warning {
-  border-color: #f59e0b;
-}
+// /* Warning style */
+// .callout-warning {
+//   border-color: #f59e0b;
+// }
 
-.callout-warning .callout-header {
-  color: #b45309;
-}
+// .callout-warning .callout-header {
+//   color: #b45309;
+// }
 
-/* Danger style */
-.callout-danger {
-  border-color: #ef4444;
-}
+// /* Danger style */
+// .callout-danger {
+//   border-color: #ef4444;
+// }
 
-.callout-danger .callout-header {
-  color: #b91c1c;
-}
+// .callout-danger .callout-header {
+//   color: #b91c1c;
+// }
 
-/* Tip style */
-.callout-tip {
-  border-color: #10b981;
-}
+// /* Tip style */
+// .callout-tip {
+//   border-color: #10b981;
+// }
 
-.callout-tip .callout-header {
-  color: #047857;
-}
+// .callout-tip .callout-header {
+//   color: #047857;
+// }
 
-/* Info style */
-.callout-info {
-  border-color: #6366f1;
-}
+// /* Info style */
+// .callout-info {
+//   border-color: #6366f1;
+// }
 
-.callout-info .callout-header {
-  color: #4338ca;
-}
+// .callout-info .callout-header {
+//   color: #4338ca;
+// }

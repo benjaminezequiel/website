@@ -1,6 +1,6 @@
 <template>
   <div class="nav" :class="{ hidden: isHidden && hidable }">
-    <div class="message" v-if="showMessage && hideMessage">
+    <div class="message" v-if="false">
       <header>
         <span class="material-symbols-outlined">INFO</span>
         <span>HEY THERE!</span>

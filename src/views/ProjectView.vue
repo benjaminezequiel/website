@@ -1,6 +1,6 @@
 <!-- views/ProjectView.vue -->
 <template>
-  <Header variant="default" :type="true"></Header>
+  <!-- <Header variant="default" :type="true"></Header> -->
   <div class="page--container project_page">
     <article v-if="project" class="page">
       <div class="project--header">
@@ -30,7 +30,7 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getContentBySlug } from '@/utils/content'
 import Nav from '@/components/Nav.vue'
-import Header from '@/components/Header.vue'
+import Header from '@/components/Header/Header.vue'
 import ProjectOutline from '@/components/ProjectOutline.vue'
 
 const route = useRoute()

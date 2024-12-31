@@ -1,7 +1,7 @@
 <template>
   <div class="page--container">
     <div class="page">
-      <Header class="page--header"></Header>
+      <!-- <Header class="page--header"></Header> -->
       <header class="page-subheader">
         <h1 class="page--title">
           <span class="material-symbols-outlined title-icon">design_services</span>
@@ -36,7 +36,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getContent } from '@/utils/content'
-import Header from '@/components/Header.vue'
+import Header from '@/components/Header/Header.vue'
 import Nav from '@/components/Nav.vue'
 
 const projects = ref([])
@@ -47,6 +47,12 @@ onMounted(async () => {
   console.log('Projects:', projects.value)
 })
 </script>
+
+<style>
+body {
+  --page-alignment-y: flex-start;
+}
+</style>
 
 <style lang="scss" scoped>
 @use '../styles/utils.scss' as utils;
@@ -130,6 +136,7 @@ h1 {
     gap: 4px;
     h2 {
       font-size: 36px !important;
+      font-feature-settings: 'ss04';
       text-transform: uppercase;
       font-weight: 500;
       letter-spacing: 1px;

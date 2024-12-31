@@ -1,0 +1,109 @@
+@use '../../styles/utils.scss' as utils;
+
+.header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  display: flex;
+  padding: var(--fluid-space) var(--fluid-space) 0 var(--fluid-space);
+
+  .header--logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .header--logo {
+    max-width: max(10vw, 120px);
+    min-width: 80px;
+    transition: var(--ease-out) scale 200ms;
+
+    &:hover {
+      scale: 1.02;
+    }
+
+    &.header--logo-mobile {
+      max-width: max(8vw, 48px);
+    }
+  }
+
+  .header--system_info {
+    @include utils.prevent-select;
+
+    text-wrap: nowrap;
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    gap: 12px;
+    width: fit-content;
+    color: var(--gray-900);
+
+    .divider {
+      color: var(--gray-500);
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .header {
+    justify-content: space-between;
+
+    .header--system_info {
+      flex-direction: column;
+      gap: 0px;
+      align-items: flex-end;
+
+      .divider {
+        display: none;
+      }
+
+      span:not(:first-child) {
+        margin-top: -4px;
+      }
+    }
+  }
+}
+
+.inside_project_page {
+  &.header {
+    position: fixed;
+    max-width: min(93%, 51rem);
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    outline: var(--gray-300) 1px solid;
+    background-color: rgba(30, 30, 30, 1);
+
+    padding: 16px;
+    border-radius: 8px;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 12px -2px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition:
+      bottom var(--ease-out) 500ms,
+      left var(--ease-out) 500ms,
+      opacity var(--ease-out) 500ms,
+      width var(--ease-out) 500ms,
+      transform var(--ease-out) 500ms;
+  }
+
+  &.header {
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    img {
+      outline: none;
+      margin: 0;
+      border-radius: 0;
+      height: 32px;
+    }
+
+    .header--system_info {
+      font-size: 14px;
+    }
+  }
+}

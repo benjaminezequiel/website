@@ -6,7 +6,6 @@
         asciiFrame
       }}</pre>
     </div>
-
     <div v-if="showDebug" class="debug-view">
       <div ref="debugContainer" class="debug-renderer"></div>
       <div class="debug-info">
@@ -233,7 +232,7 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   opacity: 0;
-  z-index: 1;
+
   display: flex;
   align-items: center;
   justify-content: center;

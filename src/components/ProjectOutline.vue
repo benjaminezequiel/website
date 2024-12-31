@@ -7,7 +7,7 @@
         :aria-label="isExpanded ? 'Collapse outline' : 'Expand outline'"
       >
         <div class="outline__toggle-text">
-          <span class="outline__title">Project Outline</span>
+          <span class="outline__title">Outline</span>
           <span class="outline__count">{{ headers.length }} sections</span>
         </div>
         <svg

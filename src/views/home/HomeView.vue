@@ -1,6 +1,5 @@
 <template>
   <div class="home__page">
-    <vAscii class="floating-ascii" :class="expanded ? 'expanded' : ''" />
     <div class="home__background" :class="expanded ? 'expanded' : ''">
       <div class="circle_5"></div>
       <div class="circle_4"></div>
@@ -8,6 +7,7 @@
       <div class="circle_2"></div>
       <div class="circle_1"></div>
     </div>
+    <vAscii class="floating-ascii" :class="expanded ? 'expanded' : ''" />
     <WelcomeTitle @click="handleWelcomeClick" class="welcome-title" />
     <!-- <Header></Header> -->
   </div>
@@ -19,7 +19,7 @@ import { ref } from 'vue'
 import Header from '@/components/Header/Header.vue'
 import Nav from '@/components/Nav.vue'
 import WelcomeTitle from '@/components/WelcomeTitle/WelcomeTitle.vue'
-import vAscii from '../../components/vAscii.vue'
+import vAscii from '../../components/vAscii/vAscii.vue'
 
 const expanded = ref(true)
 

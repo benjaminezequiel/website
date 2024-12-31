@@ -1,4 +1,3 @@
-<!-- views/ProjectView.vue -->
 <template>
   <!-- <Header variant="default" :type="true"></Header> -->
   <div class="page--container project_page">
@@ -44,15 +43,19 @@ onMounted(async () => {
 <style lang="scss">
 @use '../styles/utils';
 
+body {
+  --page-alignment-y: flex-start;
+}
+
 .page--container {
-  background-color: var(--gray-100);
+  background-color: var(--gray-50);
   height: fit-content;
   min-height: 100dvh;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gray-1200);
+  color: var(--gray-900);
 }
 
 .page {
@@ -79,7 +82,7 @@ onMounted(async () => {
 
 .project_page {
   span.highlight {
-    color: skyblue;
+    color: var(--blue-600);
   }
 
   .thumbnail-container {
@@ -104,7 +107,7 @@ onMounted(async () => {
       width: 100%;
       height: 100%;
       // background: linear-gradient(transparent, var(--gray-100) 75%);
-      background-color: var(--gray-100);
+      background-color: var(--gray-50);
       // -webkit-mask-image: linear-gradient(to top, black 35%, transparent 80%);
       // mask-image: linear-gradient(to top, black 35%, transparent 80%);
       -webkit-mask-image: radial-gradient(ellipse at top center, transparent 10%, black 70%);
@@ -128,7 +131,7 @@ onMounted(async () => {
   img:not(.thumbnail) {
     max-width: 100%;
     border-radius: 12px;
-    outline: var(--gray-400) 1px solid;
+    outline: var(--gray-200) 1px solid;
     margin-top: 16px;
     margin-bottom: 16px;
     overflow: hidden;
@@ -190,8 +193,8 @@ onMounted(async () => {
     margin: 0;
     padding-left: 12px;
     // text-wrap: balance;
-    color: var(--gray-900);
-    border-left: 2px solid var(--gray-500);
+    color: var(--gray-500);
+    border-left: 2px solid var(--gray-200);
 
     // p::before {
     //   content: '>';
@@ -216,14 +219,14 @@ onMounted(async () => {
   font-size: 14px;
   margin-bottom: 12px;
   margin-top: 4px;
-  color: var(--gray-900);
+  color: var(--gray-600);
   gap: 4px;
 }
 
 hr {
   all: unset;
   width: 100%;
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-300);
   margin-top: 16px;
 }
 </style>
@@ -239,7 +242,7 @@ hr {
   pointer-events: none;
 
   // /* Base dotted pattern */
-  background-image: radial-gradient(transparent 1px, var(--gray-100, #000) 1px);
+  background-image: radial-gradient(transparent 1px, var(--gray-50, #000) 1px);
   background-size: 4px 4px;
 
   // /* Blur effect with fallback */
@@ -260,7 +263,7 @@ hr {
   pointer-events: none;
 
   /* Base dotted pattern */
-  background-image: radial-gradient(transparent 1px, var(--gray-100, #000) 1px);
+  background-image: radial-gradient(transparent 1px, var(--gray-50, #000) 1px);
   background-size: 4px 4px;
 
   /* Blur effect with fallback */
@@ -281,7 +284,7 @@ hr {
   pointer-events: none;
 
   /* Base dotted pattern */
-  background-image: radial-gradient(transparent 1px, var(--gray-100, #ffffff) 1px);
+  background-image: radial-gradient(transparent 1px, var(--gray-50, #ffffff) 1px);
   background-size: 4px 4px;
 
   /* Blur effect with fallback */

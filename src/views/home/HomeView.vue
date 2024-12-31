@@ -1,8 +1,6 @@
 <template>
-  <!-- <Nav active="home" :show-message="true"></Nav> -->
-  <div class="page">
+  <div class="home__page">
     <vAscii class="floating-ascii" :class="expanded ? 'expanded' : ''" />
-    <WelcomeTitle @click="handleWelcomeClick" class="welcome-title" />
     <div class="home__background" :class="expanded ? 'expanded' : ''">
       <div class="circle_5"></div>
       <div class="circle_4"></div>
@@ -10,8 +8,10 @@
       <div class="circle_2"></div>
       <div class="circle_1"></div>
     </div>
+    <WelcomeTitle @click="handleWelcomeClick" class="welcome-title" />
     <!-- <Header></Header> -->
   </div>
+  <Nav active="home" :show-message="true"></Nav>
 </template>
 
 <script setup>

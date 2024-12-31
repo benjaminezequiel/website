@@ -1,11 +1,12 @@
 @use '../../styles/utils.scss' as utils;
 
-.page {
-  @include utils.center-flex();
+.home__page {
   @include utils.custom-clip-path();
   overflow: hidden;
-
+  padding: 32px;
   display: grid;
+  justify-content: center;
+  align-items: center;
   > * {
     grid-row: 1;
     grid-column: 1;
@@ -14,7 +15,7 @@
   background-color: var(--gray-50);
   position: relative;
 
-  --page-margin: 24px;
+  --page-margin: var(--space-2);
   margin: var(--page-margin);
 
   width: 100%;
@@ -117,9 +118,9 @@
   max-height: 100%;
   z-index: -1;
 
-  --bg-scale: 0.8;
+  --bg-scale: 0.4;
   &.expanded {
-    --bg-scale: 1.2;
+    --bg-scale: 0.8;
   }
 
   .circle_1,
@@ -152,7 +153,7 @@
     height: 70vh;
 
     // Use two separate transform properties
-    scale: calc(var(--bg-scale) * calc(var(--index) / 2));
+    scale: calc(var(--bg-scale) + calc(var(--index) / 4));
     rotate: 0deg;
 
     will-change: transform, scale;
@@ -163,7 +164,7 @@
     &:hover {
       border-color: var(--sea-green-300);
       transform: scale(1.01);
-      cursor: pointer;
+      // cursor: pointer;
       animation-play-state: paused;
     }
   }

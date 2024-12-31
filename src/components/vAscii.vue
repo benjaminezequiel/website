@@ -112,8 +112,8 @@ const loadModel = async () => {
 
 const initThreeJs = () => {
   scene.value = markRaw(new THREE.Scene())
-  camera.value = markRaw(new THREE.PerspectiveCamera(45, RENDER_WIDTH / RENDER_HEIGHT, 0.1, 1000))
-  camera.value.position.z = 15
+  camera.value = markRaw(new THREE.PerspectiveCamera(10, RENDER_WIDTH / RENDER_HEIGHT, 0.1, 1000))
+  camera.value.position.z = 60
 
   renderer.value = markRaw(
     new THREE.WebGLRenderer({

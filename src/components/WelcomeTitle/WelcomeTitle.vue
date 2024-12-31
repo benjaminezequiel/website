@@ -33,7 +33,7 @@
         <!-- <span class="material-symbols-outlined">polyline</span> -->
         <!-- <span class="material-symbols-outlined">place</span> -->
         <span>PORTO ALEGRE, BRAZIL</span>
-        <img src="/assets/heatmap.svg" class="header--logo" />
+        <!-- <img src="/assets/heatmap.svg" class="heatmap" /> -->
         <span class="welcome__resolution">
           <span> X </span>
           <NumberFlow :value="width"></NumberFlow>

@@ -228,9 +228,9 @@ onUnmounted(() => {
   top: 50%;
   width: 240px;
   height: fit-content;
-  background-color: var(--gray-200);
+  background-color: var(--gray-100);
   border-radius: 8px;
-  border: 1px solid var(--gray-400);
+  border: 1px solid var(--gray-200);
   overflow: hidden;
   z-index: 100;
   transition: height var(--ease-out) 200ms;
@@ -251,10 +251,10 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--gray-1200);
+  color: var(--gray-800);
 
   &:hover {
-    background-color: var(--gray-300);
+    background-color: var(--gray-200);
   }
 }
 
@@ -272,7 +272,7 @@ onUnmounted(() => {
 
 .outline__count {
   font-size: 0.75rem;
-  color: var(--gray-900);
+  color: var(--gray-500);
 }
 
 .outline__toggle-icon {
@@ -318,7 +318,7 @@ onUnmounted(() => {
 .outline__link {
   display: block;
   padding: 0.25rem 0.5rem;
-  color: var(--gray-900);
+  color: var(--gray-500);
   text-decoration: none;
   font-size: 0.875rem;
 
@@ -330,13 +330,13 @@ onUnmounted(() => {
   text-overflow: ellipsis;
 
   &:hover {
-    background-color: var(--gray-300);
-    color: var(--gray-1200);
+    background-color: var(--gray-200);
+    color: var(--gray-900);
   }
 
   &--active {
-    background-color: var(--gray-400);
-    color: var(--gray-1200);
+    background-color: var(--gray-200);
+    color: var(--gray-900);
     font-weight: 500;
   }
 }

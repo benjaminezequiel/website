@@ -14,9 +14,10 @@
           look at my process and the thinking behind each solution.
         </p>
       </header>
+
       <div class="projects_grid">
         <router-link
-          v-for="project in projects"
+          v-for="project in visibleProjects"
           :key="project.slug"
           :to="{ name: 'project', params: { slug: project.slug } }"
           class="project_card"
@@ -34,12 +35,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { getContent } from '@/utils/content'
 import Header from '@/components/Header/Header.vue'
 import Nav from '@/components/Nav.vue'
 
 const projects = ref([])
+
+const visibleProjects = computed(() => {
+  return projects.value.filter((project) => !project.hidden)
+})
 
 onMounted(async () => {
   console.log('Fetching projects...')
@@ -69,21 +74,26 @@ h1 {
   letter-spacing: 0.5;
 }
 .projects_grid {
+  all: unset;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: repeat(auto, 1fr);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
   width: 100%;
+  a {
+    width: 100%;
+    display: flex;
+  }
 }
 
 .project_card {
   padding: 0px;
   display: flex;
   flex-direction: column;
-  background-color: var(--gray-200);
+  background-color: var(--gray-100);
   border-radius: 16px;
-  border: var(--gray-300) 2px solid;
+  border: var(--gray-200) 1px solid;
   text-decoration: none;
   color: inherit;
   position: relative;
@@ -97,7 +107,7 @@ h1 {
 
   &:hover {
     scale: 1.005;
-    box-shadow: #1e1e1eb1 0px 8px 64px -4px;
+    box-shadow: var(--gray-75) 0px 8px 64px -4px;
   }
 
   .content {
@@ -110,7 +120,7 @@ h1 {
     height: fit-content;
     align-items: flex-start;
     justify-content: flex-end;
-    background: linear-gradient(in oklch, transparent, var(--gray-100) 80%);
+    background: linear-gradient(in oklch, transparent, var(--gray-75) 80%);
 
     // &::before {
     //   content: '';
@@ -172,7 +182,7 @@ h1 {
 }
 
 .page--container {
-  background-color: var(--gray-100);
+  background-color: var(--gray-25);
   height: fit-content;
   min-height: 100dvh;
   box-sizing: border-box;

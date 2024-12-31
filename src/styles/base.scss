@@ -45,9 +45,9 @@
   // --gray-700: #828282;
   // --gray-800: #999999;
   // --gray-900: #b0b0b0;
-  // --gray-1000: #c8c8c8;
-  // --gray-1100: #e0e0e0;
-  // --gray-1200: #f9f9f9;
+  --gray-1000: #c8c8c8;
+  --gray-1100: #e0e0e0;
+  --gray-1200: #f9f9f9;
 
   // --brand-color-3: blueviolet;
   --ease-out: cubic-bezier(0, 0.55, 0.45, 1);
@@ -63,6 +63,7 @@
 
   --fluid-space: clamp(24px, 6vw, 40px);
   --fluid-fontSize: clamp(80px, 12vw, 120px);
+  --fluid-fontSize-s: clamp(16px, 2vw, 24px);
   --fluid-scale: clamp(0.8, 10vw, 1.5);
 
   --page-alignment-x: center;
@@ -81,8 +82,6 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  min-width: 100vw;
-  min-height: 100vh;
   display: flex;
   justify-content: var(--page-alignment-x);
   align-items: var(--page-alignment-y);

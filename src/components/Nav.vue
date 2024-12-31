@@ -1,10 +1,10 @@
 <template>
   <div class="nav" :class="{ hidden: isHidden && hidable }">
-    <div class="message" v-if="false">
+    <div class="message" v-if="!hideMessage && showMessage">
       <header>
         <span class="material-symbols-outlined">INFO</span>
         <span>HEY THERE!</span>
-        <span class="material-symbols-outlined close" @click="hideMessage = false">close</span>
+        <span class="material-symbols-outlined close" @click="hideMessage = true">close</span>
       </header>
       <section>
         I'm really glad you made it here. Feel free to explore my projects, read some thoughts, or
@@ -24,21 +24,21 @@
       <span class="nav__item-label">PROJECTS</span>
     </RouterLink>
     <!-- <RouterLink class="nav__item notes" to="/field_notes" :class="{ active: active === 'notes' }">
-      <span class="nav__item-icon material-symbols-outlined">description </span>
-      <span class="nav__item-label">NOTES</span>
-    </RouterLink> -->
-    <!-- <RouterLink
+        <span class="nav__item-icon material-symbols-outlined">description </span>
+        <span class="nav__item-label">NOTES</span>
+      </RouterLink> -->
+    <RouterLink
       class="nav__item experiments"
       to="/experiments"
       :class="{ active: active === 'experiments' }"
     >
-      <span class="nav__item-icon material-symbols-outlined">thread_unread </span>
+      <span class="nav__item-icon material-symbols-outlined">thread_unread</span>
       <span class="nav__item-label">EXPERIMENTS</span>
-    </RouterLink> -->
+    </RouterLink>
     <!-- <RouterLink class="nav__item" to="/about" :class="{ active: active === 'about' }">
-      <span class="nav__item-icon material-symbols-outlined">sentiment_satisfied </span>
-      <span class="nav__item-label">ABOUT ME</span>
-    </RouterLink> -->
+        <span class="nav__item-icon material-symbols-outlined">sentiment_satisfied </span>
+        <span class="nav__item-label">ABOUT ME</span>
+      </RouterLink> -->
   </div>
 </template>
 
@@ -76,18 +76,18 @@ const props = defineProps({
 
 @mixin window {
   max-width: 64px * 4;
-  background-color: var(--gray-200);
+  background-color: var(--gray-100);
   position: absolute;
   left: calc(50% - calc(64px * 8));
   top: calc(50% - calc(64px * 4));
   border-radius: 8px;
   overflow: hidden;
-  outline: var(--gray-300) 1px solid;
+  outline: var(--gray-200) 1px solid;
   z-index: 100;
   // backdrop-filter: blur(12px);
 
   header {
-    border-bottom: 1px solid var(--gray-300);
+    border-bottom: 1px solid var(--gray-200);
     padding: 8px;
     display: flex;
     align-items: center;
@@ -113,11 +113,11 @@ const props = defineProps({
 }
 
 .nav {
-  color: var(--gray-1200);
+  color: var(--gray-900);
   position: fixed;
   inset: unset;
   z-index: 10;
-  box-shadow: 0px 4px 32px -2px var(--gray-100);
+  box-shadow: 0px 4px 32px -2px var(--gray-25);
   display: flex;
   flex-direction: row;
   left: 50%;
@@ -125,18 +125,16 @@ const props = defineProps({
   gap: 8px;
   transform: translate(-50%);
   padding: 8px;
-  background-color: var(--gray-200);
+  background-color: var(--gray-100);
   max-width: 100%;
-  outline: 1px solid var(--gray-400);
+  outline: 1px solid var(--gray-200);
   border-radius: 40px;
 
   .nav__item {
-    @include utils.add_states(var(--gray-400), var(--brand-color-3));
-
     all: unset;
     cursor: pointer;
     padding: 8px 20px 8px 16px;
-    background-color: var(--gray-400);
+    // background-color: var(--gray-400);
     border-radius: 32px;
     font-size: 20px;
     display: flex;
@@ -154,12 +152,12 @@ const props = defineProps({
       margin var(--ease-out) 200ms;
 
     &.active {
-      background-color: var(--brand-color-3);
+      background-color: var(--purple-300);
       cursor: default;
     }
-    &:hover {
+    &:hover:not(.active) {
       outline: var(--gray-300) solid 1px;
-      background-color: var(--brand-color-3);
+      background-color: var(--gray-300);
     }
   }
 
@@ -219,19 +217,19 @@ const props = defineProps({
   max-width: 100%;
 }
 
-// @media (max-width: 1200px) {
-//   .nav .nav__item {
-//     padding: 8px 8px;
-//   }
-//   .nav .nav__item-label {
-//     display: none;
-//   }
-//   .nav .nav__item-icon {
-//     font-size: 28px;
-//     color: white;
-//   }
-//   .nav {
-//     gap: 4px;
-//   }
-// }
+@media (max-width: 640px) {
+  .nav .nav__item {
+    padding: 8px 8px;
+  }
+  .nav .nav__item-label {
+    display: none;
+  }
+  .nav .nav__item-icon {
+    font-size: 28px;
+    color: white;
+  }
+  .nav {
+    gap: 4px;
+  }
+}
 </style>

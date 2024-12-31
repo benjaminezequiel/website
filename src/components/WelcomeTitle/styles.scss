@@ -42,6 +42,9 @@
     width: 100%;
     align-items: center;
   }
+  .primary__bottom {
+    padding-left: 10px;
+  }
   .primary__top-right {
     display: flex;
     gap: 8px;
@@ -51,6 +54,9 @@
 .primary__title {
   @include utils.prevent-select;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Anton';
   pointer-events: none;
   line-height: 88%; // adjusts height to closer to capital height
@@ -95,4 +101,8 @@
 
 .text-faint {
   color: var(--gray-400);
+}
+
+.heatmap {
+  height: 12px;
 }

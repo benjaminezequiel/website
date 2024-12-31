@@ -205,7 +205,7 @@ function toggleDrawing() {
 
 <style scoped>
 .drawing-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;

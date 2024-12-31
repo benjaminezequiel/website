@@ -1,19 +1,19 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import WindowManager from '@/components/WindowManager.vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
 import { inject } from '@vercel/analytics'
+// import WindowManager from '@/components/WindowManager.vue'
 // import DrawingOverlay from '@/components/DrawingOveraly.vue'
 //import Nav from './components/Nav.vue'
 
 inject()
 </script>
 
+<!-- <DrawingOverlay /> -->
+<!-- <WindowManager /> -->
 <template>
-  <!-- <DrawingOverlay /> -->
   <SpeedInsights />
   <RouterView />
-  <WindowManager />
 </template>
 
 <style lang="scss">

@@ -26,7 +26,7 @@
         autoRotateSpeed: 4,
         enableZoom: true,
       }"
-      :debug="true"
+      :show-debug="true"
     />
     <WelcomeTitle @click="handleWelcomeClick" class="welcome-title" />
     <!-- <Header></Header> -->

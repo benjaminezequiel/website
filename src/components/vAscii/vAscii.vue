@@ -54,13 +54,14 @@ const props = defineProps({
       maxPolarAngle: Math.PI / 2,
     }),
   },
-  debug: {
+  showDebug: {
     type: Boolean,
     default: false,
   },
 })
 
 // Cofig constants
+
 const WIDTH = computed(() => props.asciiConfig.width)
 const HEIGHT = computed(() => props.asciiConfig.height)
 const RENDER_WIDTH = computed(() => props.asciiConfig.renderWidth)
@@ -94,7 +95,6 @@ const refDebugContainer = ref(null)
 const isUserInteracting = ref(false)
 const isModelLoaded = ref(false)
 const asciiFrame = ref('')
-const showDebug = ref(true)
 
 // Rotation variables
 const polar = ref(0)
@@ -152,7 +152,7 @@ const initThreeJs = () => {
   refRenderContainer.value.appendChild(renderer.domElement)
 
   // Debug renderer
-  if (showDebug.value && refDebugContainer.value) {
+  if (props.showDebug && refDebugContainer.value) {
     const debugRenderer = new THREE.WebGLRenderer({
       antialias: false,
     })
@@ -240,7 +240,7 @@ const frameToAscii = () => {
   const resultRows = new Array(HEIGHT.value)
 
   renderer.render(scene, camera)
-  if (showDebug.value && renderer.debugRenderer) {
+  if (props.showDebug && renderer.debugRenderer) {
     renderer.debugRenderer.render(scene, camera)
   }
 

@@ -59,7 +59,7 @@
   justify-content: center;
   align-items: center;
   font-family: 'Anton';
-  pointer-events: none;
+
   line-height: 88%; // adjusts height to closer to capital height
 
   color: var(--gray-900);
@@ -67,6 +67,7 @@
   transition:
     scale var(--ease-out) 100ms,
     letter-spacing var(--ease-out) 100ms;
+  cursor: pointer;
 }
 
 .secondary {

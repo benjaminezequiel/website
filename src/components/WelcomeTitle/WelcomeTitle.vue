@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome-title" @mouseover="startMove" @mouseleave="resetMove">
+  <div class="welcome-title">
     <div class="primary__container">
       <div class="primary__top">
         <img src="/assets/logo/ezben.svg" class="header--logo" />
@@ -27,7 +27,9 @@
           </span>
         </span>
       </div>
-      <div ref="primaryTitle" class="primary__title">WELCOME</div>
+      <div ref="primaryTitle" class="primary__title" @mouseover="startMove" @mouseleave="resetMove">
+        WELCOME
+      </div>
       <div class="primary__bottom">
         <!-- <button>INTRO MESSAGE</button> -->
         <!-- <span class="material-symbols-outlined">polyline</span> -->

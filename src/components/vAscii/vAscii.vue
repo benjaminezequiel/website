@@ -61,7 +61,6 @@ const props = defineProps({
 })
 
 // Cofig constants
-
 const WIDTH = computed(() => props.asciiConfig.width)
 const HEIGHT = computed(() => props.asciiConfig.height)
 const RENDER_WIDTH = computed(() => props.asciiConfig.renderWidth)
@@ -71,7 +70,6 @@ const ASCII_CHARS = computed(() => props.asciiConfig.chars)
 const canvas = ref(null)
 const ctx = ref(null)
 
-// Update canvas on contants changed
 watch([WIDTH, HEIGHT], ([newWidth, newHeight]) => {
   if (canvas.value) {
     canvas.value.width = newWidth

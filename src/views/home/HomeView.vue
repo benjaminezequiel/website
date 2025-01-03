@@ -15,8 +15,8 @@
         width: 200,
         height: 60,
         chars: ' .:+#@',
-        renderWidth: 600,
-        renderHeight: 300,
+        renderWidth: 320,
+        renderHeight: 160,
       }"
       :cameraConfig="{
         fov: 15,
@@ -26,7 +26,7 @@
         autoRotateSpeed: 4,
         enableZoom: false,
       }"
-      :show-debug="false"
+      :show-debug="true"
     />
     <WelcomeTitle @click="handleWelcomeClick" class="welcome-title" />
     <!-- <Header></Header> -->

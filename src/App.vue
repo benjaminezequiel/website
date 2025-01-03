@@ -21,9 +21,6 @@ const currentRoute = computed(() => {
 <!-- <WindowManager /> -->
 <template>
   <SpeedInsights />
-  <Transition mode="out-in">
-    <component :is="Component" />
-  </Transition>
   <RouterView />
   <Nav :active="currentRoute"></Nav>
 </template>

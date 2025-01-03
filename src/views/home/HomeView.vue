@@ -1,6 +1,5 @@
 <template>
   <div class="home__page">
-    <vAscii class="floating-ascii" :class="expanded ? 'expanded' : ''" />
     <div class="home__background" :class="expanded ? 'expanded' : ''">
       <div class="circle_5"></div>
       <div class="circle_4"></div>
@@ -8,6 +7,27 @@
       <div class="circle_2"></div>
       <div class="circle_1"></div>
     </div>
+    <vAscii
+      class="floating-ascii"
+      :class="expanded ? 'expanded' : ''"
+      modelPath="/assets/object_to_ascii.obj"
+      :asciiConfig="{
+        width: 200,
+        height: 60,
+        chars: ' .:+#@',
+        renderWidth: 600,
+        renderHeight: 300,
+      }"
+      :cameraConfig="{
+        fov: 15,
+        position: { x: 0, y: 0, z: 50 },
+      }"
+      :controlsConfig="{
+        autoRotateSpeed: 4,
+        enableZoom: false,
+      }"
+      :show-debug="false"
+    />
     <WelcomeTitle @click="handleWelcomeClick" class="welcome-title" />
     <!-- <Header></Header> -->
   </div>
@@ -17,7 +37,7 @@
 import { ref } from 'vue'
 
 import WelcomeTitle from '@/components/WelcomeTitle/WelcomeTitle.vue'
-import vAscii from '../../components/vAscii.vue'
+import vAscii from '../../components/vAscii/vAscii.vue'
 
 const expanded = ref(true)
 

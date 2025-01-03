@@ -237,6 +237,23 @@ h1 {
   align-items: center;
   justify-content: center;
   color: var(--gray-1200);
+  &::before {
+    content: '';
+    width: 20%;
+    height: 80%;
+    background-color: var(--gray-300);
+    filter: blur(350px);
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    opacity: 0.4;
+  }
+  // background-color: var(--gray-25);
+  background-color: var(--gray-100);
+  background-image: radial-gradient(transparent 1px, var(--gray-50, #ffffff) 1px);
+  background-size: 12px 12px;
 }
 
 .page {

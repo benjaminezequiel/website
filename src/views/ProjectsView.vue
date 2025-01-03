@@ -73,6 +73,7 @@ h1 {
   font-weight: 450;
   letter-spacing: 0.5;
 }
+
 .projects_grid {
   all: unset;
   display: grid;
@@ -99,6 +100,7 @@ h1 {
 
   // max-width: 50vw;
 
+  box-shadow: color-mix(in oklch, var(--gray-25) 50%, transparent) 0px 12px 32px -2px;
   height: 400px;
   transition:
     transform var(--ease-out) 150ms,
@@ -111,7 +113,7 @@ h1 {
   &:hover {
     // scale: 1.005;
     transform: translateY(-2px);
-    box-shadow: var(--gray-75) 0px 8px 64px -4px;
+    // box-shadow: var(--gray-75) 0px 8px 64px -4px;
   }
 
   .content {
@@ -195,7 +197,24 @@ h1 {
 }
 
 .page--container {
-  background-color: var(--gray-25);
+  &::before {
+    content: '';
+    width: 20%;
+    height: 80%;
+    background-color: var(--gray-300);
+    filter: blur(350px);
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    opacity: 0.4;
+  }
+  // background-color: var(--gray-25);
+  background-color: var(--gray-100);
+  background-image: radial-gradient(transparent 1px, var(--gray-50, #ffffff) 1px);
+  background-size: 12px 12px;
+
   height: fit-content;
   min-height: 100dvh;
   box-sizing: border-box;

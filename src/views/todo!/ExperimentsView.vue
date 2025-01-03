@@ -7,12 +7,12 @@
           <span class="material-symbols-outlined title-icon">thread_unread</span>
           <span>EXPERIMENTS</span>
         </h1>
-        <p>
+        <!-- <p>
           These are some of my favorite projects - ones where I really got to dig deep into design
           problems I care about. Each represents different challenges I've tackled, from making
           design theory more approachable to crafting brands that tell meaningful stories. Take a
           look at my process and the thinking behind each solution.
-        </p>
+        </p> -->
       </header>
 
       <div class="experiments-grid">

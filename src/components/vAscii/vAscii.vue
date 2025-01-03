@@ -214,13 +214,13 @@ const loadModel = async () => {
 
 const setupLights = () => {
   const lights = [
-    new THREE.AmbientLight(0xffffff, 0.05),
+    new THREE.AmbientLight(0xffffff, 0.2),
+    new THREE.DirectionalLight(0xffffff, 10),
     new THREE.DirectionalLight(0xffffff, 2),
-    new THREE.DirectionalLight(0xffffff, 5),
   ]
 
-  lights[1].position.set(1, 1, 1)
-  lights[2].position.set(0, 10, 0)
+  lights[1].position.set(15, 20, 0)
+  lights[2].position.set(-20, 10, 0)
 
   lights.forEach((light) => scene.add(light))
 }
@@ -230,7 +230,7 @@ let animationFrameId
 const animate = () => {
   animationFrameId = requestAnimationFrame(animate)
   if (controls) {
-    controls.update() // This is needed for autorotation to work
+    controls.update()
   }
   updateCameraPosition()
   asciiFrame.value = frameToAscii()
@@ -246,9 +246,8 @@ const frameToAscii = () => {
 
   if (!canvas.value || !ctx.value) return ''
 
-  // ASCII conversion
-  ctx.value.drawImage(renderer.domElement, 0, 0, WIDTH.value, HEIGHT.value) // Add .value
-  const pixels = ctx.value.getImageData(0, 0, WIDTH.value, HEIGHT.value).data // Add .value
+  ctx.value.drawImage(renderer.domElement, 0, 0, WIDTH.value, HEIGHT.value)
+  const pixels = ctx.value.getImageData(0, 0, WIDTH.value, HEIGHT.value).data
 
   for (let i = 0; i < HEIGHT.value; i++) {
     const row = new Array(WIDTH.value)
@@ -263,7 +262,6 @@ const frameToAscii = () => {
         continue
       }
 
-      // Use pre-calculated grayscale lookup if possible
       const grayScale = (pixels[idx] * 299 + pixels[idx + 1] * 587 + pixels[idx + 2] * 114) >> 10
       row[j] = asciiLookup[grayScale]
     }

@@ -24,9 +24,9 @@
       }"
       :controlsConfig="{
         autoRotateSpeed: 4,
-        enableZoom: true,
+        enableZoom: false,
       }"
-      :show-debug="true"
+      :show-debug="false"
     />
     <WelcomeTitle @click="handleWelcomeClick" class="welcome-title" />
     <!-- <Header></Header> -->

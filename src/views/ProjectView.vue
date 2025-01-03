@@ -21,7 +21,6 @@
     <div class="scrolling-gradient-top"></div>
     <div class="scrolling-gradient-bottom"></div>
   </div>
-  <Nav :show-message="false" active="none" :hidable="true"></Nav>
 </template>
 
 <script setup>

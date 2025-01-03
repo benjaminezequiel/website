@@ -25,12 +25,12 @@
           <img :src="project.thumbnail" :alt="project.title" />
           <div class="content">
             <h2>{{ project.title }}</h2>
-            <p>{{ project.description }}</p>
+            <h4>{{ project.subtitle }}</h4>
+            <!-- <p>{{ project.description }}</p> -->
           </div>
         </router-link>
       </div>
     </div>
-    <Nav active="projects"></Nav>
   </div>
 </template>
 
@@ -76,18 +76,16 @@ h1 {
 .projects_grid {
   all: unset;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(auto, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  // grid-template-columns: repeat(1, 1fr);
+  // grid-template-rows: repeat(auto, 1fr);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
   width: 100%;
-  a {
-    width: 100%;
-    display: flex;
-  }
 }
 
 .project_card {
+  width: 100%;
   padding: 0px;
   display: flex;
   flex-direction: column;
@@ -97,16 +95,22 @@ h1 {
   text-decoration: none;
   color: inherit;
   position: relative;
-
   overflow: hidden;
+
+  // max-width: 50vw;
 
   height: 400px;
   transition:
-    scale var(--ease-out) 150ms,
+    transform var(--ease-out) 150ms,
     box-shadow var(--ease-out) 800ms;
 
+  // &:last-child {
+  //   grid-column: span 2;
+  // }
+
   &:hover {
-    scale: 1.005;
+    // scale: 1.005;
+    transform: translateY(-2px);
     box-shadow: var(--gray-75) 0px 8px 64px -4px;
   }
 
@@ -152,6 +156,15 @@ h1 {
       letter-spacing: 1px;
       z-index: 2;
       line-height: 100%;
+    }
+
+    h4 {
+      font-feature-settings: 'ss04';
+      margin: 0;
+      font-size: 20px;
+      text-wrap: balance;
+      font-weight: 400;
+      color: var(--gray-500);
     }
     p {
       color: var(--gray-900);

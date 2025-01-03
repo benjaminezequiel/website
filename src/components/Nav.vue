@@ -218,10 +218,10 @@ const props = defineProps({
 }
 
 @media (max-width: 640px) {
-  .nav .nav__item {
+  .nav .nav__item:not(.active) {
     padding: 8px 8px;
   }
-  .nav .nav__item-label {
+  .nav .nav__item:not(.active) .nav__item-label {
     display: none;
   }
   .nav .nav__item-icon {

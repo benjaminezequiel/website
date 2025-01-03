@@ -11,13 +11,11 @@
     <WelcomeTitle @click="handleWelcomeClick" class="welcome-title" />
     <!-- <Header></Header> -->
   </div>
-  <Nav active="home" :show-message="true"></Nav>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import Header from '@/components/Header/Header.vue'
-import Nav from '@/components/Nav.vue'
+
 import WelcomeTitle from '@/components/WelcomeTitle/WelcomeTitle.vue'
 import vAscii from '../../components/vAscii.vue'
 

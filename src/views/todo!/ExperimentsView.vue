@@ -45,7 +45,6 @@
       </div>
     </div>
   </div>
-  <Nav :show-message="false" active="experiments" :hidable="true"></Nav>
 </template>
 
 <script setup>

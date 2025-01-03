@@ -1,5 +1,6 @@
 ---
-title: 'Panorama: A Tool for Understanding Design Principles'
+title: 'Panorama'
+subtitle: 'A Tool for Understanding Design Principles'
 date: 2023
 author: Benjamin Ezequiel
 org: UFRGS

@@ -71,9 +71,9 @@ body {
 
   p {
     font-family: 'Inter';
-    line-height: 140%;
+    line-height: 155%;
     margin: 0;
-    // letter-spacing: 0.25px;
+    letter-spacing: 0.2px;
     strong {
       font-family: 'Inter';
     }
@@ -128,19 +128,25 @@ body {
     margin: 0;
   }
 
-  img:not(.thumbnail) {
+  .raw {
+    // border: solid red 24px;
+  }
+  img:not(.thumbnail):not(.raw) {
     max-width: 100%;
+    box-sizing: border-box;
     border-radius: 12px;
     outline: var(--gray-200) 1px solid;
-    margin-top: 16px;
-    margin-bottom: 16px;
+    width: 100%;
+    padding: 32px;
+    margin-top: 12px;
+    margin-bottom: 12px;
     overflow: hidden;
   }
 
   .project--content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
   }
   h1 {
     scroll-margin: 800px;
@@ -217,8 +223,7 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  margin-bottom: 12px;
-  margin-top: 4px;
+  margin-top: -12px;
   color: var(--gray-600);
   gap: 4px;
 }
@@ -227,7 +232,12 @@ hr {
   all: unset;
   width: 100%;
   border-bottom: 1px solid var(--gray-300);
-  margin-top: 16px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+a.header-anchor {
+  color: var(--gray-400);
 }
 </style>
 

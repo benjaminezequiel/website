@@ -15,7 +15,7 @@ tags:
 
 There's something _particularly challenging_ about creating your own brand. As designers, we usually spend days helping others communicate their ideas, but turning that energy towards your own expression brings a new set of obstacles. The process of being both the **client and designer** taught me new lessons I wasn't expecting.
 
-I've had this project ready for a while now, but I wasn't sure what I wanted to do with it. The internet [signal-to-noise ratio](https://en.wikipedia.org/wiki/Signal-to-noise_ratio) is already pretty bad, and I really didn't want to push it further. But I also really wanted to "put my flag on the moon", share my perspective on design, and explore the very specific things that fascinate me - things that might resonate with you too.
+I've had this project ready for a while now, but I wasn't sure what I wanted to do with it. The internet [signal-to-noise ratio](https://en.wikipedia.org/wiki/Signal-to-noise_ratio) is already pretty bad, and I really didn't want to push it further. But I also wanted to "put my flag on the moon", explore new ideas in visual design, and share the specific things that fascinate me - things that might resonate with you too.
 
 As always, good work doesn't come from waiting for the perfect opportunity. Like any design project, it's about making decisions, learning from them, and eventually moving on. In this case study, I'll walk you through my process, struggles, and discoveries - hoping you might find something useful for your own journey.
 
@@ -23,7 +23,9 @@ As always, good work doesn't come from waiting for the perfect opportunity. Like
 
 ### How it started
 
-I started working on my brand in early 2023, partly motivated by a desire to put my identity out there, partly by wanting to experiment with visual ideas that didn't quite fit in client projects.
+I started working on my brand in early 2023, driven partly by that desire to put myself out there, and partly by the freedom to experiment with visual ideas that didn't fit into typical client projects - weird textures, futuristic elements, ASCII art, that sort of stuff.
+
+Unlike client work, this was pure experimentation. No briefs, no deadlines, no meetings - just me exploring whatever caught my interest and seeing where it would lead. While this freedom was exciting, it's also part of what made the project challenging. I read a few years ago (probably in an Austin Kleon book) that constraints foster creativity, and that insight has shaped how I think about this process of playing with ideas.
 
 <br>
 

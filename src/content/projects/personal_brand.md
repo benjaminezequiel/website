@@ -7,17 +7,17 @@ org: 'Personal Project'
 thumbnail: /images/02-personal-brand/thumbnail.jpg
 description: 'An inside look at building my visual identity – how a bit of self-exploration and countless typography sketches evolved into a fluid, shape-shifting brand.'
 tags:
-  - 'Branding'
-  - 'Graphic Design'
+  - 'branding'
+  - 'graphic-design'
 ---
 
-### Preface
+### Introduction
 
-There's something particularly challenging about creating your own brand as a designer. While we usually spend our days helping others express their ideas - which can sometimes be a big struggle on its own - turning that energy inwards brings its own set of difficulties.
+There's something _particularly challenging_ about creating your own brand. As designers, we usually spend days helping others communicate their ideas, but turning that energy towards your own expression brings a new set of obstacles. The process of being both the **client and designer** taught me new lessons I wasn't expecting.
 
-I waited a while to share this project, partly because I wanted it to be perfect, and partly because I wasn't sure how to add something meaningful to an already noisy digital world (which also made me delay this website launch quite a bit).
+I've had this project ready for a while now, but I wasn't sure what I wanted to do with it. The internet [signal-to-noise ratio](https://en.wikipedia.org/wiki/Signal-to-noise_ratio) is already pretty bad, and I really didn't want to push it further. But I also really wanted to "put my flag on the moon", share my perspective on design, and explore the very specific things that fascinate me - things that might resonate with you too.
 
-But recently, I was reminded that good work doesn't come from waiting for the perfect moment. Like any design project, it's about making decisions, learning from them, and eventually moving on. So here it is: my brand, a reflection of both my professional practice and personal experience, a little mark saying _'I am here, I exist'_ – and maybe I love some of the very specific things you love too.
+As always, good work doesn't come from waiting for the perfect opportunity. Like any design project, it's about making decisions, learning from them, and eventually moving on. In this case study, I'll walk you through my process, struggles, and discoveries - hoping you might find something useful for your own journey.
 
 ---
 

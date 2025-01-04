@@ -64,21 +64,19 @@ const generateId = (text, index) => {
 }
 
 const initializeHeaders = () => {
-  const article = document.querySelector('.page')
-  if (!article) return
-
-  const contentDiv = article.querySelector('.project--content')
+  const contentDiv = document.querySelector('.project--content')
   if (!contentDiv) return
 
   const headerElements = contentDiv.querySelectorAll('h1, h2, h3, h4, h5, h6')
 
-  // Process headers and cache their positions
-  const processedHeaders = Array.from(headerElements).map((header, index) => {
-    const id = generateId(header.textContent, index)
-    header.id = id
+  const processedHeaders = Array.from(headerElements).map((header) => {
+    const anchor = header.querySelector('a')
+    const id = anchor?.getAttribute('href')?.replace('#', '') || header.id
+    const text = header.textContent.replace('#', '').trim()
+
     return {
       id,
-      text: header.textContent,
+      text,
       level: parseInt(header.tagName.charAt(1)),
     }
   })

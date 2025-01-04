@@ -122,7 +122,7 @@ const props = defineProps({
   flex-direction: row;
   left: 50%;
   bottom: 16px;
-  gap: 8px;
+  gap: 4px;
   transform: translate(-50%);
   padding: 8px;
   background-color: var(--gray-100);
@@ -133,7 +133,7 @@ const props = defineProps({
   .nav__item {
     all: unset;
     cursor: pointer;
-    padding: 8px 20px 8px 16px;
+    padding: 8px 12px 8px 12px;
     // background-color: var(--gray-400);
     border-radius: 32px;
     font-size: 20px;
@@ -154,6 +154,8 @@ const props = defineProps({
     &.active {
       background-color: var(--purple-300);
       cursor: default;
+      padding-left: 20px;
+      padding-right: 20px;
     }
     &:hover:not(.active) {
       outline: var(--gray-300) solid 1px;

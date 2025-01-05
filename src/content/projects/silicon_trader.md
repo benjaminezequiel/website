@@ -4,7 +4,7 @@ subtitle: 'The Future of Algorithmic Trading'
 date: 2022-2024
 author: Benjamin Ezequiel
 org: MBOCHIP
-thumbnail: /images/03-silicon/silicon_thumbnail.png
+thumbnail: /images/03-silicon/silicon_thumbnail.jpg
 highlight: true
 description: 'SiliconTrader has been the project I've spent the most time on in recent years. Together with the MBOCHIP team, as Head of Design and Innovation, I am building an interface that enhances user efficiency and control.'
 ---

@@ -285,7 +285,7 @@ h1 {
   p {
     margin: 0;
     color: var(--gray-1000);
-    font-family: 'Manrope';
+    font-family: 'Inter';
     letter-spacing: 0.5px;
   }
 }

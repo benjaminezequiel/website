@@ -7,7 +7,7 @@
           <span class="material-symbols-outlined title-icon">design_services</span>
           <span>PROJECTS</span>
         </h1>
-        <p>
+        <p class="page--description">
           These are some of my favorite projects - ones where I really got to dig deep into design
           problems I care about. Each represents different challenges I've tackled, from making
           design theory more approachable to crafting brands that tell meaningful stories. Take a
@@ -253,8 +253,12 @@ h1 {
   p {
     margin: 0;
     color: var(--gray-1000);
-    font-family: 'Manrope';
+    font-family: 'Inter';
     letter-spacing: 0.5px;
   }
+}
+
+.page--description {
+  text-wrap: balance;
 }
 </style>

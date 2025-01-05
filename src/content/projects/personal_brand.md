@@ -65,13 +65,21 @@ With these requirements in hand, I started exploring different directions, colle
 
 #### Anything but _Beijamim_
 
-The first and most glaring question was: what name should I even use? Between my full name (Benjamin Ezequiel) and various nicknames (Ben, Benji, Min, Ezben), I had quite a collection to choose from. Naming is an area I have a lot of interest in, but these names were kind of already created for me. This variety initially felt like a problem, but it opened up an interesting opportunity: instead of trying to force everything (my professional vision, hobbies, interests, opinions, artistic work) into a single identity, why not create a flexible system that could adapt to different contexts?
+The first and most glaring question was: what name should I even use? Between my full name (Benjamin Ezequiel) and various nicknames (Ben, Benji, Min, Ezben), I had quite a collection to choose from. Naming is an area I have a lot of interest in, but these names were kind of already created for me.
+
+This variety initially felt like a problem, but it opened up an interesting opportunity: instead of trying to force everything (my professional vision, hobbies, interests, opinions, artistic work) into a single identity, why not create a flexible system that could adapt to different contexts?
 
 ![Problem Illustration](/images/02-personal-brand/ezben_i06.svg)
 
-People can get really strict about brand consistency, but I'm not sure consistency for the sake of consistency is always positive. Take Coca Cola—in 2024 they launched a campaign celebrating how their logo gets reinterpreted by local artists and shop owners around the world, embracing all these variations while keeping their essence intact. Brands don't exist in a perfect controlled environment, so they should be able to adapt to their surroundings. This idea inspired me to create something that could breathe and change while still feeling cohesive, whether it's showing up as Benjamin, Ben, Benji, or Ezben.
+<div class="image-label">Experiments with a custom logotype</div>
+
+People can get really strict about brand consistency, but I'm not sure consistency for the sake of consistency is always positive. Take Coca Cola—in 2024 they launched a campaign celebrating how their logo gets reinterpreted by local artists and shop owners around the world, embracing all these variations while keeping their essence intact.
+
+**Brands don't exist in a perfect controlled environment, so they should adapt to their surroundings.** This idea inspired me to create something that could breathe and change while still feeling cohesive, whether it's showing up as Benjamin, Ben, Benji, or Ezben.
 
 ![Problem Illustration](/images/02-personal-brand/ezben_i04.svg)
+
+<div class="image-label">First set of versions and variations</div>
 
 After a couple of tries, I landed on a solid idea: a lightly altered version of [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) with variations in both content and layout. It worked well and was flexible enough that I could apply it to different things and contexts. In the process, I also ended up creating the first version of what would became part of the final symbol.
 
@@ -92,6 +100,12 @@ I wasn't satisfied with having an identity purely based on type. I especially wa
 #### Why a lightning bolt though?
 
 There isn't a single specific reason, but rather a collection of them. I've always loved storms; they bring that humbling feeling of being small in the face of nature's power. The Flash has been one of my favorite heroes since childhood - being so fast you could run on water seemed incredible to a kid riding his bike along the beach. The symbol brought together everything I've always wanted to connect with: energy, movement, speed. It just made sense.
+
+## R02: Typography Variety
+
+## R03: Distinctive Symbol
+
+## R04: Bold Colors
 
 ## [WIP]!
 

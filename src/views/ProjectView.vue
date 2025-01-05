@@ -2,13 +2,25 @@
   <!-- <Header variant="default" :type="true"></Header> -->
   <div class="page--container project_page">
     <article v-if="project" class="page">
+      <div class="breadcrumb">
+        <RouterLink class="breadcrumb_previous" to="/projects">PROJECTS</RouterLink>
+        <span class="breadcrumb__divider">></span>
+
+        <span>{{ project.title }}</span>
+      </div>
       <div class="project--header">
-        <h1>{{ project.title }}</h1>
-        <div class="project-meta">
-          <span class="project-date"
-            >{{ project.author }} | {{ project.date }} | {{ project.org }}</span
-          >
+        <div class="project__title-container">
+          <h1 class="primary-title">
+            {{ project.title }}
+            <!-- <span class="secondary-title">{{ project.title }}</span> -->
+          </h1>
+          <h2 class="project--subtitle">{{ project.subtitle }}</h2>
         </div>
+        <!-- <div class="project-meta">
+          <span class="project-date"
+          >{{ project.author }} --- {{ project.date }} --- {{ project.org }}</span
+          >
+        </div> -->
         <p class="project-description">{{ project.description }}</p>
       </div>
       <ProjectOutline />
@@ -30,6 +42,7 @@ import { getContentBySlug } from '@/utils/content'
 import Nav from '@/components/Nav.vue'
 import Header from '@/components/Header/Header.vue'
 import ProjectOutline from '@/components/ProjectOutline.vue'
+import { RouterLink } from 'vue-router'
 
 const route = useRoute()
 const project = ref(null)
@@ -119,18 +132,16 @@ body {
     all: unset;
   }
 
-  h1 {
-    font-size: 48px;
+  h1.primary-title {
+    font-size: 64px;
     line-height: 95%;
     font-feature-settings: 'ss04';
     font-weight: 400;
     text-wrap: balance;
     margin: 0;
+    margin-left: -3px;
   }
 
-  .raw {
-    // border: solid red 24px;
-  }
   img:not(.thumbnail):not(.raw) {
     max-width: 100%;
     box-sizing: border-box;
@@ -191,6 +202,8 @@ body {
   .project-date {
     font-family: 'Space Mono';
     color: var(--gray-900);
+    font-weight: 200;
+    letter-spacing: 2px;
     font-size: 18px;
     text-transform: uppercase;
   }
@@ -243,6 +256,8 @@ a.header-anchor {
 </style>
 
 <style lang="scss" scoped>
+@use '../styles/utils';
+
 .gradient-thumbnail {
   width: 100%;
   height: 80%;
@@ -308,7 +323,8 @@ a.header-anchor {
 }
 
 .project-description {
-  color: var(--gray-900);
+  color: var(--gray-500);
+  text-wrap: balance;
 }
 
 .project--header {
@@ -327,5 +343,64 @@ a.header-anchor {
   gap: 8px;
   align-items: center;
   justify-content: center;
+}
+
+.secondary-title {
+  @include utils.prevent-select;
+
+  pointer-events: none;
+  font-size: 32px;
+
+  letter-spacing: 8px;
+  transform: translateY(10%);
+  font-family: 'Redacted Script';
+  color: var(--red);
+  position: absolute;
+
+  text-wrap: nowrap;
+  mix-blend-mode: exclusion;
+  font-weight: 600;
+  // display: none;
+}
+
+.primary-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+}
+
+.project__title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.project--subtitle {
+  color: var(--gray-600);
+}
+.breadcrumb {
+  font-family: 'Inter';
+  z-index: 100;
+  position: absolute;
+  top: 32px;
+  color: var(--gray-500);
+  display: flex;
+  gap: 6px;
+  text-transform: uppercase;
+
+  .breadcrumb__divider {
+    color: var(--gray-500);
+  }
+}
+
+.breadcrumb_previous {
+  color: var(--gray-500);
+  &:hover {
+    color: var(--gray-600);
+  }
+}
+.supporting_svg {
+  width: 100%;
+  max-width: 400px;
 }
 </style>

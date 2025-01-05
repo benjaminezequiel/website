@@ -1,5 +1,9 @@
 @use '../../../styles/utils.scss';
 
+.header__title-icon {
+  color: var(--gray-500);
+}
+
 .page-container {
   @include utils.center-flex();
 

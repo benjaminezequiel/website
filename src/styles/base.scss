@@ -99,7 +99,8 @@ body {
 
 body {
   background-position: center;
-  background-image: url('/assets/plus_sign.svg');
+  // background-image: url('/assets/plus_sign.svg');
+  background-color: var(--gray-700);
   background-size: 32px;
 }
 //   overflow-x: hidden;

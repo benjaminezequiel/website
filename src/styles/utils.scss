@@ -38,7 +38,7 @@
   $start-inset: $inset-setup;
   $end-inset: calc(100% - $inset-setup);
   $inset-offset: clamp(8px, 1vw, 12px);
-  border-radius: 12px;
+  border-radius: 10px;
 
   clip-path: polygon(
     $border-size 0%,
@@ -109,4 +109,47 @@
     flex-direction: column;
     gap: 6px;
   }
+}
+
+@mixin custom-clip-path-border {
+  $border-size: 6px;
+  --inset-size: clamp(4px, 1vw, 8px);
+  $inset-setup: clamp(163px, 32.4vw, 343px);
+
+  $start-inset: $inset-setup;
+  $end-inset: calc(100% - $inset-setup);
+  $inset-offset: clamp(8px, 1vw, 12px);
+  border-radius: 12px;
+
+  clip-path: polygon(
+    $border-size 0%,
+
+    calc($start-inset - $inset-offset) 0%,
+    $start-inset var(--inset-size),
+    $end-inset var(--inset-size),
+    calc($end-inset + $inset-offset) 0%,
+
+    calc(100% - $border-size) 0%,
+    100% $border-size,
+
+    100% calc($start-inset - $inset-offset),
+    calc(100% - var(--inset-size)) $start-inset,
+    calc(100% - var(--inset-size)) $end-inset,
+    100% calc($end-inset + $inset-offset),
+    100% calc(100% - $border-size),
+    calc(100% - $border-size) 100%,
+
+    calc($end-inset + $inset-offset) 100%,
+    $end-inset calc(100% - var(--inset-size)),
+    $start-inset calc(100% - var(--inset-size)),
+    calc($start-inset - $inset-offset) 100%,
+
+    $border-size 100%,
+    0% calc(100% - $border-size),
+    0% calc($end-inset + $inset-offset),
+    var(--inset-size) $end-inset,
+    var(--inset-size) $start-inset,
+    0% calc($start-inset - $inset-offset),
+    0 $border-size
+  );
 }

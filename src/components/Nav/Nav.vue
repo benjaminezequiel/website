@@ -1,6 +1,6 @@
 <template>
   <div class="nav" :class="{ hidden: isHidden && hidable }">
-    <div class="message" v-if="!hideMessage && showMessage">
+    <div class="message" v-if="(!hideMessage && showMessage) || debug">
       <header>
         <span class="material-symbols-outlined">INFO</span>
         <span>HEY THERE!</span>
@@ -48,7 +48,7 @@ import { useScrollHide } from '@/composables/useScrollHide'
 import { BooleanKeyframeTrack } from 'three'
 
 const { isHidden } = useScrollHide()
-
+const debug = false
 const hideMessage = ref(localStorage.getItem('hideWelcomeMessage') !== 'false')
 
 watch(hideMessage, (newValue) => {

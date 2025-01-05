@@ -1,6 +1,194 @@
 @use '../../styles/utils.scss' as utils;
 
-.home__page {
+.last_updated,
+.currently_reading,
+.copyright {
+  color: var(--gray-700);
+  font-size: 12px;
+  font-feature-settings: 'ss04';
+  display: flex;
+  gap: 8px;
+
+  a {
+    all: unset;
+    cursor: pointer;
+  }
+  .info-faint {
+    color: var(--gray-500);
+  }
+}
+.info_card {
+  width: fit-content;
+  border-radius: 2px;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.huge-clip-path {
+  position: absolute;
+  width: 600px;
+
+  // border: 2px green solid;
+  height: 400px;
+  background-color: color-mix(in oklch, var(--gray-300), transparent 50%);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  // mask-image: url('../../../public/assets/svg_mask.png');
+  mask-image: url('/assets/svg_mask.svg');
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  // clip-path: polygon(100% 0%, 4% 0%, 0% 4%, 0% 72%, 28% 100%, 100% 100%, 100% 90%, 50% 90%);
+}
+
+.logo-test {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130%;
+  mix-blend-mode: difference;
+  // filter: blur(84px);
+  display: none;
+}
+
+.home__border {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  padding: 2px;
+
+  display: flex;
+  --page-margin: var(--space-1);
+  margin: var(--page-margin);
+  background: linear-gradient(var(--purple-300), var(--gray-300));
+  max-width: calc(100% - calc(var(--page-margin) * 2));
+  max-height: calc(
+    100% - calc(var(--page-margin) * 2)
+  ); // calculates limit because of weird interaction between margin and height 100%
+
+  @include utils.custom-clip-path-border();
+}
+
+.circle-3D {
+  all: unset;
+  border: unset;
+  outline: unset;
+  width: 240px;
+  height: 320px;
+
+  background: linear-gradient(
+    rgb(from var(--gray-100) r g b / 0.5),
+    rgb(from var(--gray-200) r g b / 0.5)
+  );
+
+  position: absolute;
+  border-radius: 16px;
+  transform: rotate3d(1, 1, 1, 20deg);
+
+  border: 1px solid gray;
+  box-shadow: color-mix(in oklch, var(--gray-25), transparent) 20px 80px 64px -8px;
+  right: 20%;
+  top: 20%;
+}
+
+.circle-3D-1 {
+  all: unset;
+  border: unset;
+  outline: unset;
+  width: 240px;
+  height: 320px;
+
+  background: linear-gradient(
+    rgb(from var(--gray-100) r g b / 0.5),
+    rgb(from var(--gray-200) r g b / 0.5)
+  );
+
+  position: absolute;
+  border-radius: 16px;
+  transform: rotate3d(1, 1, 1, -20deg);
+
+  border: 1px solid gray;
+  box-shadow: color-mix(in oklch, var(--gray-25), transparent) 20px 80px 64px -8px;
+  left: 20%;
+  top: 40%;
+}
+
+.recently-added {
+  width: 320px;
+  height: 320px;
+  border-radius: 12px;
+  background-color: white;
+  opacity: 0.2;
+  border-radius: 12px;
+  position: fixed;
+  top: 50%;
+  left: 80px;
+  display: flex;
+  flex-direction: column;
+
+  .recent-item {
+    box-shadow: black 0px -4px 24px -2px;
+    margin-top: -24px;
+    border-radius: 8px;
+    border: 1px solid white;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+  }
+}
+
+.circle-3D-2 {
+  all: unset;
+  border: unset;
+  outline: unset;
+  width: 240px;
+  height: 320px;
+
+  background-color: var(--gray-50);
+
+  position: absolute;
+  border-radius: 16px;
+  transform: rotate3d(1, 1, 1, -12deg);
+
+  border: 1px solid gray;
+  box-shadow: color-mix(in oklch, var(--gray-25), transparent) 20px 80px 64px -8px;
+  left: 21%;
+  top: 15%;
+}
+
+.test-white-strip {
+  // width: 100%;
+  width: 100%;
+  height: 42px;
+  // border-bottom: solid red 1px;
+  // box-shadow: var(--gray-300) 0 8px 8px 0;
+  background-color: white;
+  position: absolute;
+
+  top: 0;
+  // display: none;
+}
+
+.home__content {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+
+.home__content {
   &::before {
     // BACKGROUND GRADIENT BASED ON .EXPANDED
     content: '';
@@ -28,28 +216,19 @@
 
   overflow: hidden;
   padding: 32px;
-  display: grid;
-  justify-content: center;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 
   background-color: var(--gray-100);
   background-image: radial-gradient(transparent 1px, var(--gray-50, #ffffff) 1px);
   background-size: 8px 8px;
 
   position: relative;
-  --page-margin: var(--space-1);
-  margin: var(--page-margin);
+
   width: 100%;
   height: 100%;
-
-  max-height: calc(
-    100% - calc(var(--page-margin) * 2)
-  ); // calculates limit because of weird interaction between margin and height 100%
-
-  > * {
-    grid-row: 1;
-    grid-column: 1;
-  }
 }
 
 .home__page {

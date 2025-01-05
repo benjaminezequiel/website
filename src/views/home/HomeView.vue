@@ -1,29 +1,64 @@
 <template>
-  <div class="home__page">
-    <HomeBackground :class="expanded ? 'expanded' : ''" />
-    <vAscii
-      class="home__ascii"
-      :class="expanded ? 'expanded' : ''"
-      modelPath="/assets/object_to_ascii.obj"
-      :asciiConfig="{
-        width: 200,
-        height: 60,
-        chars: ' .:+#@',
-        renderWidth: 320,
-        renderHeight: 160,
-      }"
-      :cameraConfig="{
-        fov: 15,
-        position: { x: 0, y: 0, z: 50 },
-      }"
-      :controlsConfig="{
-        autoRotateSpeed: 4,
-        enableZoom: false,
-      }"
-      :show-debug="false"
-    />
-    <WelcomeTitle @click="handleWelcomeClick" class="home__welcome-title" />
+  <!-- <div class="huge-clip-path"></div> -->
+  <div class="home__border">
+    <div class="home__page">
+      <div class="home__content">
+        <div class="info_card">
+          <div class="last_updated">
+            <span class="info-faint">LAST UPDATED</span>
+            <span>2025-05-01 | 17:18:16</span>
+          </div>
+          <div class="currently_reading">
+            <span class="info-faint">CURRENTLY READING</span>
+            <span
+              ><a href="https://www.goodreads.com/book/show/841.Emotional_Design" target="_blank">
+                Emotional Design, Don Norman
+              </a>
+            </span>
+          </div>
+          <div class="copyright">
+            <span class="info-faint">COPYRIGHT</span>
+            <span>EZBEN @2025</span>
+          </div>
+        </div>
+        <img src="../../../public/assets/logo/ezben.svg" alt="" class="logo-test" />
+        <HomeBackground :class="expanded ? 'expanded' : ''" />
+        <vAscii
+          class="home__ascii"
+          :class="expanded ? 'expanded' : ''"
+          modelPath="/assets/object_to_ascii.obj"
+          :asciiConfig="{
+            width: 200,
+            height: 60,
+            chars: ' .:+#@',
+            renderWidth: 320,
+            renderHeight: 160,
+          }"
+          :cameraConfig="{
+            fov: 15,
+            position: { x: 0, y: 0, z: 50 },
+          }"
+          :controlsConfig="{
+            autoRotateSpeed: 4,
+            enableZoom: false,
+          }"
+          :show-debug="false"
+        />
+        <WelcomeTitle @click="handleWelcomeClick" class="home__welcome-title" />
+      </div>
+      <!-- <div class="test-white-strip"></div> -->
+    </div>
   </div>
+  <!-- <div class="circle-3D"><img src="" alt="" /></div>
+  <div class="circle-3D-1"><img src="" alt="" /></div>
+  <div class="circle-3D-2"><img src="" alt="" /></div> -->
+  <!-- <div class="recently-added">
+    <div class="recent-item"></div>
+    <div class="recent-item"></div>
+    <div class="recent-item"></div>
+    <div class="recent-item"></div>
+    <div class="recent-item"></div>
+  </div> -->
 </template>
 
 <script setup lang="ts">

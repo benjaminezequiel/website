@@ -13,15 +13,12 @@
     <div class="scrolling-gradient-top"></div>
     <div class="scrolling-gradient-bottom"></div>
   </div>
-  <!-- <Nav :show-message="false" active="none" :hidable="true"></Nav> -->
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getContentBySlug } from '@/utils/content'
-// import Nav from '@/components/Nav.vue'
-import Header from '@/components/Header/Header.vue'
 
 const route = useRoute()
 const experiment = ref(null)

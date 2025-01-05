@@ -30,11 +30,13 @@
       <div ref="primaryTitle" class="primary__title" @mouseover="startMove" @mouseleave="resetMove">
         WELCOME
       </div>
+      <!-- <div class="primary__title-add">WELCOME</div> -->
       <div class="primary__bottom">
         <!-- <button>INTRO MESSAGE</button> -->
-        <!-- <span class="material-symbols-outlined">polyline</span> -->
         <!-- <span class="material-symbols-outlined">place</span> -->
         <span>PORTO ALEGRE, BRAZIL</span>
+
+        <span> ///</span>
         <!-- <img src="/assets/heatmap.svg" class="heatmap" /> -->
         <span class="welcome__resolution">
           <span> X </span>

@@ -379,7 +379,6 @@ a.header-anchor {
   color: var(--gray-600);
 }
 .breadcrumb {
-  font-family: 'Inter';
   z-index: 100;
   position: absolute;
   top: 32px;
@@ -394,6 +393,7 @@ a.header-anchor {
 }
 
 .breadcrumb_previous {
+  font-family: 'Space Grotesk';
   color: var(--gray-500);
   &:hover {
     color: var(--gray-600);

@@ -29,13 +29,19 @@ I started working on my brand in early 2023, driven partly by that desire to put
 
 #### Initial exploration
 
-The first roadblock hit me during the classic design moment where you test a couple hundred typefaces: what should I even call myself? My name, while lovely (thanks mom and dad for the biblical combo), isn't exactly short. Over the years, different people have known me as Ben, Benji, Min, Benja, and in gaming circles, I've been "Ezben" for as long as I can remember.
+I started with moodboards, pulling references from various sources (Pinterest, Cyberpunk 2077, Behance) and diving into the classic ritual of trying out hundreds of fonts. At this stage, I wasn't following any specific plan—just searching for a direction that felt right. I am always thinking of the project as a physical space, composed of solutions and challenges, and those initial explorations help me map out its boundaries.
 
-<span class="raw">![Problem Illustration](/images/02-personal-brand/ezben_i02.svg)</span>
+![Moodboard](/images/02-personal-brand/moodboard.jpg)
 
-While working on my [final undergraduate project](https://www.benjaminezequiel.com/projects/project_panorama), I started thinking about how to handle these different versions of my name. Instead of picking just one, I realized I could design a system that works with this variety. Most branding guidelines emphasize consistency and finding a niche, but I needed something more flexible.
+<div class="image-label">Some of the references I saved at the time (most of them where lost, unfortunately)</div>
 
-![Problem Illustration](/images/02-personal-brand/ezben_i06.svg)</span>
+![Font Exploration](/images/02-personal-brand/ezben_i02.svg)
+
+<div class="image-label">The first font familys to caught my attention</div>
+
+<br>
+
+These moodboards aren't about collecting specific elements or ideas—they're more like pinpoints on a map of visual language. They mark paths that deserve a closer look during the creation process. In my case, I found myself drawn toward more **futuristic and modern aesthetics**, particularly designs that employed multiple supporting graphic elements while maintaing a clear visual hierarchy.
 
 #### Requirements
 
@@ -59,13 +65,17 @@ With these requirements in hand, I started exploring different directions, colle
 
 #### Anything but _Beijamim_
 
-Throughout my life, I've seen my name written in some really creative ways: Beijamin, Benjamim (yes, that's different, and the worst one), Benjomim – seems like everyone has their own take on it. At some point, I realized this wasn't just an amusing annoyance, but a small opportunity to break some norms when creating my logotype. I'm not the same Benjamin in every context, so my visual identity shouldn't be either. The challenge was creating something solid, visually interesting, and that could maintain its identity whether as Benjamin, Ben, Benji, or even Ezben.
+The first and most glaring question was: what name should I even use? Between my full name (Benjamin Ezequiel) and various nicknames (Ben, Benji, Min, Ezben), I had quite a collection to choose from. Naming is an area I have a lot of interest in, but these names were kind of already created for me. This variety initially felt like a problem, but it opened up an interesting opportunity: instead of trying to force everything (my professional vision, hobbies, interests, opinions, artistic work) into a single identity, why not create a flexible system that could adapt to different contexts?
 
-<span class="secondary-illustration">![Problem Illustration](/images/02-personal-brand/ezben_i04.svg)</span>
+![Problem Illustration](/images/02-personal-brand/ezben_i06.svg)
 
-After a couple of tries, I landed on a solid idea: a lightly altered version of Space Grotesk with variations in both content and layout. It worked well and was flexible enough that I could apply it to different things and contexts. And... I didn't explain the symbol, did I?
+People can get really strict about brand consistency, but I'm not sure consistency for the sake of consistency is always positive. Take Coca Cola—in 2024 they launched a campaign celebrating how their logo gets reinterpreted by local artists and shop owners around the world, embracing all these variations while keeping their essence intact. Brands don't exist in a perfect controlled environment, so they should be able to adapt to their surroundings. This idea inspired me to create something that could breathe and change while still feeling cohesive, whether it's showing up as Benjamin, Ben, Benji, or Ezben.
 
-### Wait, where did that ⚡ came from?
+![Problem Illustration](/images/02-personal-brand/ezben_i04.svg)
+
+After a couple of tries, I landed on a solid idea: a lightly altered version of [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) with variations in both content and layout. It worked well and was flexible enough that I could apply it to different things and contexts. In the process, I also ended up creating the first version of what would became part of the final symbol.
+
+#### Wait, where did that ⚡ came from?
 
 I wasn't satisfied with having an identity purely based on type. I especially wanted some form of symbol that could work as a little stamp – something I could throw into other projects to tie them back to my main brand. This led to the idea of formatting it like a seal at the end of the logotype.
 

@@ -219,11 +219,12 @@ body {
 }
 
 .image-label {
+  font-family: 'Inter';
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  margin-top: -12px;
+  margin-top: -20px;
   color: var(--gray-600);
   gap: 4px;
 }

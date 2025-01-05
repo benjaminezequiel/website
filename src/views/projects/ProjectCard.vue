@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 const props = defineProps({
   project: {
     type: Object,

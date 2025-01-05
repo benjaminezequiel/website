@@ -28,7 +28,7 @@ const router = createRouter({
     {
       path: '/notes',
       name: 'notes',
-      component: () => import('@/views/notes/FieldNotesView.vue'),
+      component: () => import('@/views/notes/NotesView.vue'),
     },
     {
       path: '/field_notes/:slug',

@@ -31,10 +31,10 @@
       <span class="nav__item-icon material-symbols-outlined">thread_unread</span>
       <span class="nav__item-label">EXPERIMENTS</span>
     </RouterLink>
-    <RouterLink class="nav__item notes" to="/notes" :class="{ active: active === 'notes' }">
+    <!-- <RouterLink class="nav__item notes" to="/notes" :class="{ active: active === 'notes' }">
       <span class="nav__item-icon material-symbols-outlined">description</span>
       <span class="nav__item-label">NOTES</span>
-    </RouterLink>
+    </RouterLink> -->
     <!-- <RouterLink class="nav__item" to="/about" :class="{ active: active === 'about' }">
         <span class="nav__item-icon material-symbols-outlined">sentiment_satisfied </span>
         <span class="nav__item-label">ABOUT ME</span>

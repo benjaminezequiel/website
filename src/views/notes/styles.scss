@@ -10,7 +10,10 @@ body {
   // background-color: var(--gray-100);
   box-sizing: border-box;
   border: 1px solid transparent;
-  border-bottom: var(--gray-200) 1px solid;
+
+  &:not(:last-child) {
+    border-bottom: var(--gray-200) 1px solid;
+  }
 
   padding: 6px 8px;
 

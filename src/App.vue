@@ -3,11 +3,9 @@ import { computed } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
 import { inject } from '@vercel/analytics'
-// import WindowManager from '@/components/WindowManager.vue'
-// import DrawingOverlay from '@/components/DrawingOveraly.vue'
-//import Nav from './components/Nav.vue'
 import { useRoute } from 'vue-router'
 import Nav from './components/Nav/Nav.vue'
+
 inject()
 
 const route = useRoute()
@@ -16,8 +14,6 @@ const currentRoute = computed(() => {
 })
 </script>
 
-<!-- <DrawingOverlay /> -->
-<!-- <WindowManager /> -->
 <template>
   <SpeedInsights />
   <RouterView />

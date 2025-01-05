@@ -1,0 +1,205 @@
+@use '../../styles/utils.scss' as utils;
+
+body {
+  --page-alignment-y: flex-start;
+}
+
+.note_item {
+  width: 100%;
+  // padding: 8px;
+  // background-color: var(--gray-100);
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-bottom: var(--gray-200) 1px solid;
+
+  padding: 6px 8px;
+
+  transition: transform 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition:
+    transform var(--ease-out) 250ms,
+    background-color var(--ease-out) 250ms;
+
+  &:hover {
+    border: 1px solid var(--gray-300);
+    background-color: var(--gray-100);
+    border-radius: 8px;
+    transform: scale(1.01);
+  }
+  .note-title {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    text-transform: capitalize;
+    font-family: 'Space Mono';
+    font-feature-settings: 'ss04';
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .note_date {
+    font-variant-numeric: tabular-nums;
+    text-wrap: nowrap;
+    color: var(--gray-500);
+  }
+
+  .note_tag-list {
+    display: flex;
+    gap: 6px;
+    flex-direction: row;
+  }
+
+  .note__right-container,
+  .note__left-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+  }
+  .note__left-container {
+    margin-right: 8px;
+  }
+  .note__right-container {
+    min-width: fit-content;
+  }
+
+  .note_tag {
+    &::before {
+      content: '#';
+      opacity: 0.8;
+      margin-right: 2px;
+    }
+
+    padding: 0px 8px;
+    --tag-bg: var(--gray-300);
+    --tag-color: var(--gray-800);
+    background-color: color-mix(in oklch, var(--tag-bg), transparent 90%);
+
+    --border-color: color-mix(in oklch, var(--tag-bg), transparent 50%);
+    border: var(--border-color) 1px solid;
+
+    color: var(--tag-color);
+    border-radius: 32px;
+  }
+
+  [tag='vue'] {
+    --tag-bg: var(--sea-green);
+    --tag-color: var(--sea-green-600);
+  }
+  [tag='design'] {
+    --tag-bg: var(--red-400);
+    --tag-color: var(--red-500);
+  }
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  padding: 0.25rem 0.75rem;
+  background: #f0f0f0;
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+
+body {
+  --page-alignment-y: flex-start;
+}
+
+h1 {
+  font-size: 48px;
+  margin: 0;
+  font-weight: 450;
+  letter-spacing: 0.5;
+}
+
+.notes_list {
+  all: unset;
+  display: grid;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.page-container {
+  background-color: var(--gray-75);
+  background-image: radial-gradient(transparent 1px, var(--gray-50, #ffffff) 1px);
+  background-size: 12px 12px;
+
+  width: 100%;
+  height: fit-content;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-1200);
+
+  &::before {
+    content: '';
+    width: 20%;
+    height: 80%;
+    background-color: var(--gray-300);
+    filter: blur(350px);
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    opacity: 0.4;
+  }
+}
+
+.page {
+  max-width: min(92%, 75rem);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 32px;
+  padding-bottom: min(15%, 8rem);
+  padding-top: min(15%, 8rem);
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .header__title-icon {
+    font-size: 48px;
+    font-variation-settings: 'wgth' 300;
+    color: var(--brand-color-3);
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  p {
+    margin: 0;
+    color: var(--gray-1000);
+    font-family: 'Inter';
+    letter-spacing: 0.5px;
+  }
+}
+
+.header__description {
+  text-wrap: balance;
+}
+
+a {
+  all: unset;
+}

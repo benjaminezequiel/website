@@ -23,10 +23,6 @@
       <span class="nav__item-icon material-symbols-outlined">design_services</span>
       <span class="nav__item-label">PROJECTS</span>
     </RouterLink>
-    <!-- <RouterLink class="nav__item notes" to="/field_notes" :class="{ active: active === 'notes' }">
-        <span class="nav__item-icon material-symbols-outlined">description </span>
-        <span class="nav__item-label">NOTES</span>
-      </RouterLink> -->
     <RouterLink
       class="nav__item experiments"
       to="/experiments"
@@ -34,6 +30,10 @@
     >
       <span class="nav__item-icon material-symbols-outlined">thread_unread</span>
       <span class="nav__item-label">EXPERIMENTS</span>
+    </RouterLink>
+    <RouterLink class="nav__item notes" to="/notes" :class="{ active: active === 'notes' }">
+      <span class="nav__item-icon material-symbols-outlined">description</span>
+      <span class="nav__item-label">NOTES</span>
     </RouterLink>
     <!-- <RouterLink class="nav__item" to="/about" :class="{ active: active === 'about' }">
         <span class="nav__item-icon material-symbols-outlined">sentiment_satisfied </span>
@@ -72,7 +72,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-@use '../styles/utils.scss' as utils;
+@use '../../styles/utils.scss' as utils;
 
 @mixin window {
   max-width: 64px * 4;
@@ -120,7 +120,7 @@ const props = defineProps({
   box-shadow: 0px 4px 32px -2px var(--gray-25);
   display: flex;
   flex-direction: row;
-  left: 50%;
+  left: 50vw;
   bottom: 16px;
   gap: 4px;
   transform: translate(-50%);

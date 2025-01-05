@@ -7,12 +7,11 @@ import { inject } from '@vercel/analytics'
 // import DrawingOverlay from '@/components/DrawingOveraly.vue'
 //import Nav from './components/Nav.vue'
 import { useRoute } from 'vue-router'
-import Nav from './components/Nav.vue'
+import Nav from './components/Nav/Nav.vue'
 inject()
 
 const route = useRoute()
 const currentRoute = computed(() => {
-  // Extract the active route name without the leading slash
   return route.path.slice(1) || 'home'
 })
 </script>

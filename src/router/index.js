@@ -18,17 +18,17 @@ const router = createRouter({
     {
       path: '/projects',
       name: 'projects',
-      component: () => import('@/views/ProjectsView.vue'),
+      component: () => import('@/views/projects/ProjectsSectionView.vue'),
     },
     {
       path: '/projects/:slug',
       name: 'project',
-      component: () => import('@/views/ProjectView.vue'),
+      component: () => import('@/views/projects/ProjectView/ProjectView.vue'),
     },
     {
-      path: '/field_notes',
-      name: 'field_notes',
-      component: () => import('@/views/todo!/FieldNotesView.vue'),
+      path: '/notes',
+      name: 'notes',
+      component: () => import('@/views/notes/FieldNotesView.vue'),
     },
     {
       path: '/field_notes/:slug',

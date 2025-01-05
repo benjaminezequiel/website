@@ -7,10 +7,17 @@ export function parseFrontMatter(content) {
   const frontmatter = match[1].split('\n').reduce((acc, line) => {
     const [key, ...values] = line.split(':')
     if (key && values.length) {
-      acc[key.trim()] = values
-        .join(':')
-        .trim()
-        .replace(/^["']|["']$/g, '')
+      const value = values.join(':').trim()
+
+      if (value.startsWith('[') && value.endsWith(']')) {
+        acc[key.trim()] = value
+          .slice(1, -1)
+          .split(',')
+          .map((item) => item.trim().replace(/^["']|["']$/g, ''))
+          .filter(Boolean)
+      } else {
+        acc[key.trim()] = value.replace(/^["']|["']$/g, '')
+      }
     }
     return acc
   }, {})

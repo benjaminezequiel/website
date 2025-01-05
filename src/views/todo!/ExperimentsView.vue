@@ -50,7 +50,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getContent } from '@/utils/content'
-import Nav from '@/components/Nav.vue'
+import Nav from '@/components/Nav/Nav.vue'
 
 const experiments = ref([])
 
@@ -251,7 +251,7 @@ h1 {
     opacity: 0.4;
   }
   // background-color: var(--gray-25);
-  background-color: var(--gray-100);
+  background-color: var(--gray-75);
   background-image: radial-gradient(transparent 1px, var(--gray-50, #ffffff) 1px);
   background-size: 12px 12px;
 }

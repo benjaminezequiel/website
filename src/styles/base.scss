@@ -44,8 +44,6 @@
 }
 
 :root {
-  --home: '';
-  --projects: '';
   // --gray-100: #080808;
   // --gray-200: #1e1e1e;
   // --gray-300: #2f2f2f;
@@ -93,8 +91,10 @@ body {
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: var(--page-alignment-x);
-  align-items: var(--page-alignment-y);
+  // justify-content: var(--page-alignment-x);
+  // align-items: var(--page-alignment-y);
+  align-items: flex-start;
+  justify-content: center;
 }
 
 body {

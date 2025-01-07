@@ -36,6 +36,7 @@
               <h2>{{ experiment.title }}</h2>
             </span>
             <p v-if="experiment.description">{{ experiment.description }}</p>
+            <span class="experiment-date">{{ experiment.date }}</span>
             <span :href="experiment.link" class="experiment-link"
               >{{ experiment.link_name }} 🡥</span
             >
@@ -145,7 +146,7 @@ h1 {
     display: flex;
     padding: 16px;
     gap: 12px;
-    align-items: baseline;
+    align-items: center;
   }
 
   &:hover {
@@ -296,12 +297,18 @@ h1 {
 }
 
 .experiment__left-container {
+  align-items: center;
   display: flex;
   flex-direction: row;
   gap: 8px;
+
   .experiment__WIP {
     color: var(--yellow-600);
     letter-spacing: 2px;
   }
+}
+.experiment-date {
+  text-wrap: nowrap;
+  color: var(--gray-500);
 }
 </style>

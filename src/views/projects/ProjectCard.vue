@@ -49,7 +49,7 @@ const props = defineProps({
     .top-gradient {
       opacity: 1;
     }
-    rotate: 0.5deg;
+    // rotate: 0.5deg;
     transform: translateY(-2px);
   }
 

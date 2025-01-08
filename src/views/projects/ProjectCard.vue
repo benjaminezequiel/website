@@ -1,5 +1,6 @@
 <template>
   <div class="project_card">
+    <div class="top-gradient"></div>
     <div v-if="project.external" class="project__external">BEHANCE</div>
     <div class="project__date">{{ project.date }}</div>
     <img :src="project.thumbnail" :alt="project.title" />
@@ -27,7 +28,7 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   background-color: var(--gray-100);
-  border-radius: 16px;
+  border-radius: 15px;
   border: var(--gray-200) 1px solid;
   text-decoration: none;
   color: inherit;
@@ -38,9 +39,17 @@ const props = defineProps({
   height: 400px;
   transition:
     transform var(--ease-out) 150ms,
+    rotate var(--ease-out) 150ms,
     box-shadow var(--ease-out) 800ms;
 
   &:hover {
+    img {
+      opacity: 1;
+    }
+    .top-gradient {
+      opacity: 1;
+    }
+    rotate: 0.5deg;
     transform: translateY(-2px);
   }
 
@@ -54,7 +63,9 @@ const props = defineProps({
     height: fit-content;
     align-items: flex-start;
     justify-content: flex-end;
-    background: linear-gradient(in oklch, transparent, var(--gray-75) 80%);
+
+    background: linear-gradient(in oklch, transparent 40%, var(--gray-100) 100%);
+
     padding: 16px 20px;
     gap: 4px;
 
@@ -86,6 +97,10 @@ const props = defineProps({
   }
 
   img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
     object-fit: cover;
     width: 100%;
     position: absolute;
@@ -94,6 +109,7 @@ const props = defineProps({
     mask-image: linear-gradient(to top, transparent 0%, bla3k 50%);
     scale: 1.05;
     height: 100%;
+    transition: var(--ease-out) 400ms opacity;
   }
 
   h2,
@@ -123,5 +139,19 @@ const props = defineProps({
   left: 16px;
   z-index: 100;
   mix-blend-mode: difference;
+}
+.top-gradient {
+  width: 50%;
+  height: 50%;
+  background-color: var(--gray-500);
+  mix-blend-mode: lighten;
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  transform: translate(-50%, -80%);
+  border-radius: 100%;
+  filter: blur(120px);
+  opacity: 0;
+  transition: opacity var(--ease-out) 800ms;
 }
 </style>

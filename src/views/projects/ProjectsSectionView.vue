@@ -14,13 +14,18 @@
         </p> -->
       </header>
       <div class="projects_grid">
-        <router-link
-          v-for="project in visibleProjects"
-          :key="project.slug"
-          :to="{ name: 'project', params: { slug: project.slug } }"
-        >
-          <ProjectCard :project="project" />
-        </router-link>
+        <div v-for="project in visibleProjects">
+          <router-link
+            v-if="!project.external"
+            :key="project.slug"
+            :to="{ name: 'project', params: { slug: project.slug } }"
+          >
+            <ProjectCard :project="project" />
+          </router-link>
+          <a v-else :href="project.link" target="_blank">
+            <ProjectCard :project="project" />
+          </a>
+        </div>
       </div>
     </div>
   </div>

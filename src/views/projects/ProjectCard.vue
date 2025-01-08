@@ -1,5 +1,7 @@
 <template>
   <div class="project_card">
+    <div v-if="project.external" class="project__external">BEHANCE</div>
+    <div class="project__date">{{ project.date }}</div>
     <img :src="project.thumbnail" :alt="project.title" />
     <div class="content">
       <h2>{{ project.title }}</h2>
@@ -100,5 +102,26 @@ const props = defineProps({
     padding: 0;
     margin: 0;
   }
+}
+
+.project__date {
+  position: absolute;
+  color: var(--gray-500);
+  top: 16px;
+  font-size: 20px;
+  right: 16px;
+  z-index: 100;
+  mix-blend-mode: difference;
+}
+
+.project__external {
+  position: absolute;
+  color: var(--gray-400);
+  top: 16px;
+  font-feature-settings: 'ss04' on;
+  font-size: 20px;
+  left: 16px;
+  z-index: 100;
+  mix-blend-mode: difference;
 }
 </style>

@@ -1,7 +1,7 @@
 ---
 title: 'Silicon Trader'
 subtitle: 'The Future of Algorithmic Trading'
-date: 2022-2024
+date: 2025
 author: Benjamin Ezequiel
 org: MBOCHIP
 thumbnail: /images/03-silicon/silicon_thumbnail.jpg

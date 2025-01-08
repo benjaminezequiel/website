@@ -21,7 +21,7 @@
             <span>EZBEN @2025</span>
           </div>
         </div>
-        <img src="../../../public/assets/logo/ezben.svg" alt="" class="logo-test" />
+        <img src="/assets/logo/ezben.svg" alt="" class="logo-test" />
         <HomeBackground :class="expanded ? 'expanded' : ''" />
         <vAscii
           class="home__ascii"

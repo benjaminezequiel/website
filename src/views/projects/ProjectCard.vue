@@ -126,7 +126,7 @@ const props = defineProps({
   top: 16px;
   font-size: 20px;
   right: 16px;
-  z-index: 100;
+  z-index: 10;
   mix-blend-mode: difference;
 }
 
@@ -137,7 +137,7 @@ const props = defineProps({
   font-feature-settings: 'ss04' on;
   font-size: 20px;
   left: 16px;
-  z-index: 100;
+  z-index: 10;
   mix-blend-mode: difference;
 }
 .top-gradient {

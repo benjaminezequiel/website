@@ -127,6 +127,11 @@ h1 {
 }
 
 .experiment-card {
+  &:has(a:focus-visible) {
+    outline: 2px solid var(--blue-400) !important;
+    outline-offset: 2px !important;
+  }
+
   cursor: pointer;
   display: flex;
   flex-direction: column;

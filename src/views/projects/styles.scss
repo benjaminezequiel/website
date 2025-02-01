@@ -17,6 +17,11 @@
   }
 }
 
+.router-view:has(a:focus-visible) {
+  outline: 2px solid var(--blue-400) !important;
+  outline-offset: 2px !important;
+  border-radius: 16px;
+}
 @include animation-delays();
 
 @keyframes animate-fade {

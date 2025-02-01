@@ -157,12 +157,18 @@ const props = defineProps({
       padding var(--ease-out) 200ms,
       margin var(--ease-out) 200ms;
 
+    &:focus-visible {
+      outline: var(--blue) solid 2px;
+      outline-offset: 2px;
+    }
+
     &.active {
       background: linear-gradient(in oklch, var(--purple-300), var(--purple-200));
       cursor: default;
       padding-left: 16px;
       padding-right: 16px;
-      outline: 1px color-mix(in oklch, var(--gray-400), transparent) solid;
+      box-sizing: border-box;
+      border: 1px color-mix(in oklch, var(--gray-400), transparent) solid;
       box-shadow: var(--purple-100) 0px 4px 16px -2px;
     }
     &:hover:not(.active) {

@@ -6,7 +6,7 @@
         <div class="info_card">
           <div class="last_updated animate-4">
             <span class="info-faint">LAST UPDATED</span>
-            <span>2025-05-01 | 17:18:16</span>
+            <span>2025-02-01 | 19:05:10</span>
           </div>
           <div class="currently_reading animate-5">
             <span class="info-faint">CURRENTLY READING</span>

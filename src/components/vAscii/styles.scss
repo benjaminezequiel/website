@@ -20,6 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   > * {
     scale: 2;
   }
@@ -27,10 +28,11 @@
 
 .vAscii__char-output {
   font-family: 'Space Mono';
-  font-size: 10px;
+  font-size: var(--dynamic-ascii-font-size, 10px);
   line-height: 1;
   white-space: pre;
   user-select: none;
+
   &:active {
     cursor: grabbing;
   }

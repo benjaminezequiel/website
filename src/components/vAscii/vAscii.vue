@@ -171,6 +171,17 @@ watch(
   { deep: true },
 )
 
+watch(
+  () => props.cameraConfig.fov,
+  () => {
+    if (camera) {
+      camera.fov = props.cameraConfig.fov
+      camera.updateProjectionMatrix()
+    }
+  },
+  { deep: true },
+)
+
 const initControls = (element) => {
   controls = new OrbitControls(camera, element)
   const finalConfig = {

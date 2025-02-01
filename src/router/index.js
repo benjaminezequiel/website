@@ -33,25 +33,22 @@ const router = createRouter({
     {
       path: '/field_notes/:slug',
       name: 'note',
-      component: () => import('@/views/todo!/NoteView.vue'),
+      component: () => import('@/views/todo/NoteView.vue'),
     },
     {
       path: '/experiments',
       name: 'experiments',
-      component: () => import('@/views/todo!/ExperimentsView.vue'),
+      component: () => import('@/views/todo/ExperimentsView.vue'),
     },
     {
       path: '/experiments/:slug',
       name: 'experiment',
-      component: () => import('@/views/todo!/ExperimentView.vue'),
+      component: () => import('@/views/todo/ExperimentView.vue'),
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/todo!/AboutView.vue'),
+      component: () => import('../views/todo/AboutView.vue'),
     },
   ],
 })

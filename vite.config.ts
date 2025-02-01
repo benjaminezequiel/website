@@ -31,6 +31,21 @@ export default defineConfig({
       },
     } as GLSLPlugin,
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
+        },
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+      },
+    },
+    sourcemap: true,
+  },
   assetsInclude: ['**/*.md', '**/*.glsl'],
   resolve: {
     alias: {

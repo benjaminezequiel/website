@@ -14,7 +14,7 @@
         </p> -->
       </header>
       <div class="projects_grid">
-        <div v-for="project in visibleProjects">
+        <div v-for="(project, index) in visibleProjects" :animation-index="index" class="animate">
           <router-link
             v-if="!project.external"
             :key="project.slug"

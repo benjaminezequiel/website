@@ -1,5 +1,65 @@
 @use '../../styles/utils.scss' as utils;
 
+.animate-1,
+.animate-2,
+.animate-3,
+.animate-4,
+.animate-5,
+.animate-6 {
+  animation-duration: 0.5s;
+  animation-name: animate-fade;
+  animation-delay: var(--_animation-delay);
+  animation-fill-mode: backwards;
+}
+
+.animate-ascii-entrance {
+  --_animation-delay: 500ms;
+  animation-duration: 1s;
+  animation-name: grow-height;
+  animation-delay: var(--_animation-delay);
+  animation-fill-mode: forwards;
+  transform: translateY(200%);
+  opacity: 0;
+}
+
+@keyframes grow-height {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-1 {
+  --_animation-delay: 100ms;
+}
+
+.animate-2 {
+  --_animation-delay: 200ms;
+}
+
+.animate-3 {
+  --_animation-delay: 300ms;
+}
+
+.animate-4 {
+  --_animation-delay: 800ms;
+}
+.animate-5 {
+  --_animation-delay: 1000ms;
+}
+.animate-6 {
+  --_animation-delay: 1200ms;
+}
+
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .last_updated,
 .currently_reading,
 .copyright {
@@ -252,7 +312,6 @@
     &.expanded {
       clip-path: circle(500px);
       transition: clip-path 1200ms cubic-bezier(0.33, 1, 0.68, 1);
-      animation: expand 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
     }
   }
 

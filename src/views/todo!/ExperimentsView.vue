@@ -1,4 +1,3 @@
-// views/ExperimentsView.vue
 <template>
   <div class="page--container">
     <div class="page">
@@ -16,7 +15,12 @@
       </header>
 
       <div class="experiments-grid">
-        <article v-for="experiment in experiments" :key="experiment.slug" class="experiment-card">
+        <article
+          v-for="(experiment, index) in experiments"
+          :key="experiment.slug"
+          class="experiment-card animate"
+          :animation-index="index"
+        >
           <a
             :to="{ name: 'experiment', params: { slug: experiment.slug } }"
             class="experiment-content"
@@ -239,6 +243,11 @@ h1 {
   justify-content: center;
   color: var(--gray-1200);
   &::before {
+    animation-duration: 2s;
+    animation-name: simple-fade-in;
+    animation-fill-mode: forwards;
+    animation-timing-function: var(--ease-out);
+
     content: '';
     width: 20%;
     height: 80%;
@@ -255,6 +264,43 @@ h1 {
   background-color: var(--gray-75);
   background-image: radial-gradient(transparent 1px, var(--gray-50, #ffffff) 1px);
   background-size: 12px 12px;
+}
+
+.animate {
+  animation-duration: 500ms;
+  animation-name: animate-fade;
+  animation-delay: var(--_animation-delay);
+  animation-fill-mode: backwards;
+  animation-timing-function: var(--ease-out);
+}
+
+@mixin animation-delays($count: 6, $base-delay: 000ms, $increment: 100ms) {
+  @for $i from 0 through $count - 1 {
+    [animation-index='#{$i}'] {
+      --_animation-delay: #{$base-delay + ($i * $increment)};
+      --_card-rotation: #{if($i % 2 == 0, -1deg, 1deg)};
+    }
+  }
+}
+
+@include animation-delays();
+@keyframes simple-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+    scale: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+    scale: 1;
+  }
 }
 
 .page {

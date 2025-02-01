@@ -1,5 +1,5 @@
 <template>
-  <div class="nav" :class="{ hidden: isHidden && hidable }">
+  <div class="nav entrance-animation" :class="{ hidden: isHidden && hidable }">
     <div class="message" v-if="(!hideMessage && showMessage) || debug">
       <header>
         <span class="material-symbols-outlined">INFO</span>
@@ -11,12 +11,16 @@
         just say hi. I hope you find something that inspires you!
       </section>
     </div>
-    <RouterLink class="nav__item home" to="/" :class="{ active: active === 'home' }">
+    <RouterLink
+      class="nav__item entrance-animation-content home"
+      to="/"
+      :class="{ active: active === 'home' }"
+    >
       <span class="nav__item-icon material-symbols-outlined">home</span>
       <span class="nav__item-label">HOME</span>
     </RouterLink>
     <RouterLink
-      class="nav__item projects"
+      class="nav__item entrance-animation-content projects"
       to="/projects"
       :class="{ active: active === 'projects' }"
     >
@@ -24,7 +28,7 @@
       <span class="nav__item-label">PROJECTS</span>
     </RouterLink>
     <RouterLink
-      class="nav__item experiments"
+      class="nav__item entrance-animation-content experiments"
       to="/experiments"
       :class="{ active: active === 'experiments' }"
     >
@@ -122,13 +126,15 @@ const props = defineProps({
   flex-direction: row;
   left: 50vw;
   bottom: 16px;
-  gap: 4px;
+  gap: 8px;
   transform: translate(-50%);
   padding: 8px;
   background-color: var(--gray-100);
   max-width: 100%;
   outline: 1px solid var(--gray-200);
   border-radius: 40px;
+  align-items: center;
+  justify-content: center;
 
   .nav__item {
     all: unset;
@@ -152,14 +158,24 @@ const props = defineProps({
       margin var(--ease-out) 200ms;
 
     &.active {
-      background-color: var(--purple-300);
+      background: linear-gradient(in oklch, var(--purple-300), var(--purple-200));
       cursor: default;
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: 16px;
+      padding-right: 16px;
+      outline: 1px color-mix(in oklch, var(--gray-400), transparent) solid;
+      box-shadow: var(--purple-100) 0px 4px 16px -2px;
     }
     &:hover:not(.active) {
-      outline: var(--gray-300) solid 1px;
-      background-color: var(--gray-300);
+      outline: var(--gray-200) solid 1px;
+      background-color: var(--gray-100);
+      box-shadow: inset 0px 3px 10px -2px black;
+
+      padding-left: 32px;
+      padding-right: 32px;
+
+      > * {
+        color: var(--gray-600);
+      }
     }
   }
 
@@ -184,14 +200,6 @@ const props = defineProps({
   &.hidden {
     transform: translate(-50%, 100%);
     opacity: 0;
-  }
-}
-
-.nav .nav__item:hover:not(.active) {
-  padding-left: 32px;
-  padding-right: 32px;
-  .material-symbols-outlined {
-    color: var(--gray-1000);
   }
 }
 
@@ -232,6 +240,36 @@ const props = defineProps({
   }
   .nav {
     gap: 4px;
+  }
+}
+
+.entrance-animation {
+  animation-duration: 800ms;
+  animation-name: animate-fade, animate-scale;
+  animation-delay: 400ms, 600ms;
+  animation-fill-mode: backwards, backwards;
+  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+  interpolate-size: allow-keywords;
+  overflow: hidden;
+}
+
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+    bottom: -100%;
+  }
+  100% {
+    opacity: 1;
+    bottom: 16px;
+  }
+}
+
+@keyframes animate-scale {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: auto;
   }
 }
 </style>

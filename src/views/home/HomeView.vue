@@ -1,14 +1,14 @@
 <template>
-  <!-- <div class="huge-clip-path"></div> -->
   <div class="home__border">
+    <!-- <div class="huge-clip-path"></div> -->
     <div class="home__page">
       <div class="home__content">
         <div class="info_card">
-          <div class="last_updated">
+          <div class="last_updated animate-4">
             <span class="info-faint">LAST UPDATED</span>
             <span>2025-05-01 | 17:18:16</span>
           </div>
-          <div class="currently_reading">
+          <div class="currently_reading animate-5">
             <span class="info-faint">CURRENTLY READING</span>
             <span
               ><a href="https://www.goodreads.com/book/show/841.Emotional_Design" target="_blank">
@@ -16,7 +16,7 @@
               </a>
             </span>
           </div>
-          <div class="copyright">
+          <div class="copyright animate-6">
             <span class="info-faint">COPYRIGHT</span>
             <span>EZBEN @2025</span>
           </div>
@@ -24,7 +24,7 @@
         <img src="/assets/logo/ezben.svg" alt="" class="logo-test" />
         <HomeBackground :class="expanded ? 'expanded' : ''" />
         <vAscii
-          class="home__ascii"
+          class="home__ascii animate-ascii-entrance"
           :class="expanded ? 'expanded' : ''"
           modelPath="/assets/object_to_ascii.obj"
           :asciiConfig="{

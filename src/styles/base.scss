@@ -14,6 +14,40 @@
 
 // @import url('https://fonts.googleapis.com/css2?family=Amarante&display=swap');
 
+body {
+  --scrollbar-color-thumb: var(--gray-200);
+  --scrollbar-color-track: var(--gray-50);
+  --scrollbar-width: thin;
+  --scrollbar-width-legacy: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color-thumb);
+  border-radius: 8px;
+
+  &:active {
+    background-color: var(--gray-400);
+  }
+}
+body::-webkit-scrollbar-track {
+  background: var(--scrollbar-color-track);
+}
+
+body::-webkit-scrollbar {
+  position: absolute;
+}
+
+body::-webkit-scrollbar {
+  max-width: var(--scrollbar-width-legacy);
+  max-height: var(--scrollbar-width-legacy);
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .animate {
+    animation: none !important;
+  }
+}
+
 @font-face {
   font-family: 'Space Grotesk';
 

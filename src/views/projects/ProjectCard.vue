@@ -33,6 +33,7 @@ const props = defineProps({
   text-decoration: none;
   color: inherit;
   position: relative;
+
   overflow: hidden;
 
   box-shadow: color-mix(in oklch, var(--gray-25) 50%, transparent) 0px 12px 32px -2px;
@@ -40,9 +41,13 @@ const props = defineProps({
   transition:
     transform var(--ease-out) 150ms,
     rotate var(--ease-out) 150ms,
+    scale var(--ease-out) 150ms,
     box-shadow var(--ease-out) 800ms;
 
   &:hover {
+    scale: 1.01;
+    rotate: var(--_card-rotation);
+
     img {
       opacity: 1;
     }

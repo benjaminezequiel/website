@@ -1,5 +1,55 @@
 @use '../../../../styles/utils' as utils;
 
+.animate-1,
+.animate-2,
+.animate-3 {
+  animation-duration: 0.5s;
+  animation-name: animate-fade;
+  animation-delay: var(--_animation-delay);
+  animation-fill-mode: backwards;
+}
+
+.animate-secondary {
+  interpolate-size: allow-keywords;
+  max-height: 0;
+  animation-name: grow-height;
+  animation-duration: 800ms;
+  animation-delay: 500ms;
+  animation-timing-function: var(--ease-out);
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+@keyframes grow-height {
+  to {
+    max-height: fit-content;
+  }
+}
+
+.animate-1 {
+  --_animation-delay: 0ms;
+}
+
+.animate-2 {
+  --_animation-delay: 1500ms;
+}
+
+.animate-3 {
+  --_animation-delay: 1700ms;
+}
+
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .welcome-title {
   display: grid;
   justify-items: center;
@@ -110,7 +160,10 @@
     line-height: 80%; // adjusts height to closer to capital height
     font-family: 'Permanent Marker';
     font-size: calc(var(--fluid-fontSize) * 0.8);
-    color: var(--red-400);
+    // color: var(--red-400);
+    background: -webkit-linear-gradient(var(--red-400) 50%, transparent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     mix-blend-mode: exclusion;
     pointer-events: none;
   }
@@ -119,8 +172,6 @@
 .header--logo {
   height: 24px;
   max-width: 64px;
-
-  --fill: red;
 }
 
 .welcome__timer,

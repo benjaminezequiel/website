@@ -1,7 +1,7 @@
 <template>
   <div class="welcome-title">
     <div class="primary__container">
-      <div class="primary__top">
+      <div class="primary__top animate-2">
         <img src="/assets/logo/ezben.svg" class="header--logo" />
         <!-- <span class="material-symbols-outlined">rebase_edit</span> -->
         <img src="/assets/barcode_benjamin.svg" class="header--logo" />
@@ -27,11 +27,16 @@
           </span>
         </span>
       </div>
-      <div ref="primaryTitle" class="primary__title" @mouseover="startMove" @mouseleave="resetMove">
+      <div
+        ref="primaryTitle"
+        class="primary__title animate-1"
+        @mouseover="startMove"
+        @mouseleave="resetMove"
+      >
         WELCOME
       </div>
       <!-- <div class="primary__title-add">WELCOME</div> -->
-      <div class="primary__bottom">
+      <div class="primary__bottom animate-3">
         <!-- <button>INTRO MESSAGE</button> -->
         <!-- <span class="material-symbols-outlined">place</span> -->
         <span>PORTO ALEGRE, BRAZIL</span>
@@ -46,7 +51,7 @@
         </span>
       </div>
     </div>
-    <div class="secondary" ref="secondary_title"></div>
+    <div class="secondary animate-secondary" ref="secondary_title"></div>
   </div>
 </template>
 

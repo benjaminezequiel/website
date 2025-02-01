@@ -1,5 +1,37 @@
 @use '../../styles/utils.scss' as utils;
 
+.animate {
+  animation-duration: 500ms;
+  animation-name: animate-fade;
+  animation-delay: var(--_animation-delay);
+  animation-fill-mode: backwards;
+  animation-timing-function: var(--ease-out);
+}
+
+@mixin animation-delays($count: 6, $base-delay: 0ms, $increment: 100ms) {
+  @for $i from 0 through $count - 1 {
+    [animation-index='#{$i}'] {
+      --_animation-delay: #{$base-delay + ($i * $increment)};
+      --_card-rotation: #{if($i % 2 == 0, -1deg, 1deg)};
+    }
+  }
+}
+
+@include animation-delays();
+
+@keyframes animate-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+    scale: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+    scale: 1;
+  }
+}
+
 body {
   --page-alignment-y: flex-start;
 }
@@ -38,6 +70,11 @@ h1 {
     content: '';
     width: 20%;
     height: 80%;
+    animation-duration: 2s;
+    animation-name: simple-fade-in;
+    animation-fill-mode: forwards;
+    animation-timing-function: var(--ease-out);
+
     background-color: var(--gray-300);
     filter: blur(350px);
     position: absolute;
@@ -90,4 +127,10 @@ h1 {
 
 a {
   all: unset;
+}
+
+@keyframes simple-fade-in {
+  from {
+    opacity: 0;
+  }
 }

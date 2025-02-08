@@ -75,7 +75,7 @@ const RENDER_HEIGHT = computed(() => props.asciiConfig.renderHeight)
 const ASCII_CHARS = computed(() => props.asciiConfig.chars)
 
 let outsideCanvas
-let throttleFactor = 1
+let throttleFactor = 2
 let frameCount = 0
 let ctx
 
@@ -190,7 +190,7 @@ const initControls = (element) => {
     enableZoom: false,
     enablePan: false,
     enableDamping: true,
-    dampingFactor: 0.12,
+    dampingFactor: 0.05,
     rotateSpeed: 0.25,
     autoRotate: true,
     autoRotateSpeed: 2,

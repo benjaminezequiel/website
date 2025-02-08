@@ -21,6 +21,10 @@ onUpdated(() => {
 })
 
 const props = defineProps({
+  useAscii: {
+    type: Boolean,
+    default: true,
+  },
   modelPath: {
     type: String,
     required: true,
@@ -50,7 +54,6 @@ const props = defineProps({
       enableZoom: false,
       enablePan: false,
       enableDamping: true,
-      dampingFactor: 0.02,
       rotateSpeed: 0.25,
       autoRotate: true,
       autoRotateSpeed: 2,
@@ -72,7 +75,7 @@ const RENDER_HEIGHT = computed(() => props.asciiConfig.renderHeight)
 const ASCII_CHARS = computed(() => props.asciiConfig.chars)
 
 let outsideCanvas
-let throttleFactor = 2
+let throttleFactor = 1
 let frameCount = 0
 let ctx
 
@@ -154,7 +157,7 @@ const initThreeJs = () => {
     precision: 'lowp',
     antialias: false,
     powerPreference: 'high-performance',
-    depth: false,
+    // depth: false,
   })
 
   renderer.setSize(RENDER_WIDTH.value, RENDER_HEIGHT.value)
@@ -187,7 +190,7 @@ const initControls = (element) => {
     enableZoom: false,
     enablePan: false,
     enableDamping: true,
-    dampingFactor: 0.02,
+    dampingFactor: 0.12,
     rotateSpeed: 0.25,
     autoRotate: true,
     autoRotateSpeed: 2,
@@ -211,6 +214,8 @@ const loadModel = async () => {
 
     model = object
     scene.add(object)
+    model.position.z = 0.5
+    model.position.x = 0.15
     isModelLoaded = true
   } catch (error) {
     console.error('Error loading model:', error)

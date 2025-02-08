@@ -6,6 +6,7 @@
         <!-- <span class="material-symbols-outlined">rebase_edit</span> -->
         <img src="/assets/barcode_benjamin.svg" class="header--logo" />
         <!-- <span class="material-symbols-outlined">thread_unread</span> -->
+        <!-- <FPSCounter class="fpscounter" /> -->
         <!-- <span class="primary__top-right">
           <span class="welcome__FPS">
             <span>FPS: </span>
@@ -57,6 +58,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import FPSCounter from '@/components/FPSCounter.vue'
 import NumberFlow from '@number-flow/vue'
 
 const fps = ref(0)
@@ -174,4 +176,8 @@ function resetMove() {
 
 <style lang="scss" scoped>
 @use './styles.scss';
+
+// .fpscounter {
+//   display: none;
+// }
 </style>

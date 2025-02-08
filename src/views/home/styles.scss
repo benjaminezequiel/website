@@ -306,11 +306,11 @@
     transition: clip-path 300ms cubic-bezier(0.33, 1, 0.68, 1);
 
     > * {
-      transform: translateY(20px); // VISUAL ADJUSTMENT FOR ALIGNMENT WITH TITLE
+      transform: translateY(30px); // VISUAL ADJUSTMENT FOR ALIGNMENT WITH TITLE
     }
 
     &.expanded {
-      clip-path: circle(1500px);
+      clip-path: circle(500px);
       transition: clip-path 1200ms cubic-bezier(0.33, 1, 0.68, 1);
     }
   }

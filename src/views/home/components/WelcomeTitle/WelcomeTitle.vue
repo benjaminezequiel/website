@@ -6,7 +6,7 @@
         <!-- <span class="material-symbols-outlined">rebase_edit</span> -->
         <img src="/assets/barcode_benjamin.svg" class="header--logo" />
         <!-- <span class="material-symbols-outlined">thread_unread</span> -->
-        <span class="primary__top-right">
+        <!-- <span class="primary__top-right">
           <span class="welcome__FPS">
             <span>FPS: </span>
             <NumberFlow :value="fps"></NumberFlow>
@@ -25,7 +25,7 @@
               :format="{ minimumIntegerDigits: 2, useGrouping: false }"
             />
           </span>
-        </span>
+        </span> -->
       </div>
       <div
         ref="primaryTitle"

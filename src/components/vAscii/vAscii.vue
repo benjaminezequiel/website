@@ -15,10 +15,9 @@ import { ref, onMounted, onUnmounted, markRaw, computed, watch, onUpdated } from
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import Stats from 'stats.js'
 
 onUpdated(() => {
-  console.log('updated')
+  console.log('updated VASCII')
 })
 
 const props = defineProps({
@@ -95,8 +94,8 @@ const refRenderContainer = ref(null)
 const refDebugContainer = ref(null)
 
 // Reactive stuff
-const isUserInteracting = ref(false)
-const isModelLoaded = ref(false)
+// const isUserInteracting = ref(false)
+let isModelLoaded = false
 
 // Rotation variables
 // const polar = ref(0)
@@ -114,9 +113,12 @@ onMounted(async () => {
   resultRows = new Array(HEIGHT.value)
 
   // if()
-  outsideCanvas = document.createElement('canvas')
-  outsideCanvas.width = WIDTH.value
-  outsideCanvas.height = HEIGHT.value
+  if (!outsideCanvas) {
+    // outsideCanvas = document.createElement('canvas')
+    // outsideCanvas.width = WIDTH.value
+    // outsideCanvas.heigth = HEIGHT.value
+    outsideCanvas = new OffscreenCanvas(WIDTH.value, HEIGHT.value)
+  }
   ctx = outsideCanvas.getContext('2d', { willReadFrequently: true })
 
   initThreeJs()
@@ -173,7 +175,7 @@ watch(
   (newConfig) => {
     if (controls) {
       Object.assign(controls, newConfig)
-      controls.update()
+      // controls.update()
     }
   },
   { deep: true },
@@ -191,18 +193,15 @@ const initControls = (element) => {
     autoRotateSpeed: 2,
     minPolarAngle: Math.PI / 2,
     maxPolarAngle: Math.PI / 2,
-    ...props.controlsConfig, // This will override only the provided values
+    ...props.controlsConfig,
   }
   Object.assign(controls, finalConfig)
   controls.target.set(0.2, 0, 0.5)
   controls.update()
-
-  controls.addEventListener('start', () => (isUserInteracting.value = true))
-  controls.addEventListener('end', () => (isUserInteracting.value = false))
 }
 
 const loadModel = async () => {
-  if (isModelLoaded.value) return
+  if (isModelLoaded) return
 
   const loader = new OBJLoader()
   try {
@@ -212,7 +211,7 @@ const loadModel = async () => {
 
     model = object
     scene.add(object)
-    isModelLoaded.value = true
+    isModelLoaded = true
   } catch (error) {
     console.error('Error loading model:', error)
   }

@@ -32,12 +32,12 @@
             width: 90,
             height: 50,
             chars: ' .:+#@',
-            renderWidth: 160,
-            renderHeight: 160,
+            renderWidth: 100,
+            renderHeight: 100,
           }"
           :cameraConfig="{
             fov: 20,
-            position: { x: 0, y: 0, z: 32 },
+            position: { x: 0, y: 0, z: 35 },
           }"
           :controlsConfig="{
             autoRotateSpeed: 4,
@@ -45,7 +45,7 @@
           }"
           :show-debug="false"
         />
-        <!-- <WelcomeTitle @click="handleWelcomeClick" class="home__welcome-title" /> -->
+        <WelcomeTitle @click="handleWelcomeClick" class="home__welcome-title" />
       </div>
       <!-- <div class="test-white-strip"></div> -->
     </div>

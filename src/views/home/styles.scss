@@ -310,7 +310,7 @@
     }
 
     &.expanded {
-      clip-path: circle(500px);
+      clip-path: circle(1500px);
       transition: clip-path 1200ms cubic-bezier(0.33, 1, 0.68, 1);
     }
   }

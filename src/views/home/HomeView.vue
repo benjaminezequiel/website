@@ -1,6 +1,7 @@
 <template>
   <div class="home__border">
     <!-- <div class="huge-clip-path"></div> -->
+    <PerformanceMonitor :position="0" :panels="[0, 1, 2]"></PerformanceMonitor>
     <div class="home__page">
       <div class="home__content">
         <div class="info_card">
@@ -22,21 +23,21 @@
           </div>
         </div>
         <img src="/assets/logo/ezben.svg" alt="" class="logo-test" />
-        <HomeBackground :class="expanded ? 'expanded' : ''" />
+        <!-- <HomeBackground :class="expanded ? 'expanded' : ''" /> -->
         <vAscii
           class="home__ascii animate-ascii-entrance"
           :class="expanded ? 'expanded' : ''"
           modelPath="/assets/object_to_ascii.obj"
           :asciiConfig="{
-            width: 200,
-            height: 60,
+            width: 90,
+            height: 50,
             chars: ' .:+#@',
-            renderWidth: 320,
+            renderWidth: 160,
             renderHeight: 160,
           }"
           :cameraConfig="{
-            fov: 15,
-            position: { x: 0, y: 0, z: 50 },
+            fov: 20,
+            position: { x: 0, y: 0, z: 32 },
           }"
           :controlsConfig="{
             autoRotateSpeed: 4,
@@ -44,7 +45,7 @@
           }"
           :show-debug="false"
         />
-        <WelcomeTitle @click="handleWelcomeClick" class="home__welcome-title" />
+        <!-- <WelcomeTitle @click="handleWelcomeClick" class="home__welcome-title" /> -->
       </div>
       <!-- <div class="test-white-strip"></div> -->
     </div>
@@ -63,6 +64,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import PerformanceMonitor from '@/components/PerformanceMonitor.vue'
 import HomeBackground from './components/HomeBackground/HomeBackground.vue'
 import WelcomeTitle from './components/WelcomeTitle/WelcomeTitle.vue'
 import vAscii from '../../components/vAscii/vAscii.vue'

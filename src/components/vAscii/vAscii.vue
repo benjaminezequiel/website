@@ -2,7 +2,7 @@
   <div class="vAscii__wrapper">
     <div class="vAscii__render-container">
       <div ref="refRenderContainer" class="vAscii__threejs"></div>
-      <pre class="vAscii__char-output">{{ asciiFrame }}</pre>
+      <pre class="vAscii__char-output" ref="asciiOutput"></pre>
     </div>
     <div v-if="showDebug" class="vAscii__debug-container">
       <div ref="refDebugContainer" class="vAscii__debug-renderer"></div>
@@ -11,10 +11,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, markRaw, computed, watch } from 'vue'
+import { ref, onMounted, onUnmounted, markRaw, computed, watch, onUpdated } from 'vue'
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import Stats from 'stats.js'
+
+onUpdated(() => {
+  console.log('updated')
+})
 
 const props = defineProps({
   modelPath: {
@@ -67,13 +72,15 @@ const RENDER_WIDTH = computed(() => props.asciiConfig.renderWidth)
 const RENDER_HEIGHT = computed(() => props.asciiConfig.renderHeight)
 const ASCII_CHARS = computed(() => props.asciiConfig.chars)
 
-const canvas = ref(null)
-const ctx = ref(null)
+let outsideCanvas
+let throttleFactor = 2
+let frameCount = 0
+let ctx
 
 watch([WIDTH, HEIGHT], ([newWidth, newHeight]) => {
-  if (canvas.value) {
-    canvas.value.width = newWidth
-    canvas.value.height = newHeight
+  if (outsideCanvas) {
+    outsideCanvas.width = newWidth
+    outsideCanvas.height = newHeight
   }
 })
 
@@ -87,17 +94,14 @@ let model = null
 const refRenderContainer = ref(null)
 const refDebugContainer = ref(null)
 
-// Performance stuff
-
 // Reactive stuff
 const isUserInteracting = ref(false)
 const isModelLoaded = ref(false)
-const asciiFrame = ref('')
 
 // Rotation variables
-const polar = ref(0)
-const distance = ref(0)
-const azimuth = ref(0)
+// const polar = ref(0)
+// const distance = ref(0)
+// const azimuth = ref(0)
 
 watch(ASCII_CHARS, () => {
   const newLookup = initAsciiLookup()
@@ -107,10 +111,13 @@ watch(ASCII_CHARS, () => {
 })
 
 onMounted(async () => {
-  canvas.value = document.createElement('canvas')
-  canvas.value.width = WIDTH.value
-  canvas.value.height = HEIGHT.value
-  ctx.value = canvas.value.getContext('2d', { willReadFrequently: true })
+  resultRows = new Array(HEIGHT.value)
+
+  // if()
+  outsideCanvas = document.createElement('canvas')
+  outsideCanvas.width = WIDTH.value
+  outsideCanvas.height = HEIGHT.value
+  ctx = outsideCanvas.getContext('2d', { willReadFrequently: true })
 
   initThreeJs()
   initControls(renderer.domElement)
@@ -141,15 +148,16 @@ const initThreeJs = () => {
     props.cameraConfig.position.z,
   )
 
-  // Main renderer
   renderer = new THREE.WebGLRenderer({
+    precision: 'lowp',
     antialias: false,
+    powerPreference: 'high-performance',
+    depth: false,
   })
-  // Use the .value for setting size
-  renderer.setSize(RENDER_WIDTH.value, RENDER_HEIGHT.value) // Changed this line
+
+  renderer.setSize(RENDER_WIDTH.value, RENDER_HEIGHT.value)
   refRenderContainer.value.appendChild(renderer.domElement)
 
-  // Debug renderer
   if (props.showDebug && refDebugContainer.value) {
     const debugRenderer = new THREE.WebGLRenderer({
       antialias: false,
@@ -225,27 +233,29 @@ const setupLights = () => {
 
 let animationFrameId
 
+const asciiOutput = ref(null)
+
 const animate = () => {
   animationFrameId = requestAnimationFrame(animate)
-  if (controls) {
+  // updateCameraPosition()
+  if (frameCount++ % throttleFactor === 0) {
     controls.update()
+    asciiOutput.value.textContent = frameToAscii()
   }
-  updateCameraPosition()
-  asciiFrame.value = frameToAscii()
 }
 
+let resultRows
 const frameToAscii = () => {
-  const resultRows = new Array(HEIGHT.value)
-
   renderer.render(scene, camera)
-  if (props.showDebug && renderer.debugRenderer) {
-    renderer.debugRenderer.render(scene, camera)
-  }
 
-  if (!canvas.value || !ctx.value) return ''
+  // if (props.showDebug && renderer.debugRenderer) {
+  //   renderer.debugRenderer.render(scene, camera)
+  // }
 
-  ctx.value.drawImage(renderer.domElement, 0, 0, WIDTH.value, HEIGHT.value)
-  const pixels = ctx.value.getImageData(0, 0, WIDTH.value, HEIGHT.value).data
+  // if (!canvas.value || !ctx.value) return ''
+
+  ctx.drawImage(renderer.domElement, 0, 0, WIDTH.value, HEIGHT.value)
+  const pixels = ctx.getImageData(0, 0, WIDTH.value, HEIGHT.value).data
 
   for (let i = 0; i < HEIGHT.value; i++) {
     const row = new Array(WIDTH.value)
@@ -253,9 +263,8 @@ const frameToAscii = () => {
 
     for (let j = 0; j < WIDTH.value; j++) {
       const idx = rowOffset + j * 4
-      const alpha = pixels[idx + 3]
 
-      if (alpha < 128) {
+      if (pixels[idx + 3] < 128) {
         row[j] = ' '
         continue
       }

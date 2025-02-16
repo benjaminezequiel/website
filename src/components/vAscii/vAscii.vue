@@ -54,9 +54,10 @@ const props = defineProps({
       enableZoom: false,
       enablePan: false,
       enableDamping: true,
+      dampingFactor: 0.025,
       rotateSpeed: 0.25,
       autoRotate: true,
-      autoRotateSpeed: 2,
+      // autoRotateSpeed: 2,
       minPolarAngle: Math.PI / 2,
       maxPolarAngle: Math.PI / 2,
     }),
@@ -75,7 +76,7 @@ const RENDER_HEIGHT = computed(() => props.asciiConfig.renderHeight)
 const ASCII_CHARS = computed(() => props.asciiConfig.chars)
 
 let outsideCanvas
-let throttleFactor = 2
+let throttleFactor = 1
 let frameCount = 0
 let ctx
 
@@ -157,7 +158,6 @@ const initThreeJs = () => {
     precision: 'lowp',
     antialias: false,
     powerPreference: 'high-performance',
-    // depth: false,
   })
 
   renderer.setSize(RENDER_WIDTH.value, RENDER_HEIGHT.value)
@@ -190,13 +190,12 @@ const initControls = (element) => {
     enableZoom: false,
     enablePan: false,
     enableDamping: true,
-    dampingFactor: 0.05,
-    rotateSpeed: 0.25,
+    dampingFactor: 0.025,
+    rotateSpeed: 0.2,
     autoRotate: true,
-    autoRotateSpeed: 2,
+    autoRotateSpeed: 3,
     minPolarAngle: Math.PI / 2,
     maxPolarAngle: Math.PI / 2,
-    ...props.controlsConfig,
   }
   Object.assign(controls, finalConfig)
   controls.target.set(0.2, 0, 0.5)

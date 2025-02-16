@@ -104,12 +104,12 @@
       scale var(--ease-out) 300ms,
       transform var(--ease-out) 300ms;
     --rotating-animation: rotate infinite calc(15s * var(--index)) linear;
-    &:hover {
-      border-color: var(--sea-green-300);
-      transform: scale(1.01);
-      // cursor: pointer;
-      animation-play-state: paused;
-    }
+    // &:hover {
+    //   border-color: var(--sea-green-300);
+    //   transform: scale(1.01);
+    //   // cursor: pointer;
+    //   animation-play-state: paused;
+    // }
   }
 
   .circle_1 {
